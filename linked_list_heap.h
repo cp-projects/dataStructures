@@ -30,3 +30,23 @@ typedef struct doubly_void doubly_void_t;
 
 typedef struct singly singly_t;
 typedef struct doubly doubly_t;
+
+
+
+singly_t* create_singly(const char* type);
+void clear_singly(const singly_t* list);
+
+
+
+
+
+
+
+
+
+void push(char* val);
+char* pop();
+
+void enqueue(char* val);
+char* dequeue();
+

@@ -106,7 +106,7 @@ typedef struct singly{
     singly_void_t* head_void;
 
     type_t type;
-    size_t size;
+    size_t len;
 
 } singly_t;
 
@@ -119,8 +119,8 @@ typedef struct doubly{
     doubly_dbl_t* head_dbl;
     doubly_void_t* head_void;
 
-    type_t type;
-    size_t size;
+    type_t* type;
+    size_t len;
 
 }doubly_t;
 
@@ -138,32 +138,38 @@ singly_t* create_singly(const char* type){
     singly_t* list = malloc(sizeof(singly_t));
 
     if(strncmp(type, "int", 3) == 0){
-        list->type = TYPE_INT;
-	list->head_int = NULL;
+
+	list->len = 0;
+	list->type = TYPE_INT;
+	list->head_int = (singly_int_t*)malloc(sizeof(singly_int_t));
 	return list;
     }
 
     else if(strncmp(type, "str", 3) == 0){
-        list->type = TYPE_STR;
-        list->head_str = NULL;
+        list->len = 0;
+	list->type = TYPE_STR;
+        list->head_str = (singly_str_t*) malloc(sizeof(singly_str_t));
 	return list;
     }
 
     else if(strncmp(type, "flt", 3) == 0){
+	list->len = 0;
         list->type = TYPE_FLT;
-        list->head_flt = NULL;
+        list->head_flt = (singly_flt_t*) malloc(sizeof(singly_flt_t));
 	return list;
     }
 
     else if(strncmp(type, "dbl", 3) == 0){
+	list->len = 0;
         list->type = TYPE_DBL;
-        list->head_dbl = NULL;
+        list->head_dbl = (singly_dbl_t*) malloc(sizeof(singly_dbl_t));
 	return list;
     }
 
     else if(strncmp(type, "void", 3) == 0){
+	list->len = 0;
         list->type = TYPE_VOID;
-        list->head_void = NULL;
+        list->head_void = (singly_void_t*) malloc(sizeof(singly_void_t));
 	return list;
     }
         
@@ -181,15 +187,64 @@ singly_t* create_singly(const char* type){
 }
 
 
+void push(char* val);
+
+
+
+
 void clear_singly(const singly_t* list){
 
-    void** pos = NULL;	
+        
+     if(list->type == TYPE_INT){
+	
+         singly_int_t* pos;
+	 pos = list->head_int;
+	     
+	 singly_int_t* trace;
+	 trace = list->head_int;
+
+	 while(pos){
+	    
+	     if(pos->next){
+	         trace = pos->next;
+		 
+		 free(pos->val);
+		 pos->val = NULL;
+
+		 free(pos);
+		 pos = trace;
+	        }
+
+              else{
+	         free(pos->val);	  
+		 pos->val = NULL;
+		 free(pos);
+	      }	 
+	  }
+	
+         return;
+	 }//end of int type  
+	    
+    
+    
+    
+}
+
+
+    /*
+
+    //void** pos = NULL;	
 
     if(list->type == TYPE_INT){
         singly_int_t* x = list->head_int;
-        x->val = list->head_int->val;	
+
+	for(x = list->head_int; x->val; x->next)
+           printf("success!!\n");
+	//x->val = list->head_int->val;	
 	*(singly_int_t*)pos = *(singly_int_t*) x;
        }
+
+    printf("Failure\n");
 
     else if(list->type == TYPE_STR){
         singly_str_t* x = list->head_str;
@@ -220,18 +275,18 @@ void clear_singly(const singly_t* list){
 	return;
        }
 
-    int i = 0;
-    if(pos)
-        for(pos; pos; pos->next){
+    //int i = 0;
+    //if(pos)
+       // for(pos; pos; pos->next){
 	
-	    printf("THIS IS THE %dth Element THE LIST\n", i);
-	    i++;
-	}
+	    //printf("THIS IS THE %dth Element THE LIST\n", i);
+	    //i++;
+	//}
 
-   
+    
 
 }
-
+*/
 
 
 
