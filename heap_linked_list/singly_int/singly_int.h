@@ -6,9 +6,9 @@ typedef struct singly singly_t;
 
 singly_t* create_list();
 
-void clear_list(const singly_t* list);
+void clear_list(singly_t* list);
 
-singly_t* push(const singly_t* list, int val);
+void push(singly_t* list, int val);
 
 
 #endif

@@ -25,7 +25,7 @@ singly_t* create_list(){
 }
 
 
-void clear_list(const singly_t* list){
+void clear_list(singly_t* list){
 
      singly_int_t* pos;
      pos = list->head;
@@ -36,27 +36,29 @@ void clear_list(const singly_t* list){
      while(pos){
 
          if(pos->next){
-             trace = pos->next;
-             free(pos->val);
+             trace = pos->next;      
+	     free(pos->val);
              pos->val = NULL;
-             free(pos);
-             pos = trace;
+	     free(pos);
+             
+	     --(list->len);
+	     
+	     pos = trace;
             }
 
          else{
-             free(pos->val);
-             pos->val = NULL;
+	     free(pos->val);
              free(pos);
+	     pos = NULL;
             }
         } //end while
-	
+ 
     free((void*)list);
     return;
-
 }
 
 
-singly_t* push(const singly_t* list, int val){
+void push(singly_t* list, const int val){
 
     singly_int_t* new_node = (singly_int_t*) malloc(sizeof(singly_int_t));
  
@@ -64,7 +66,8 @@ singly_t* push(const singly_t* list, int val){
     *(new_node->val) = val;
     new_node->next = list->head;
     list->head = new_node;
-    return list;
+    (list->len)++;
+    return;
 }
 
 
@@ -73,6 +76,10 @@ int main(){
 singly_t* my_list = create_list();
 
 push(my_list, 22);
+push(my_list, 15);
+push(my_list, 30);
+push(my_list, 11);
+
 clear_list(my_list);
 
 return 0;
