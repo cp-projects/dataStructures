@@ -1,5 +1,12 @@
+out: test.o singly_int.o
+	gcc -g -o test.out test.o singly_int.o
+
+test: test.c
+	gcc -g -c test.c
+
 singly_int: singly_int.c singly_int.h
-	gcc -g -o singly_int.out singly_int.c
+	gcc -g -c singly_int.c
+
 
 clean:
-	rm singly_int.out
+	rm ./*.o ./*.out

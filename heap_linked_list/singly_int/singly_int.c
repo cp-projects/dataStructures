@@ -139,7 +139,7 @@ int dequeue(singly_t* list){
 }
 
 
-
+/*
 
 int main(){
 	
@@ -149,6 +149,7 @@ push(my_list, 1);
 push(my_list, 2);
 push(my_list, 3);
 push(my_list, 4);
+
 
 int one = pop(my_list);
 printf("The Popped Value is %d\n", one);
@@ -162,10 +163,12 @@ printf("The Popped Value is %d\n", three);
 int four = pop(my_list);
 printf("The Popped Value is %d\n", four);
 
+
 enqueue(my_list, 5);
 enqueue(my_list, 6);
 enqueue(my_list, 7);
 enqueue(my_list, 8);
+
 
 int five = dequeue(my_list);
 printf("The Dequeued Value is %d\n", five);
@@ -185,4 +188,4 @@ clear_list(my_list);
 
 return 0;
 }
-
+*/

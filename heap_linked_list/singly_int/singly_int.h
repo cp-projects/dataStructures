@@ -10,5 +10,8 @@ void clear_list(singly_t* list);
 void push(singly_t* list, int val);
 int pop(singly_t* list);
 
+void enqueue(singly_t* list, int val);
+int dequeue(singly_t* list);
+
 
 #endif
