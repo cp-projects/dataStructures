@@ -70,15 +70,116 @@ void push(singly_t* list, const int val){
     return;
 }
 
+int pop(singly_t* list){
+
+    singly_int_t* remove_node;
+    remove_node = list->head; 
+
+    int val = *(remove_node->val);
+    list->head = remove_node->next;   
+    free(remove_node->val);
+    free(remove_node);
+
+    (list->len)--;
+    return val;
+}
+
+//just an alias of push, because in both lifo and fifo the "in" is the same
+//(verify this later, but I can't see why it wouldn't be)
+void enqueue(singly_t* list, const int val){
+    
+    singly_int_t* new_node = (singly_int_t*) malloc(sizeof(singly_int_t));
+
+    new_node -> val = (int*) malloc(sizeof(int));
+    *(new_node->val) = val;
+    new_node->next = list->head;
+    list->head = new_node;
+    (list->len)++;
+    return;
+}
+
+
+int dequeue(singly_t* list){
+
+    singly_int_t* remove_node;
+    remove_node = list->head;
+
+    singly_int_t* trace;
+    trace = list->head;
+
+    while(remove_node){
+    if(remove_node->next){
+	trace = remove_node;    
+        remove_node = remove_node->next;
+       }
+    else
+        break;
+    }
+    
+    if(!(remove_node->val))
+        return -1;
+
+    int val = *(remove_node->val);
+
+    if(list->len == 1){
+        list->head = NULL;
+        list->len = 0;
+	free(remove_node->val);
+	free(remove_node);
+
+	return val;
+    }
+    
+    trace->next = remove_node->next;
+    free(remove_node->val);
+    free(remove_node);
+
+    (list->len)--;
+    return val;
+}
+
+
+
 
 int main(){
 	
 singly_t* my_list = create_list();
 
-push(my_list, 22);
-push(my_list, 15);
-push(my_list, 30);
-push(my_list, 11);
+push(my_list, 1);
+push(my_list, 2);
+push(my_list, 3);
+push(my_list, 4);
+
+int one = pop(my_list);
+printf("The Popped Value is %d\n", one);
+
+int two = pop(my_list);
+printf("The Popped Value is %d\n", two);
+
+int three = pop(my_list);
+printf("The Popped Value is %d\n", three);
+
+int four = pop(my_list);
+printf("The Popped Value is %d\n", four);
+
+enqueue(my_list, 5);
+enqueue(my_list, 6);
+enqueue(my_list, 7);
+enqueue(my_list, 8);
+
+int five = dequeue(my_list);
+printf("The Dequeued Value is %d\n", five);
+
+int six = dequeue(my_list);
+printf("The Dequeued Value is %d\n", six);
+
+int seven = dequeue(my_list);
+printf("The Dequeued Value is %d\n", seven);
+
+int eight = dequeue(my_list);
+printf("The Dequeued Value is %d\n", eight);
+
+
 
 clear_list(my_list);
 
