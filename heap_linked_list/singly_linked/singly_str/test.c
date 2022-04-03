@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "singly_str.h"
 
 int main(){
@@ -7,7 +8,9 @@ singly_t* my_list = create_list();
 
 printf("Testing push\n");
 
-push(my_list, 'a');
+push(my_list, "Hello World\n", 13);
+
+/*
 push(my_list, 'b');
 push(my_list, 'c');
 push(my_list, 'd');
@@ -21,14 +24,17 @@ push(my_list, 'k');
 push(my_list, 'l');
 
 printf("Push Success\n\n");
-
+*/
 
 
 printf("Testing Pop\n");
 
-char onep = pop(my_list);
-printf("The Popped Value is %c\n", onep);
+const char* onep = pop(my_list);
+printf("The Popped Value is %s\n", onep);
+//free((void*) onep);
 
+
+/*
 char twop = pop(my_list);
 printf("The Popped Value is %c\n", twop);
 
@@ -245,12 +251,13 @@ enqueue(my_list, 22);
 enqueue(my_list, 23);
 enqueue(my_list, 24);
 
+*/
+
 printf("Testing Clear\n");
 
 clear_list(my_list);
 
 printf("Clear Success\n\n");
-
 
 
 
