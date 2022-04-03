@@ -5,9 +5,11 @@
 int main(){
 
 singly_t* my_list = create_list();
+singly_t* ret_vals = create_list();
 
 printf("Testing push\n");
 
+//char* a = "Hello World\n";
 push(my_list, "Hello World\n", 13);
 
 /*
@@ -29,9 +31,16 @@ printf("Push Success\n\n");
 
 printf("Testing Pop\n");
 
-const char* onep = pop(my_list);
+//char** hello;
+//char** Onep = pop(my_list, hello);
+//const char* onep = *Onep;
+//printf("The Popped Value is %s\n", onep);
+//free((void*) hello);
+
+char* onep = pop(my_list, ret_vals);
+//singly_str_t* Onep = ret_vals->head;
+//const char* onep = ret_vals->head->val;
 printf("The Popped Value is %s\n", onep);
-//free((void*) onep);
 
 
 /*
@@ -256,6 +265,8 @@ enqueue(my_list, 24);
 printf("Testing Clear\n");
 
 clear_list(my_list);
+
+clear_list(ret_vals);
 
 printf("Clear Success\n\n");
 

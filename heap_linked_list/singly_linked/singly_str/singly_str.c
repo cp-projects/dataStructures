@@ -16,6 +16,19 @@ typedef struct singly{
     size_t len;
 } singly_t;
 
+/*
+typedef struct retvals{
+    char* val
+    retvals_t *next;
+}retvals_t;
+
+typedef struct ret{
+    retvals_t* head;
+    size_t len;;
+}
+*/
+
+
 
 singly_t* create_list(){
     singly_t* list = (singly_t*) malloc(sizeof(singly_t));
@@ -69,15 +82,33 @@ void push(singly_t* list, char* val, int str_len){
     return;
 }
 
-const char* pop(singly_t* list){
+/*
+void get_str(char* in_val, char* out_val, int str_len){
+
+   if(str_len > 100)
+       exit(1);
+   
+   //char returnVal[str_len];
+
+   for(int i = 0; i < str_len; i++)
+       out_val[i] = in_val[i];
+
+   //const char* returnVal = (const char*) &returnVal;
+   
+
+   return;
+   //return (char**) &returnVal;
+}
+
+const char** pop(singly_t* list, char** val){
 
     singly_str_t* remove_node;
     remove_node = list->head; 
 
-    char* val = (char*) malloc(sizeof(remove_node->val));
-    memcpy(&val, remove_node->val, (sizeof(val)/sizeof(char)));
-
-    //const char* val = remove_node->val;
+    
+    //get_str(remove_node->val, val, sizeof(val)/sizeof(char));
+    *val = (char*) malloc(sizeof(remove_node->val));
+    memcpy(*val, remove_node->val, (sizeof(*val)/sizeof(char)));
 
     list->head = remove_node->next;   
     
@@ -85,8 +116,40 @@ const char* pop(singly_t* list){
     free(remove_node);
 
     (list->len)--;
+    return (const char**) val;
+}
+*/
+
+char* pop(singly_t* list, singly_t* popped){
+
+    singly_str_t* remove_node;
+    remove_node = list->head;
+
+    singly_str_t* pop_head;
+    pop_head = popped->head;
+
+    /*
+    char* Val = (char*) malloc(sizeof(remove_node->val));
+    memcpy(&Val, remove_node->val, sizeof(remove_node->val)/sizeof(char));
+    printf("%s\n", Val);
+    free(Val);
+    */
+
+    printf("%s\n", (char*) remove_node->val);
+
+    push(popped, remove_node->val, sizeof(remove_node->val)/sizeof(char));
+
+    list->head = remove_node->next;
+
+    free(remove_node->val);
+    free(remove_node);
+    (list->len)--;
+
+    char* val = popped->head->val;
+
     return val;
 }
+
 
 //just an alias of push, because in both lifo and fifo the "in" is the same
 //(verify this later, but I can't see why it wouldn't be)
