@@ -5,14 +5,14 @@
 #include "singly_flt.h"
 
 
-typedef struct singly_dbl{
-    double* val;
-    singly_dbl_t *next;
-}singly_dbl_t;
+typedef struct singly_flt{
+    float* val;
+    singly_flt_t *next;
+}singly_flt_t;
 
 
 typedef struct singly{
-    singly_dbl_t* head;
+    singly_flt_t* head;
     size_t len;
 } singly_t;
 
@@ -27,10 +27,10 @@ singly_t* create_list(){
 
 void clear_list(singly_t* list){
 
-     singly_dbl_t* pos;
+     singly_flt_t* pos;
      pos = list->head;
 
-     singly_dbl_t* trace;
+     singly_flt_t* trace;
      trace = list->head;
 
      while(pos){
@@ -58,11 +58,11 @@ void clear_list(singly_t* list){
 }
 
 
-void push(singly_t* list, const double val){
+void push(singly_t* list, const float val){
 
-    singly_dbl_t* new_node = (singly_dbl_t*) malloc(sizeof(singly_dbl_t));
+    singly_flt_t* new_node = (singly_flt_t*) malloc(sizeof(singly_flt_t));
  
-    new_node -> val = (double*) malloc(sizeof(double));
+    new_node -> val = (float*) malloc(sizeof(float));
     *(new_node->val) = val;
     new_node->next = list->head;
     list->head = new_node;
@@ -70,12 +70,12 @@ void push(singly_t* list, const double val){
     return;
 }
 
-double pop(singly_t* list){
+float pop(singly_t* list){
 
-    singly_dbl_t* remove_node;
+    singly_flt_t* remove_node;
     remove_node = list->head; 
 
-    double val = *(remove_node->val);
+    float val = *(remove_node->val);
     list->head = remove_node->next;   
     free(remove_node->val);
     free(remove_node);
@@ -86,11 +86,11 @@ double pop(singly_t* list){
 
 //just an alias of push, because in both lifo and fifo the "in" is the same
 //(verify this later, but I can't see why it wouldn't be)
-void enqueue(singly_t* list, const double val){
+void enqueue(singly_t* list, const float val){
     
-    singly_dbl_t* new_node = (singly_dbl_t*) malloc(sizeof(singly_dbl_t));
+    singly_flt_t* new_node = (singly_flt_t*) malloc(sizeof(singly_flt_t));
 
-    new_node -> val = (double*) malloc(sizeof(double));
+    new_node -> val = (float*) malloc(sizeof(float));
     *(new_node->val) = val;
     new_node->next = list->head;
     list->head = new_node;
@@ -99,12 +99,12 @@ void enqueue(singly_t* list, const double val){
 }
 
 
-double dequeue(singly_t* list){
+float dequeue(singly_t* list){
 
-    singly_dbl_t* remove_node;
+    singly_flt_t* remove_node;
     remove_node = list->head;
 
-    singly_dbl_t* trace;
+    singly_flt_t* trace;
     trace = list->head;
 
     while(remove_node){
@@ -120,7 +120,7 @@ double dequeue(singly_t* list){
     if(!(remove_node->val))
         exit(1);
 
-    double val = *(remove_node->val);
+    float val = *(remove_node->val);
 
     if(list->len == 1){
         list->head = NULL;
