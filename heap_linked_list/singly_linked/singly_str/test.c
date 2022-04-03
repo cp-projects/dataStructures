@@ -7,18 +7,18 @@ singly_t* my_list = create_list();
 
 printf("Testing push\n");
 
-push(my_list, 1);
-push(my_list, 2);
-push(my_list, 3);
-push(my_list, 4);
-push(my_list, 5);
-push(my_list, 6);
-push(my_list, 7);
-push(my_list, 8);
-push(my_list, 9);
-push(my_list, 10);
-push(my_list, 11);
-push(my_list, 12);
+push(my_list, 'a');
+push(my_list, 'b');
+push(my_list, 'c');
+push(my_list, 'd');
+push(my_list, 'e');
+push(my_list, 'f');
+push(my_list, 'g');
+push(my_list, 'h');
+push(my_list, 'i');
+push(my_list, 'j');
+push(my_list, 'k');
+push(my_list, 'l');
 
 printf("Push Success\n\n");
 
@@ -26,192 +26,192 @@ printf("Push Success\n\n");
 
 printf("Testing Pop\n");
 
-int onep = pop(my_list);
-printf("The Popped Value is %d\n", onep);
+char onep = pop(my_list);
+printf("The Popped Value is %c\n", onep);
 
-int twop = pop(my_list);
-printf("The Popped Value is %d\n", twop);
+char twop = pop(my_list);
+printf("The Popped Value is %c\n", twop);
 
-int threep = pop(my_list);
-printf("The Popped Value is %d\n", threep);
+char threep = pop(my_list);
+printf("The Popped Value is %c\n", threep);
 
-int fourp = pop(my_list);
-printf("The Popped Value is %d\n", fourp);
+char fourp = pop(my_list);
+printf("The Popped Value is %c\n", fourp);
 
-int fivep = pop(my_list);
-printf("The Popped Value is %d\n", fivep);
+char fivep = pop(my_list);
+printf("The Popped Value is %c\n", fivep);
 
-int sixp = pop(my_list);
-printf("The Popped Value is %d\n", sixp);
+char sixp = pop(my_list);
+printf("The Popped Value is %c\n", sixp);
 
-int sevenp = pop(my_list);
-printf("The Popped Value is %d\n", sevenp);
+char sevenp = pop(my_list);
+printf("The Popped Value is %c\n", sevenp);
 
-int eightp = pop(my_list);
-printf("The Popped Value is %d\n", eightp);
+char eightp = pop(my_list);
+printf("The Popped Value is %c\n", eightp);
 
-int ninep = pop(my_list);
-printf("The Popped Value is %d\n", ninep);
+char ninep = pop(my_list);
+printf("The Popped Value is %c\n", ninep);
 
-int tenp = pop(my_list);
-printf("The Popped Value is %d\n", tenp);
+char tenp = pop(my_list);
+printf("The Popped Value is %c\n", tenp);
 
-int elevenp = pop(my_list);
-printf("The Popped Value is %d\n", elevenp);
+char elevenp = pop(my_list);
+printf("The Popped Value is %c\n", elevenp);
 
-int twelvep = pop(my_list);
-printf("The Popped Value is %d\n", twelvep);
+char twelvep = pop(my_list);
+printf("The Popped Value is %c\n", twelvep);
 
 printf("Pop Success\n\n");
 
 
 printf("Testing Enqueue\n");
-enqueue(my_list, 1);
-enqueue(my_list, 2);
-enqueue(my_list, 3);
-enqueue(my_list, 4);
-enqueue(my_list, 5);
-enqueue(my_list, 6);
-enqueue(my_list, 7);
-enqueue(my_list, 8);
-enqueue(my_list, 9);
-enqueue(my_list, 10);
-enqueue(my_list, 11);
-enqueue(my_list, 12);
+enqueue(my_list, 'a');
+enqueue(my_list, 'b');
+enqueue(my_list, 'c');
+enqueue(my_list, 'd');
+enqueue(my_list, 'e');
+enqueue(my_list, 'f');
+enqueue(my_list, 'g');
+enqueue(my_list, 'h');
+enqueue(my_list, 'i');
+enqueue(my_list, 'j');
+enqueue(my_list, 'k');
+enqueue(my_list, 'l');
 printf("Enqueue Sucess\n\n");
 
 
 printf("Testing Dequeue\n");
 
-int oneq = dequeue(my_list);
-printf("The Dequeued Value is %d\n", oneq);
+char oneq = dequeue(my_list);
+printf("The Dequeued Value is %c\n", oneq);
 
-int twoq = dequeue(my_list);
-printf("The Dequeued Value is %d\n", twoq);
+char twoq = dequeue(my_list);
+printf("The Dequeued Value is %c\n", twoq);
 
-int threeq = dequeue(my_list);
-printf("The Dequeued Value is %d\n", threeq);
+char threeq = dequeue(my_list);
+printf("The Dequeued Value is %c\n", threeq);
 
-int fourq = dequeue(my_list);
-printf("The Dequeued Value is %d\n", fourq);
+char fourq = dequeue(my_list);
+printf("The Dequeued Value is %c\n", fourq);
 
-int fiveq = dequeue(my_list);
-printf("The Dequeued Value is %d\n", fiveq);
+char fiveq = dequeue(my_list);
+printf("The Dequeued Value is %c\n", fiveq);
 
-int sixq = dequeue(my_list);
-printf("The Dequeued Value is %d\n", sixq);
+char sixq = dequeue(my_list);
+printf("The Dequeued Value is %c\n", sixq);
 
-int sevenq = dequeue(my_list);
-printf("The Dequeued Value is %d\n", sevenq);
+char sevenq = dequeue(my_list);
+printf("The Dequeued Value is %c\n", sevenq);
 
-int eightq = dequeue(my_list);
-printf("The Dequeued Value is %d\n", eightq);
+char eightq = dequeue(my_list);
+printf("The Dequeued Value is %c\n", eightq);
 
-int nineq = dequeue(my_list);
-printf("The Dequeued Value is %d\n", nineq);
+char nineq = dequeue(my_list);
+printf("The Dequeued Value is %c\n", nineq);
 
-int tenq = dequeue(my_list);
-printf("The Dequeued Value is %d\n", tenq);
+char tenq = dequeue(my_list);
+printf("The Dequeued Value is %c\n", tenq);
 
-int elevenq = dequeue(my_list);
-printf("The Dequeued Value is %d\n", elevenq);
+char elevenq = dequeue(my_list);
+printf("The Dequeued Value is %c\n", elevenq);
 
-int twelveq = dequeue(my_list);
-printf("The Dequeued Value is %d\n", twelveq);
+char twelveq = dequeue(my_list);
+printf("The Dequeued Value is %c\n", twelveq);
 
 printf("Dequeue Sucess\n\n");
 
 
 printf("filling list to test Mix\n");
 
-push(my_list, 1);
-push(my_list, 2);
-push(my_list, 3);
-push(my_list, 4);
-push(my_list, 5);
-push(my_list, 6);
-push(my_list, 7);
-push(my_list, 8);
-push(my_list, 9);
-push(my_list, 10);
-push(my_list, 11);
-push(my_list, 12);
+push(my_list, 'a');
+push(my_list, 'b');
+push(my_list, 'c');
+push(my_list, 'd');
+push(my_list, 'e');
+push(my_list, 'f');
+push(my_list, 'g');
+push(my_list, 'h');
+push(my_list, 'i');
+push(my_list, 'j');
+push(my_list, 'k');
+push(my_list, 'l');
 
-enqueue(my_list, 13);
-enqueue(my_list, 14);
-enqueue(my_list, 15);
-enqueue(my_list, 16);
-enqueue(my_list, 17);
-enqueue(my_list, 18);
-enqueue(my_list, 19);
-enqueue(my_list, 20);
-enqueue(my_list, 21);
-enqueue(my_list, 22);
-enqueue(my_list, 23);
-enqueue(my_list, 24);
+enqueue(my_list, 'M');
+enqueue(my_list, 'N');
+enqueue(my_list, 'O');
+enqueue(my_list, 'P');
+enqueue(my_list, 'Q');
+enqueue(my_list, 'R');
+enqueue(my_list, 'S');
+enqueue(my_list, 'T');
+enqueue(my_list, 'U');
+enqueue(my_list, 'V');
+enqueue(my_list, 'W');
+enqueue(my_list, 'X');
 
 printf("Testing Mix\n");
 
 
 onep = pop(my_list);
-printf("The Popped Value is %d\n", onep);
+printf("The Popped Value is %c\n", onep);
 oneq = dequeue(my_list);
-printf("The Dequeued Value is %d\n", oneq);
+printf("The Dequeued Value is %c\n", oneq);
 
 twop = pop(my_list);
-printf("The Popped Value is %d\n", twop);
+printf("The Popped Value is %c\n", twop);
 twoq = dequeue(my_list);
-printf("The Dequeued Value is %d\n", twoq);
+printf("The Dequeued Value is %c\n", twoq);
 
 threep = pop(my_list);
-printf("The Popped Value is %d\n", threep);
+printf("The Popped Value is %c\n", threep);
 threeq = dequeue(my_list);
-printf("The Dequeued Value is %d\n", threeq);
+printf("The Dequeued Value is %c\n", threeq);
 
 fourp = pop(my_list);
-printf("The Popped Value is %d\n", fourp);
+printf("The Popped Value is %c\n", fourp);
 fourq = dequeue(my_list);
-printf("The Dequeued Value is %d\n", fourq);
+printf("The Dequeued Value is %c\n", fourq);
 
 fivep = pop(my_list);
-printf("The Popped Value is %d\n", fivep);
+printf("The Popped Value is %c\n", fivep);
 fiveq = dequeue(my_list);
-printf("The Dequeued Value is %d\n", fiveq);
+printf("The Dequeued Value is %c\n", fiveq);
 
 sixp = pop(my_list);
-printf("The Popped Value is %d\n", sixp);
+printf("The Popped Value is %c\n", sixp);
 sixq = dequeue(my_list);
-printf("The Dequeued Value is %d\n", sixq);
+printf("The Dequeued Value is %c\n", sixq);
 
 sevenp = pop(my_list);
-printf("The Popped Value is %d\n", sevenp);
+printf("The Popped Value is %c\n", sevenp);
 sevenq = dequeue(my_list);
-printf("The Dequeued Value is %d\n", sevenq);
+printf("The Dequeued Value is %c\n", sevenq);
 
 eightp = pop(my_list);
-printf("The Popped Value is %d\n", eightp);
+printf("The Popped Value is %c\n", eightp);
 eightq = dequeue(my_list);
-printf("The Dequeued Value is %d\n", eightq);
+printf("The Dequeued Value is %c\n", eightq);
 
 ninep = pop(my_list);
-printf("The Popped Value is %d\n", ninep);
+printf("The Popped Value is %c\n", ninep);
 nineq = dequeue(my_list);
-printf("The Dequeued Value is %d\n", nineq);
+printf("The Dequeued Value is %c\n", nineq);
 
 tenp = pop(my_list);
-printf("The Popped Value is %d\n", tenp);
+printf("The Popped Value is %c\n", tenp);
 tenq = dequeue(my_list);
-printf("The Dequeued Value is %d\n", tenq);
+printf("The Dequeued Value is %c\n", tenq);
 
 elevenp = pop(my_list);
-printf("The Popped Value is %d\n", elevenp);
+printf("The Popped Value is %c\n", elevenp);
 elevenq = dequeue(my_list);
-printf("The Dequeued Value is %d\n", elevenq);
+printf("The Dequeued Value is %c\n", elevenq);
 
 twelvep = pop(my_list);
-printf("The Popped Value is %d\n", twelvep);
+printf("The Popped Value is %c\n", twelvep);
 twelveq = dequeue(my_list);
-printf("The Dequeued Value is %d\n", twelveq);
+printf("The Dequeued Value is %c\n", twelveq);
 
 printf("Success Mix\n");
 

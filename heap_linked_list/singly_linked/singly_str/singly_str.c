@@ -6,7 +6,7 @@
 
 
 typedef struct singly_str{
-    int* val;
+    char* val;
     singly_str_t *next;
 }singly_str_t;
 
@@ -58,11 +58,11 @@ void clear_list(singly_t* list){
 }
 
 
-void push(singly_t* list, const int val){
+void push(singly_t* list, const char val){
 
     singly_str_t* new_node = (singly_str_t*) malloc(sizeof(singly_str_t));
  
-    new_node -> val = (int*) malloc(sizeof(int));
+    new_node -> val = (char*) malloc(sizeof(char));
     *(new_node->val) = val;
     new_node->next = list->head;
     list->head = new_node;
@@ -70,12 +70,12 @@ void push(singly_t* list, const int val){
     return;
 }
 
-int pop(singly_t* list){
+char pop(singly_t* list){
 
     singly_str_t* remove_node;
     remove_node = list->head; 
 
-    int val = *(remove_node->val);
+    char val = *(remove_node->val);
     list->head = remove_node->next;   
     free(remove_node->val);
     free(remove_node);
@@ -86,11 +86,11 @@ int pop(singly_t* list){
 
 //just an alias of push, because in both lifo and fifo the "in" is the same
 //(verify this later, but I can't see why it wouldn't be)
-void enqueue(singly_t* list, const int val){
+void enqueue(singly_t* list, const char val){
     
     singly_str_t* new_node = (singly_str_t*) malloc(sizeof(singly_str_t));
 
-    new_node -> val = (int*) malloc(sizeof(int));
+    new_node -> val = (char*) malloc(sizeof(char));
     *(new_node->val) = val;
     new_node->next = list->head;
     list->head = new_node;
@@ -99,7 +99,7 @@ void enqueue(singly_t* list, const int val){
 }
 
 
-int dequeue(singly_t* list){
+char dequeue(singly_t* list){
 
     singly_str_t* remove_node;
     remove_node = list->head;
@@ -120,7 +120,7 @@ int dequeue(singly_t* list){
     if(!(remove_node->val))
         exit(1);
 
-    int val = *(remove_node->val);
+    char val = *(remove_node->val);
 
     if(list->len == 1){
         list->head = NULL;
