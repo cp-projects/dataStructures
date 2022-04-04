@@ -5,6 +5,7 @@ typedef struct singly_str singly_str_t;
 typedef struct singly singly_t;
 
 singly_t* create_list();
+size_t ret_len(singly_t* list);
 void clear_list(singly_t* list);
 
 void push(singly_t* list, char* val, int str_len);

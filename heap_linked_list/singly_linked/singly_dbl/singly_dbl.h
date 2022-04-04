@@ -5,6 +5,7 @@ typedef struct singly_dbl singly_dbl_t;
 typedef struct singly singly_t;
 
 singly_t* create_list();
+size_t ret_size(singly_t* list);
 void clear_list(singly_t* list);
 
 void push(singly_t* list, double val);

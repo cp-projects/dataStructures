@@ -2,55 +2,56 @@
 #include <string.h>
 #include <stdlib.h>
 
-#include "singly_int.h"
+#include "doubly_int.h"
 
 
-typedef struct singly_int{
+typedef struct doubly_int{
     int* val;
-    singly_int_t *next;
-}singly_int_t;
+    doubly_int_t *next, *prev;
+}doubly_int_t;
 
 
-typedef struct singly{
-    singly_int_t* head;
+typedef struct doubly{
+    doubly_int_t* head;
     size_t len;
-} singly_t;
+} doubly_t;
 
 
-singly_t* create_list(){
-    singly_t* list = (singly_t*) malloc(sizeof(singly_t));
+doubly_t* create_list(){
+    doubly_t* list = (doubly_t*) malloc(sizeof(doubly_t));
     list->len = 0;
     list->head = NULL;
     return list;        
 }
 
+size_t ret_len(doubly_t* list){
+        return list->len;
+}
 
-void clear_list(singly_t* list){
+void clear_list(doubly_t* list){
 
-     singly_int_t* pos;
+     doubly_int_t* pos;
      pos = list->head;
 
-     singly_int_t* trace;
-     trace = list->head;
+     //doubly_int_t* trace;
+     //trace = list->head;
 
      while(pos){
 
-         if(pos->next){
-             trace = pos->next;      
+         if(pos != list->head){
+             pos->prev->next = pos->next;      
 	     free(pos->val);
-             pos->val = NULL;
 	     free(pos);
-             
-	     --(list->len);
-	     
-	     pos = trace;
+	     --(list->len); 
             }
 
          else{
 	     free(pos->val);
              free(pos);
 	     pos = NULL;
+	     --(list->len);
             }
+	 pos = pos->next;
         } //end while
  
     free((void*)list);
@@ -58,25 +59,32 @@ void clear_list(singly_t* list){
 }
 
 
-void push(singly_t* list, const int val){
+void push(doubly_t* list, int val){
 
-    singly_int_t* new_node = (singly_int_t*) malloc(sizeof(singly_int_t));
- 
+    doubly_int_t* new_node = (doubly_int_t*) malloc(sizeof(doubly_int_t));
+    doubly_int_t* head_node = list->head;
+
     new_node -> val = (int*) malloc(sizeof(int));
     *(new_node->val) = val;
-    new_node->next = list->head;
+
+    //head_node->prev = new_node;
+    new_node->next = head_node;;
+    
     list->head = new_node;
     (list->len)++;
     return;
 }
 
-int pop(singly_t* list){
+int pop(doubly_t* list){
 
-    singly_int_t* remove_node;
+    doubly_int_t* remove_node;
     remove_node = list->head; 
-
+    
     int val = *(remove_node->val);
+
+    
     list->head = remove_node->next;   
+    
     free(remove_node->val);
     free(remove_node);
 
@@ -86,25 +94,31 @@ int pop(singly_t* list){
 
 //just an alias of push, because in both lifo and fifo the "in" is the same
 //(verify this later, but I can't see why it wouldn't be)
-void enqueue(singly_t* list, const int val){
+void enqueue(doubly_t* list, int val){
     
-    singly_int_t* new_node = (singly_int_t*) malloc(sizeof(singly_int_t));
+    doubly_int_t* head_node = list->head;
+    doubly_int_t* new_node = (doubly_int_t*) malloc(sizeof(doubly_int_t));
+    
+    head_node->prev = new_node;
 
     new_node -> val = (int*) malloc(sizeof(int));
     *(new_node->val) = val;
+
     new_node->next = list->head;
+    head_node->prev = new_node;
+
     list->head = new_node;
     (list->len)++;
     return;
 }
 
 
-int dequeue(singly_t* list){
+int dequeue(doubly_t* list){
 
-    singly_int_t* remove_node;
+    doubly_int_t* remove_node;
     remove_node = list->head;
 
-    singly_int_t* trace;
+    doubly_int_t* trace;
     trace = list->head;
 
     while(remove_node){

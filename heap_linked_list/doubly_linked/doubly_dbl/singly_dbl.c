@@ -7,7 +7,7 @@
 
 typedef struct singly_dbl{
     double* val;
-    singly_dbl_t *next;
+    singly_dbl_t *next, *prev;
 }singly_dbl_t;
 
 
@@ -24,6 +24,9 @@ singly_t* create_list(){
     return list;        
 }
 
+size_t ret_len(singly_t* list){
+	return list->len;
+}
 
 void clear_list(singly_t* list){
 
@@ -61,11 +64,16 @@ void clear_list(singly_t* list){
 void push(singly_t* list, const double val){
 
     singly_dbl_t* new_node = (singly_dbl_t*) malloc(sizeof(singly_dbl_t));
- 
     new_node -> val = (double*) malloc(sizeof(double));
     *(new_node->val) = val;
+
+    //list->head->prev = new_node;
     new_node->next = list->head;
+    //new_node->next->prev = new_node;
     list->head = new_node;
+    
+
+
     (list->len)++;
     return;
 }

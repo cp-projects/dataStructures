@@ -24,6 +24,9 @@ singly_t* create_list(){
     return list;        
 }
 
+size_t ret_len(singly_t* list){
+        return list->len;
+}
 
 void clear_list(singly_t* list){
 
