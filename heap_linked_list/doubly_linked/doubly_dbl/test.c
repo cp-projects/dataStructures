@@ -1,9 +1,9 @@
 #include <stdio.h>
-#include "singly_dbl.h"
+#include "doubly_dbl.h"
 
 int main(){
 
-singly_t* my_list = create_list();
+doubly_t* my_list = create_list();
 
 printf("Testing push\n");
 

@@ -2,38 +2,38 @@
 #include <string.h>
 #include <stdlib.h>
 
-#include "singly_dbl.h"
+#include "doubly_dbl.h"
 
 
-typedef struct singly_dbl{
+typedef struct doubly_dbl{
     double* val;
-    singly_dbl_t *next, *prev;
-}singly_dbl_t;
+    doubly_dbl_t *next, *prev;
+}doubly_dbl_t;
 
 
-typedef struct singly{
-    singly_dbl_t* head;
+typedef struct doubly{
+    doubly_dbl_t* head;
     size_t len;
-} singly_t;
+} doubly_t;
 
 
-singly_t* create_list(){
-    singly_t* list = (singly_t*) malloc(sizeof(singly_t));
+doubly_t* create_list(){
+    doubly_t* list = (doubly_t*) malloc(sizeof(doubly_t));
     list->len = 0;
     list->head = NULL;
     return list;        
 }
 
-size_t ret_len(singly_t* list){
+size_t ret_len(doubly_t* list){
 	return list->len;
 }
 
-void clear_list(singly_t* list){
+void clear_list(doubly_t* list){
 
-     singly_dbl_t* pos;
+     doubly_dbl_t* pos;
      pos = list->head;
 
-     singly_dbl_t* swap;
+     doubly_dbl_t* swap;
      swap = list->head;
 
      while(pos){
@@ -61,11 +61,11 @@ void clear_list(singly_t* list){
 }
 
 
-void push(singly_t* list, const double val){
+void push(doubly_t* list, const double val){
 
-    singly_dbl_t* old_head = list->head;	
+    doubly_dbl_t* old_head = list->head;	
 	
-    singly_dbl_t* new_node = (singly_dbl_t*) malloc(sizeof(singly_dbl_t));
+    doubly_dbl_t* new_node = (doubly_dbl_t*) malloc(sizeof(doubly_dbl_t));
     new_node -> val = (double*) malloc(sizeof(double));
     *(new_node->val) = val;
 
@@ -78,9 +78,9 @@ void push(singly_t* list, const double val){
     return;
 }
 
-double pop(singly_t* list){
+double pop(doubly_t* list){
 
-    singly_dbl_t* remove_node;
+    doubly_dbl_t* remove_node;
     remove_node = list->head; 
 
     double val = *(remove_node->val);
@@ -94,11 +94,11 @@ double pop(singly_t* list){
 
 //just an alias of push, because in both lifo and fifo the "in" is the same
 //(verify this later, but I can't see why it wouldn't be)
-void enqueue(singly_t* list, const double val){
+void enqueue(doubly_t* list, const double val){
     
-    singly_dbl_t* old_head = list->head;
+    doubly_dbl_t* old_head = list->head;
     
-    singly_dbl_t* new_node = (singly_dbl_t*) malloc(sizeof(singly_dbl_t));
+    doubly_dbl_t* new_node = (doubly_dbl_t*) malloc(sizeof(doubly_dbl_t));
     new_node -> val = (double*) malloc(sizeof(double));
     *(new_node->val) = val;
 
@@ -112,9 +112,9 @@ void enqueue(singly_t* list, const double val){
 }
 
 
-double dequeue(singly_t* list){
+double dequeue(doubly_t* list){
 
-    singly_dbl_t* remove_node;
+    doubly_dbl_t* remove_node;
     remove_node = list->head;
 
     while(remove_node){
