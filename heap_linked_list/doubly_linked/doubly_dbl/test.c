@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include "doubly_dbl.h"
 
-int main(){
+
+void old_test(){
 
 doubly_t* my_list = create_list();
 
@@ -152,7 +153,6 @@ enqueue(my_list, 24.24);
 
 printf("Testing Mix\n");
 
-
 onep = pop(my_list);
 printf("The Popped Value is %lf\n", onep);
 oneq = dequeue(my_list);
@@ -249,10 +249,39 @@ printf("Testing Clear\n");
 
 clear_list(my_list);
 
-printf("Clear Success\n\n");
+printf("Clear Success\n");
+}
 
 
+void new_test(){
 
+    doubly_t* my_list = create_list();
+
+    insert_at_head(my_list, 1);
+    insert_at_head(my_list, 2);
+    //insert_at_tail(my_list, 21);
+    insert_at_head(my_list, 3);
+    insert_at_head(my_list, 4);
+    insert_at_head(my_list, 5);
+    insert_at_tail(my_list, 22);
+    
+    
+    double one = remove_at_head(my_list);
+    printf("%lf\n", one);
+
+    double two = remove_at_tail(my_list);
+    printf("%lf\n", two);
+
+
+    clear_list(my_list);
+
+}
+
+
+int main(){
+
+//old_test();
+new_test();
 
 return 0;
 }
