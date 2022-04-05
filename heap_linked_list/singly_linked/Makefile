@@ -1,4 +1,4 @@
-SUBDIRS = doubly_linked/ singly_linked/
+SUBDIRS = singly_dbl/ singly_flt/ singly_int/
 
 subdirs:
 	for dir in $(SUBDIRS); do \
