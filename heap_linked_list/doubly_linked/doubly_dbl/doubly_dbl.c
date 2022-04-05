@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <assert.h>
 
 #include "doubly_dbl.h"
 
@@ -13,7 +14,7 @@ typedef struct doubly_dbl{
 
 typedef struct doubly{
     doubly_dbl_t* head;
-    //doubly_dbl_t* tail;
+    doubly_dbl_t* tail;
     size_t len;
 } doubly_t;
 
@@ -22,6 +23,7 @@ doubly_t* create_list(){
     doubly_t* list = (doubly_t*) malloc(sizeof(doubly_t));
     list->len = 0;
     list->head = NULL;
+    list->tail = NULL;
     return list;        
 }
 
@@ -75,6 +77,11 @@ void push(doubly_t* list, const double val){
     if(old_head)
       old_head->prev = new_node;
     
+    if(list->tail)
+        list->tail = list->tail;
+    else
+        list->tail = old_head;
+
     (list->len)++;
     return;
 }
@@ -108,6 +115,11 @@ void enqueue(doubly_t* list, const double val){
     if(old_head)
       old_head->prev = new_node;
 
+    if(list->tail)
+        list->tail = list->tail;
+    else
+        list->tail = old_head;
+
     (list->len)++;
     return;
 }
@@ -132,6 +144,7 @@ double dequeue(doubly_t* list){
 
     if(list->len == 1){
         list->head = NULL;
+	list->tail = NULL;
         list->len = 0;
 	free(remove_node->val);
 	free(remove_node);
@@ -139,6 +152,8 @@ double dequeue(doubly_t* list){
     }
     
     remove_node->prev->next = remove_node->next;
+    list->tail = remove_node->prev;
+
     free(remove_node->val);
     free(remove_node);
 
@@ -148,7 +163,7 @@ double dequeue(doubly_t* list){
 }
 
 
-void itr_forward(doubly_t* list, double breakVal, int breakIndex, int printFlag, int break_on_valFlag, int break_on_indexFlag){
+doubly_dbl_t* itr_forward(doubly_t* list, double breakVal, int breakIndex, int printFlag, int break_on_valFlag, int break_on_indexFlag){
 
     if(break_on_valFlag == 1 && break_on_indexFlag == 1)
 	    exit(1);
@@ -165,22 +180,58 @@ void itr_forward(doubly_t* list, double breakVal, int breakIndex, int printFlag,
 		break;
 	i++;
     }
-
+return itr;
 }
+
+doubly_dbl_t* itr_backward(doubly_t* list, double breakVal, int breakIndex, int printFlag, int break_on_valFlag, int break_on_indexFlag){
+
+    if(break_on_valFlag == 1 && break_on_indexFlag == 1)
+            exit(1);
+
+    assert(list->tail);
+
+    doubly_dbl_t* itr;
+
+    int i = 0;
+    for(itr = list->tail; itr; itr = itr->prev){
+        if(printFlag == 1)
+            printf("%lf\n", *(itr->val));
+        if(break_on_indexFlag == 1 && i == breakIndex)
+                break;
+        else if(break_on_valFlag == 1 && *(itr->val) == breakVal)
+                break;
+        i++;
+    }
+return itr;
+}
+
 
 
 void insert_at_head(doubly_t* list, const double val){
 
-    doubly_dbl_t* old_head = list->head;
+    doubly_dbl_t* old_head;
+    old_head = list->head;
 
-    doubly_dbl_t* new_node = (doubly_dbl_t*) malloc(sizeof(doubly_dbl_t));
-    new_node -> val = (double*) malloc(sizeof(double));
+    size_t dbl_size = sizeof(doubly_dbl_t);
+    size_t dbl = sizeof(double);
+
+    doubly_dbl_t* new_node;
+    new_node = (doubly_dbl_t*) malloc(dbl_size);
+    new_node -> val = (double*) malloc(dbl);
     *(new_node->val) = val;
 
     new_node->next = list->head;
     list->head = new_node;
     if(old_head)
       old_head->prev = new_node;
+
+    if(list->tail)
+        if(list->tail->prev)
+            list->tail->prev = list->tail->prev;
+        else
+            list->tail = list->tail;
+    else
+        list->tail = old_head;
 
     (list->len)++;
     return;
