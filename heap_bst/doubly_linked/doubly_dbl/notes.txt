@@ -1,0 +1,7 @@
+I should find a way to call the same function instead of copying and pasting
+
+according to stack exchange, this is for multiple functions
+const auto& new_fn_name = static_cast<OVERLOADED_FN_TYPE>(old_fn_name);
+
+and this is for one alias
+const auto& new_fn_name = old_fn_name;

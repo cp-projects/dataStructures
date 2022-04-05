@@ -16,6 +16,19 @@ typedef struct singly{
     size_t len;
 } singly_t;
 
+/*
+typedef struct retvals{
+    char* val
+    retvals_t *next;
+}retvals_t;
+
+typedef struct ret{
+    retvals_t* head;
+    size_t len;;
+}
+*/
+
+
 
 singly_t* create_list(){
     singly_t* list = (singly_t*) malloc(sizeof(singly_t));
