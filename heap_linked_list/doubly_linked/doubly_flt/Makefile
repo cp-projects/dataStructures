@@ -1,11 +1,11 @@
-out: test.o singly_flt.o
-	gcc -g -o test.out test.o singly_flt.o
+out: test.o doubly_flt.o
+	gcc -g -o test.out test.o doubly_flt.o
 
-test: test.c
+test.o: test.c
 	gcc -g -c test.c
 
-singly_int: singly_flt.c singly_flt.h
-	gcc -g -c singly_flt.c
+doubly_dbl.o: doubly_flt.c doubly_flt.h
+	gcc -g -c doubly_flt.c
 
 
 clean:

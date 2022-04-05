@@ -1,9 +1,9 @@
 #include <stdio.h>
-#include "singly_flt.h"
+#include "doubly_flt.h"
 
 int main(){
 
-singly_t* my_list = create_list();
+doubly_t* my_list = create_list();
 
 printf("Testing push\n");
 
