@@ -13,6 +13,7 @@ typedef struct doubly_dbl{
 
 typedef struct doubly{
     doubly_dbl_t* head;
+    //doubly_dbl_t* tail;
     size_t len;
 } doubly_t;
 
@@ -147,7 +148,25 @@ double dequeue(doubly_t* list){
 }
 
 
+void itr_forward(doubly_t* list, double breakVal, int breakIndex, int printFlag, int break_on_valFlag, int break_on_indexFlag){
 
+    if(break_on_valFlag == 1 && break_on_indexFlag == 1)
+	    exit(1);
+
+    doubly_dbl_t* itr;
+
+    int i = 0;
+    for(itr = list->head; itr; itr = itr->next){
+        if(printFlag == 1)
+            printf("%lf\n", *(itr->val));
+	if(break_on_indexFlag == 1 && i == breakIndex)
+		break;
+	else if(break_on_valFlag == 1 && *(itr->val) == breakVal)
+		break;
+	i++;
+    }
+
+}
 
 
 void insert_at_head(doubly_t* list, const double val){

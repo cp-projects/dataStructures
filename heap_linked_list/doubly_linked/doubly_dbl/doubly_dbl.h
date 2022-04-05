@@ -24,6 +24,10 @@ double dequeue(doubly_t* list); //(3)
  * doubly
  *
  */
+void itr_forward(doubly_t* list, double breakVal, int breakIndex, int printFlag, int break_on_valFlag, int break_on_indexFlag);
+
+void itr_backward(doubly_t* list, double breakVal, int breakIndex, int printFlag, int break_on_valFlag, int break_on_indexFlag);
+
 void insert_at_head(doubly_t* list, double val); //(1) to seperate use cases
 double remove_at_head(doubly_t* list); //(2)
 
