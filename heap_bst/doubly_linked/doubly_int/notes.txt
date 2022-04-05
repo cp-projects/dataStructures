@@ -1,4 +1,0 @@
-problems:
-
-you want to save prev value's as you allocate your list, but the list->head has a prev of NULL, and you are adding
-everything at the front
