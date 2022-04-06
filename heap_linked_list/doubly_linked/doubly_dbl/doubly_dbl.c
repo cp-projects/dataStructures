@@ -64,13 +64,22 @@ void clear_list(doubly_t* list){
 }
 
 
+doubly_dbl_t* create_node(doubly_dbl_t* new_node, double val){
+
+    new_node = (doubly_dbl_t*) malloc(sizeof(doubly_dbl_t));
+    new_node -> val = (double*) malloc(sizeof(double));
+    *(new_node->val) = val;
+
+    return new_node;
+}
+
+
 void push(doubly_t* list, const double val){
 
     doubly_dbl_t* old_head = list->head;	
-	
-    doubly_dbl_t* new_node = (doubly_dbl_t*) malloc(sizeof(doubly_dbl_t));
-    new_node -> val = (double*) malloc(sizeof(double));
-    *(new_node->val) = val;
+
+    doubly_dbl_t* New_node;
+    doubly_dbl_t* new_node = create_node(New_node, val);
 
     new_node->next = list->head;
     list->head = new_node;
@@ -106,12 +115,12 @@ void enqueue(doubly_t* list, const double val){
     
     doubly_dbl_t* old_head = list->head;
     
-    doubly_dbl_t* new_node = (doubly_dbl_t*) malloc(sizeof(doubly_dbl_t));
-    new_node -> val = (double*) malloc(sizeof(double));
-    *(new_node->val) = val;
+    doubly_dbl_t* New_node;
+    doubly_dbl_t* new_node = create_node(New_node, val);
 
     new_node->next = list->head;
     list->head = new_node;
+
     if(old_head)
       old_head->prev = new_node;
 
@@ -187,12 +196,11 @@ doubly_dbl_t* itr_backward(doubly_t* list, double breakVal, int breakIndex, int 
 
     if(break_on_valFlag == 1 && break_on_indexFlag == 1)
             exit(1);
-
     assert(list->tail);
 
-    doubly_dbl_t* itr;
+    doubly_dbl_t* itr = list->tail;
 
-    int i = 0;
+    int i = 0;                       //valgrind also blames this, the prev
     for(itr = list->tail; itr; itr = itr->prev){
         if(printFlag == 1)
             printf("%lf\n", *(itr->val));
@@ -212,13 +220,8 @@ void insert_at_head(doubly_t* list, const double val){
     doubly_dbl_t* old_head;
     old_head = list->head;
 
-    size_t dbl_size = sizeof(doubly_dbl_t);
-    size_t dbl = sizeof(double);
-
-    doubly_dbl_t* new_node;
-    new_node = (doubly_dbl_t*) malloc(dbl_size);
-    new_node -> val = (double*) malloc(dbl);
-    *(new_node->val) = val;
+    doubly_dbl_t* New_node;
+    doubly_dbl_t* new_node = create_node(New_node, val);
 
     new_node->next = list->head;
     list->head = new_node;
@@ -259,10 +262,13 @@ void insert_at_tail(doubly_t* list, const double val){
     itr = list->head;
 
     while(itr){
-    if(itr->next)
-        itr = itr->next;
-    else
-        break;
+        if(itr->next){
+            itr = itr->next;
+        }
+
+        else{
+            break; 
+        }
     }
 
     if(!(itr))
@@ -275,7 +281,6 @@ void insert_at_tail(doubly_t* list, const double val){
     new_node -> val = (double*) malloc(sizeof(double));
     *(new_node->val) = val;
  
-    //itr->next = new_node;
     new_node->prev = itr;
     if(itr->next)
         itr->next = new_node;
