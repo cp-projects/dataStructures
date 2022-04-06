@@ -27,9 +27,20 @@ doubly_t* create_list(){
     return list;        
 }
 
+doubly_dbl_t* create_node(doubly_dbl_t* new_node, double val){
+
+    new_node = (doubly_dbl_t*) malloc(sizeof(doubly_dbl_t));
+    new_node -> val = (double*) malloc(sizeof(double));
+    *(new_node->val) = val;
+
+    return new_node;
+}
+
 size_t ret_len(doubly_t* list){
 	return list->len;
 }
+
+
 
 void clear_list(doubly_t* list){
 
@@ -41,7 +52,7 @@ void clear_list(doubly_t* list){
 
      while(pos){
 
-         if(pos->next){
+         if(pos->next){  //VALGRIND PROBLEM 1
              swap = pos->next;      
 	     free(pos->val);
              pos->val = NULL;
@@ -64,15 +75,6 @@ void clear_list(doubly_t* list){
 }
 
 
-doubly_dbl_t* create_node(doubly_dbl_t* new_node, double val){
-
-    new_node = (doubly_dbl_t*) malloc(sizeof(doubly_dbl_t));
-    new_node -> val = (double*) malloc(sizeof(double));
-    *(new_node->val) = val;
-
-    return new_node;
-}
-
 
 void push(doubly_t* list, const double val){
 
@@ -83,6 +85,7 @@ void push(doubly_t* list, const double val){
 
     new_node->next = list->head;
     list->head = new_node;
+
     if(old_head)
       old_head->prev = new_node;
     
@@ -140,10 +143,10 @@ double dequeue(doubly_t* list){
     remove_node = list->head;
 
     while(remove_node){
-    if(remove_node->next)    
-        remove_node = remove_node->next;
-    else
-        break;
+        if(remove_node->next)    
+            remove_node = remove_node->next;
+        else
+            break;
     }
     
     if(!(remove_node->val))
@@ -179,7 +182,7 @@ doubly_dbl_t* itr_forward(doubly_t* list, double breakVal, int breakIndex, int p
 
     doubly_dbl_t* itr;
 
-    int i = 0;
+    int i = 0;                     //VALGRIND PROBLEM 3
     for(itr = list->head; itr; itr = itr->next){
         if(printFlag == 1)
             printf("%lf\n", *(itr->val));
@@ -200,7 +203,7 @@ doubly_dbl_t* itr_backward(doubly_t* list, double breakVal, int breakIndex, int 
 
     doubly_dbl_t* itr = list->tail;
 
-    int i = 0;                       //valgrind also blames this, the prev
+    int i = 0;                     //VALGRIND PROBLEM 2
     for(itr = list->tail; itr; itr = itr->prev){
         if(printFlag == 1)
             printf("%lf\n", *(itr->val));
@@ -217,22 +220,19 @@ return itr;
 
 void insert_at_head(doubly_t* list, const double val){
 
-    doubly_dbl_t* old_head;
-    old_head = list->head;
+    doubly_dbl_t* old_head = list->head;
 
     doubly_dbl_t* New_node;
     doubly_dbl_t* new_node = create_node(New_node, val);
 
     new_node->next = list->head;
     list->head = new_node;
+
     if(old_head)
       old_head->prev = new_node;
 
     if(list->tail)
-        if(list->tail->prev)
-            list->tail->prev = list->tail->prev;
-        else
-            list->tail = list->tail;
+        list->tail = list->tail;
     else
         list->tail = old_head;
 
@@ -262,21 +262,20 @@ void insert_at_tail(doubly_t* list, const double val){
     itr = list->head;
 
     while(itr){
-        if(itr->next){
+        if(itr->next) //VALGRIND PROBLEM 4
             itr = itr->next;
-        }
-
-        else{
+        else
             break; 
-        }
     }
 
     if(!(itr))
         exit(1);
 
-    doubly_dbl_t* new_node; 
-    itr->next = (doubly_dbl_t*) malloc(sizeof(doubly_dbl_t));
-    new_node = itr->next;
+    doubly_dbl_t* New_node;  //VALGRIND PROBLEM VAL CREATED
+    doubly_dbl_t* new_node = create_node(New_node, val);
+    
+    
+    itr->next = new_node;
 
     new_node -> val = (double*) malloc(sizeof(double));
     *(new_node->val) = val;
@@ -297,10 +296,10 @@ double remove_at_tail(doubly_t* list){
     remove_node = list->head;
 
     while(remove_node){
-    if(remove_node->next)
-        remove_node = remove_node->next;
-    else
-        break;
+        if(remove_node->next)
+            remove_node = remove_node->next;
+        else
+            break;
     }
 
     if(!(remove_node->val))

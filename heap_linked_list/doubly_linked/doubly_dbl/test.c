@@ -259,20 +259,20 @@ void new_test(){
 
     insert_at_head(my_list, 1);
     insert_at_head(my_list, 2);
-    //insert_at_tail(my_list, 21);
+    insert_at_tail(my_list, 21);
     insert_at_head(my_list, 3);
     insert_at_head(my_list, 4);
     insert_at_head(my_list, 5);
-    //insert_at_tail(my_list, 22);
+    insert_at_tail(my_list, 22);
 
     itr_forward(my_list, 0, 0, 0, 0, 0);
     itr_backward(my_list, 0, 0, 1, 0, 0);
     
     
-    double one = remove_at_head(my_list);
+    //double one = remove_at_head(my_list);
     //printf("%lf\n", one);
 
-    double two = remove_at_tail(my_list);
+    //double two = remove_at_tail(my_list);
     //printf("%lf\n", two);
 
 
