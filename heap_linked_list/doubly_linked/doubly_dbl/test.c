@@ -1,6 +1,6 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "doubly_dbl.h"
-
 
 void old_test(){
 
@@ -66,6 +66,8 @@ printf("The Popped Value is %lf\n", twelvep);
 printf("Pop Success\n\n");
 
 
+
+
 printf("Testing Enqueue\n");
 enqueue(my_list, 1.15);
 enqueue(my_list, 2.15);
@@ -121,7 +123,6 @@ double twelveq = dequeue(my_list);
 printf("The Dequeued Value is %lf\n", twelveq);
 
 printf("Dequeue Sucess\n\n");
-
 
 printf("filling list to test Mix\n");
 
@@ -215,8 +216,9 @@ printf("The Dequeued Value is %lf\n", twelveq);
 
 printf("Success Mix\n");
 
+free((void*)my_list);
 
-
+/*
 printf("filling list to test clear\n");
 
 push(my_list, 1);
@@ -244,12 +246,13 @@ enqueue(my_list, 21);
 enqueue(my_list, 22);
 enqueue(my_list, 23);
 enqueue(my_list, 24);
+*/
 
-printf("Testing Clear\n");
+//printf("Testing Clear\n");
 
-clear_list(my_list);
+//clear_list(my_list);
 
-printf("Clear Success\n");
+//printf("Clear Success\n");
 }
 
 
@@ -283,8 +286,8 @@ void new_test(){
 
 int main(){
 
-//old_test();
-new_test();
+old_test();
+//new_test();
 
 return 0;
 }

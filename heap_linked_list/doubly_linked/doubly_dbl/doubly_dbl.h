@@ -7,7 +7,6 @@ typedef struct doubly doubly_t;
 
 //create
 doubly_t* create_list();
-doubly_dbl_t* create_node(doubly_dbl_t* new_node, double val);
 
 //destroy
 void clear_list(doubly_t* list);
