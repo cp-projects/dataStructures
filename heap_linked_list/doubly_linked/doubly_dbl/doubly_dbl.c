@@ -140,9 +140,9 @@ void enqueue(doubly_t* list, const double val){
 double dequeue(doubly_t* list){
 
     doubly_dbl_t* remove_node = list->tail;
-
     double val = *(remove_node->val);
 
+    // Last remaining node
     if(list->len == 1){
         list->head = remove_node->next;
         free(remove_node->val);
@@ -151,9 +151,9 @@ double dequeue(doubly_t* list){
         return val;
     }
 
+    // not the final node
     list->tail = remove_node->prev;
     remove_node->prev->next = remove_node->next;
-
     free(remove_node->val);
     free(remove_node);
 
