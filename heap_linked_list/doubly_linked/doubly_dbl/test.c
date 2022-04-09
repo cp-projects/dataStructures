@@ -216,9 +216,7 @@ printf("The Dequeued Value is %lf\n", twelveq);
 
 printf("Success Mix\n");
 
-free((void*)my_list);
 
-/*
 printf("filling list to test clear\n");
 
 push(my_list, 1);
@@ -246,13 +244,13 @@ enqueue(my_list, 21);
 enqueue(my_list, 22);
 enqueue(my_list, 23);
 enqueue(my_list, 24);
-*/
 
-//printf("Testing Clear\n");
 
-//clear_list(my_list);
+printf("Testing Clear\n");
 
-//printf("Clear Success\n");
+clear_list(my_list);
+
+printf("Clear Success\n");
 }
 
 

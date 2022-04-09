@@ -36,11 +36,33 @@ size_t ret_len(doubly_t* list){
 void clear_list(doubly_t* list){
 
      doubly_dbl_t* pos = list->head;
-     doubly_dbl_t* swap = list->head;
+     
+     doubly_dbl_t* head = list->head;
+     doubly_dbl_t* tail = list->tail;
 
-     for(int i = 0; i < list->len; i++){
+     int len = list->len;
+  
+     for(int i = 0; i < len-1; i++){
+         pos = pos->next;
+	 pos->prev->next = pos->next;
+	 free(pos->val);
+	 free(pos);
+	 (list->len)--;
+      }
 
-         if(!pos)
+      list->head = NULL;
+      list->tail = NULL;
+      list->len = 0;
+
+      free(head->val);
+      free(head);
+
+      free(tail->val);
+      free(tail);
+}
+
+         /*
+	 if(!pos)
              break;
 
          if(i < (list->len -1)){
@@ -63,7 +85,7 @@ void clear_list(doubly_t* list){
     free((void*)list);
     return;
 }
-
+*/
 
 void push(doubly_t* list, const double val){
 
@@ -83,7 +105,7 @@ void push(doubly_t* list, const double val){
     if(list->len == 1)
         list->tail = new_node;
 
-    //nonempry
+    //nonempty
     else
         list->head->prev = new_node;
     
@@ -126,7 +148,7 @@ void enqueue(doubly_t* list, const double val){
     if(list->len == 1)
         list->tail = new_node;
 
-    //nonempry
+    //nonempty
     else
         list->head->prev = new_node;
 
@@ -206,24 +228,28 @@ return itr;
 
 void insert_at_head(doubly_t* list, const double val){
 
-    doubly_dbl_t* old_head = list->head;
-
+    //create node
     doubly_dbl_t* new_node = (doubly_dbl_t*) malloc(sizeof(doubly_dbl_t));
     new_node -> val = (double*) malloc(sizeof(double));
     *(new_node->val) = val;
 
+    //connect new node to list
+    new_node->prev = NULL;
     new_node->next = list->head;
-    list->head = new_node;
 
-    if(old_head)
-      old_head->prev = new_node;
-
-    if(list->tail)
-        list->tail = list->tail;
-    else
-        list->tail = old_head;
-
+    //update list len
     (list->len)++;
+
+    //prevously empty list
+    if(list->len == 1)
+        list->tail = new_node;
+
+    //nonempty
+    else
+        list->head->prev = new_node;
+
+    //for both empy and nonempty
+    list->head = new_node;
     return;
 }
 
@@ -262,30 +288,20 @@ void insert_at_tail(doubly_t* list, const double val){
 
 double remove_at_tail(doubly_t* list){
 
-    doubly_dbl_t* remove_node;
-    remove_node = list->head;
-
-    while(remove_node){
-        if(remove_node->next)
-            remove_node = remove_node->next;
-        else
-            break;
-    }
-
-    if(!(remove_node->val))
-        exit(1);
-
+    doubly_dbl_t* remove_node = list->tail;
     double val = *(remove_node->val);
 
+    // Last remaining node
     if(list->len == 1){
-        list->head = NULL;
-        list->len = 0;
+        list->head = remove_node->next;
         free(remove_node->val);
         free(remove_node);
-
+        (list->len)--;
         return val;
     }
 
+    // not the final node
+    list->tail = remove_node->prev;
     remove_node->prev->next = remove_node->next;
     free(remove_node->val);
     free(remove_node);
