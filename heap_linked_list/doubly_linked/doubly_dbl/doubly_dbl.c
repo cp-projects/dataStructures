@@ -35,18 +35,23 @@ size_t ret_len(doubly_t* list){
 
 void clear_list(doubly_t* list){
 
-     doubly_dbl_t* pos = list->head;
+     doubly_dbl_t* pos = list->head->next;
+     doubly_dbl_t* swap = list->head->next;
      
      doubly_dbl_t* head = list->head;
      doubly_dbl_t* tail = list->tail;
 
      int len = list->len;
   
-     for(int i = 0; i < len-1; i++){
-         pos = pos->next;
+     for(int i = 1; i < len-1; i++){
+         
+	 swap = pos->next;
+	 pos->next->prev = pos->prev;
 	 pos->prev->next = pos->next;
 	 free(pos->val);
 	 free(pos);
+         pos = swap;
+
 	 (list->len)--;
       }
 
@@ -59,6 +64,8 @@ void clear_list(doubly_t* list){
 
       free(tail->val);
       free(tail);
+
+      free((void*)list);
 }
 
          /*
