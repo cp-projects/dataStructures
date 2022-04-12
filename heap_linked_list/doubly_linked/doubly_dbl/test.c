@@ -288,6 +288,9 @@ void new_test(){
     double six = remove_at_tail(my_list);
     printf("%lf\n", six);
 
+    double seven = remove_at_tail(my_list);
+    printf("%lf\n", seven);
+
     destroy_list(my_list);
 
 }

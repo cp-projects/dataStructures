@@ -35,16 +35,16 @@ size_t ret_len(doubly_t* list){
 
 void clear_list(doubly_t* list){
 
+     int len = list->len;	
+
+     if(len == 0)
+	     return;
+
      doubly_dbl_t* pos = list->head->next;
      doubly_dbl_t* swap = list->head->next;
      
      doubly_dbl_t* head = list->head;
      doubly_dbl_t* tail = list->tail;
-
-     int len = list->len;
-
-     if(len == 0)
-	     return;
      
      if(len == 1){
 
