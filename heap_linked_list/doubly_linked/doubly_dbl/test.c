@@ -373,6 +373,9 @@ void test_three(){
     double eleven = delete_at_index(my_list, 0);
     printf("%lf\n", eleven);
 
+    double twelve = delete_at_index(my_list, 0);
+    printf("%lf\n", twelve);
+
     printf("after delete\n");
     itr_forward(my_list, 0, 0, 1, 0, 0);
 

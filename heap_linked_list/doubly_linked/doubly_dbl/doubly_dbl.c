@@ -310,10 +310,15 @@ double remove_at_tail(doubly_t* list){
 
 void insert_after_index(doubly_t* list, double val, int index){
 
-    if(index >= list->len-1){
-        printf("Out of Range, use delete_at_tail()\n");
+    if(index > list->len-1){
+        printf("Out of Range\n");
 	return;
     }
+
+    if(index == list->len-1)
+	    insert_at_tail(list, val);
+    if(index == 0)
+	    insert_at_head(list, val);
 
     doubly_dbl_t* old_index = itr_forward(list, 0, index, 0, 0, 1);
     doubly_dbl_t* next_index = old_index->next;
@@ -344,20 +349,37 @@ double delete_at_index(doubly_t* list, int index){
     if(index == 0)
 	    return remove_at_head(list);
 
-    
-
     doubly_dbl_t* old_index = itr_forward(list, 0, index, 0, 0, 1);
-    doubly_dbl_t* next_index = old_index->next;
-    doubly_dbl_t* prev_index = old_index->prev;
 
     double val = *(old_index->val);
 
-    next_index->prev = prev_index;
-    prev_index->next = next_index;
+    old_index->next->prev = old_index->prev;
+    old_index->prev->next = old_index->next;
 
     free(old_index->val);
     free(old_index);
     (list->len)--;
     return val;
+}
+
+
+void insert_after_val(doubly_t* list, double newVal, double testVal){
+ 
+    doubly_dbl_t* old_val = itr_forward(list, 0, testVal, 1, 1, 0);
+    doubly_dbl_t* next_index = old_val->next;
+
+    doubly_dbl_t* new_node = (doubly_dbl_t*) malloc(sizeof(doubly_dbl_t));
+    new_node -> val = (double*) malloc(sizeof(double));
+    *(new_node->val) = newVal;
+
+    old_val->next = new_node;
+    new_node->prev = old_val;
+
+    next_index->prev = new_node;
+    new_node->next = next_index;
+
+    (list->len)++;
+    
+
 }
 
