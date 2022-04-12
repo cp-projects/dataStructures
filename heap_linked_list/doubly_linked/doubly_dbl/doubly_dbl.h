@@ -10,6 +10,7 @@ doubly_t* create_list();
 
 //destroy
 void clear_list(doubly_t* list);
+void destroy_list(doubly_t* list);
 
 //information
 size_t ret_size(doubly_t* list);

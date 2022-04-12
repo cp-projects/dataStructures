@@ -42,6 +42,19 @@ void clear_list(doubly_t* list){
      doubly_dbl_t* tail = list->tail;
 
      int len = list->len;
+
+     if(len == 0)
+	     return;
+     
+     if(len == 1){
+
+	  list->head = NULL;
+	  list->tail = NULL;
+	  list->len = 0;
+	  free(head->val);
+	  free(head);
+	  return;
+     }
   
      for(int i = 1; i < len-1; i++){
          
@@ -61,38 +74,15 @@ void clear_list(doubly_t* list){
 
       free(head->val);
       free(head);
-
       free(tail->val);
       free(tail);
-
-      free((void*)list);
 }
 
-         /*
-	 if(!pos)
-             break;
-
-         if(i < (list->len -1)){
-             swap = pos->next;
-             free(pos->val);
-             pos->val = NULL;
-             free(pos);
-             --(list->len);
-             pos = swap;
-           }
-
-         else{
-             free(pos->val);
-             free(pos);
-             pos = NULL;
-           }
-
-      }
-
+void destroy_list(doubly_t* list){
+    clear_list(list);
     free((void*)list);
-    return;
 }
-*/
+
 
 void push(doubly_t* list, const double val){
 

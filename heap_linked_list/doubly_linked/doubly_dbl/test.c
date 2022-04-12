@@ -248,7 +248,7 @@ enqueue(my_list, 24);
 
 printf("Testing Clear\n");
 
-clear_list(my_list);
+destroy_list(my_list);
 
 printf("Clear Success\n");
 }
@@ -266,26 +266,37 @@ void new_test(){
     insert_at_head(my_list, 5);
     insert_at_tail(my_list, 22);
 
-    itr_forward(my_list, 0, 0, 0, 0, 0);
-    itr_backward(my_list, 0, 0, 1, 0, 0);
+    itr_forward(my_list, 0, 0, 1, 0, 0);
+    itr_backward(my_list, 0, 0, 0, 0, 0);
     
     
-    //double one = remove_at_head(my_list);
-    //printf("%lf\n", one);
+    double one = remove_at_head(my_list);
+    printf("%lf\n", one);
 
-    //double two = remove_at_tail(my_list);
-    //printf("%lf\n", two);
+    double two = remove_at_tail(my_list);
+    printf("%lf\n", two);
 
+    double three = remove_at_head(my_list);
+    printf("%lf\n", three);
 
-    clear_list(my_list);
+    double four = remove_at_tail(my_list);
+    printf("%lf\n", four);
+
+    double five = remove_at_head(my_list);
+    printf("%lf\n", five);
+
+    double six = remove_at_tail(my_list);
+    printf("%lf\n", six);
+
+    destroy_list(my_list);
 
 }
 
 
 int main(){
 
-old_test();
-//new_test();
+//old_test();
+new_test();
 
 return 0;
 }
