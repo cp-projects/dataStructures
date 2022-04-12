@@ -314,27 +314,24 @@ void test_three(){
 
     doubly_t* my_list = create_list();
 
-    printf("Testing Inserts\n");
-    insert_at_head(my_list, 1);
-    insert_at_head(my_list, 2);
-    insert_at_tail(my_list, 21);
-    insert_at_head(my_list, 3);
-    insert_at_head(my_list, 4);
-    insert_at_head(my_list, 5);
-    insert_at_tail(my_list, 22);
-    int len = ret_len(my_list);
-    printf("The Length of the list is %d\n", len);
+    printf("Testing Index Inserts\n");
+    insert_after_index(my_list, 1, 0);
+    insert_after_index(my_list, 2, 0);
+    insert_after_index(my_list, 21, ret_len(my_list)-1);
+    insert_after_index(my_list, 3, 0);
+    insert_after_index(my_list, 4, 0);
+    insert_after_index(my_list, 5, 0);
+    insert_after_index(my_list, 22, ret_len(my_list)-1);
 
-    printf("Insert After Index\n");
     insert_after_index(my_list, 10, 2);
     insert_after_index(my_list, 11, 0);
     insert_after_index(my_list, 12, 7);
     insert_after_index(my_list, 13, 4);
-    len = ret_len(my_list);
-    printf("The Length of the list is %d\n", len);
 
     itr_forward(my_list, 0, 0, 1, 0, 0);
 
+    int len = ret_len(my_list);
+    printf("The Length of the list is %d\n", len);
     printf("END INSERTS\n");
 
     printf("Test Delete at Index\n");
@@ -373,11 +370,28 @@ void test_three(){
     double eleven = delete_at_index(my_list, 0);
     printf("%lf\n", eleven);
 
-    double twelve = delete_at_index(my_list, 0);
-    printf("%lf\n", twelve);
-
     printf("after delete\n");
     itr_forward(my_list, 0, 0, 1, 0, 0);
+    printf("END\n");
+
+    printf("Testing Value Inserts\n");
+
+    insert_after_val(my_list, 1, 5);
+    insert_after_val(my_list, 2, 1);
+    insert_after_val(my_list, 3, 2);
+    insert_after_val(my_list, 4, 3);
+    insert_after_val(my_list, 5, 4);
+
+    insert_after_val(my_list, 10, 1);
+    insert_after_val(my_list, 11, 2);
+    insert_after_val(my_list, 12, 3);
+    insert_after_val(my_list, 13, 4);
+    insert_after_val(my_list, 14, 5);
+
+    insert_after_val(my_list, 27, 11);
+
+    itr_forward(my_list, 0, 0, 1, 0, 0);
+
 
     destroy_list(my_list);
 

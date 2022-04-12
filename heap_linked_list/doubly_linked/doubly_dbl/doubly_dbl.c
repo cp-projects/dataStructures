@@ -253,6 +253,9 @@ void insert_at_head(doubly_t* list, const double val){
 
 double remove_at_head(doubly_t* list){
 
+    if(list->len == 0)
+        return -1;
+
     doubly_dbl_t* remove_node;
     remove_node = list->head;
 
@@ -310,15 +313,20 @@ double remove_at_tail(doubly_t* list){
 
 void insert_after_index(doubly_t* list, double val, int index){
 
-    if(index > list->len-1){
+    if(index == 0){
+        insert_at_head(list, val);
+        return;
+       }
+	
+    else if(index > list->len-1){
         printf("Out of Range\n");
 	return;
-    }
+       }
 
-    if(index == list->len-1)
-	    insert_at_tail(list, val);
-    if(index == 0)
-	    insert_at_head(list, val);
+    else if(index == list->len-1){
+        insert_at_tail(list, val);
+	return;
+       }
 
     doubly_dbl_t* old_index = itr_forward(list, 0, index, 0, 0, 1);
     doubly_dbl_t* next_index = old_index->next;
@@ -338,16 +346,16 @@ void insert_after_index(doubly_t* list, double val, int index){
 
 double delete_at_index(doubly_t* list, int index){
 
+    if(index == 0)
+        return remove_at_head(list);
+
     if(index > list->len-1){
         printf("Out of Range\n");
         return -1;
-    }
+       }
 
     if(index == list->len-1)
-	    return remove_at_tail(list);
-
-    if(index == 0)
-	    return remove_at_head(list);
+        return remove_at_tail(list);
 
     doubly_dbl_t* old_index = itr_forward(list, 0, index, 0, 0, 1);
 
@@ -365,7 +373,26 @@ double delete_at_index(doubly_t* list, int index){
 
 void insert_after_val(doubly_t* list, double newVal, double testVal){
  
-    doubly_dbl_t* old_val = itr_forward(list, 0, testVal, 1, 1, 0);
+    if(list->len == 0){
+        insert_at_head(list, newVal);
+	return;
+       }
+
+    else if(list->len == 1){
+        if(*(list->head->val) == testVal)
+	    insert_at_tail(list, newVal);
+	return;
+       }
+    
+    doubly_dbl_t* old_val = itr_forward(list, testVal, 0, 0, 1, 0);
+    
+    if(old_val == list->tail){
+        if(*(old_val->val) == testVal)
+            insert_at_tail(list, newVal);
+        return;
+       }
+
+
     doubly_dbl_t* next_index = old_val->next;
 
     doubly_dbl_t* new_node = (doubly_dbl_t*) malloc(sizeof(doubly_dbl_t));
@@ -380,6 +407,5 @@ void insert_after_val(doubly_t* list, double newVal, double testVal){
 
     (list->len)++;
     
-
 }
 
