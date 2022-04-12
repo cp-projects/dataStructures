@@ -41,7 +41,7 @@ void insert_at_tail(doubly_t* list, double val);
 double remove_at_tail(doubly_t* list); //(3)
 
 //by index
-void insert_at_index(doubly_t* list, double newVal, int index);
+void insert_after_index(doubly_t* list, double newVal, int index);
 double delete_at_index(doubly_t* list, int index);
 
 //by value

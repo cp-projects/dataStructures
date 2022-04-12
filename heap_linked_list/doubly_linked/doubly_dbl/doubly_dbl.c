@@ -308,4 +308,28 @@ double remove_at_tail(doubly_t* list){
 
 }
 
+void insert_after_index(doubly_t* list, double val, int index){
+
+    if(index >= list->len-1){
+        printf("Out of Range, use Insert_at_tail\n");
+	return;
+    }
+
+    doubly_dbl_t* old_index = itr_forward(list, 0, index, 0, 0, 1);
+
+    doubly_dbl_t* next_index = old_index->next;
+
+    doubly_dbl_t* new_node = (doubly_dbl_t*) malloc(sizeof(doubly_dbl_t));
+    new_node -> val = (double*) malloc(sizeof(double));
+    *(new_node->val) = val;
+
+    old_index->next = new_node;
+    new_node->prev = old_index;
+
+    next_index->prev = new_node;
+    new_node->next = next_index;
+
+    (list->len)++;
+
+}
 

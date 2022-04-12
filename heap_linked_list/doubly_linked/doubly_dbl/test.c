@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "doubly_dbl.h"
 
-void old_test(){
+void test_one(){
 
 doubly_t* my_list = create_list();
 
@@ -254,7 +254,7 @@ printf("Clear Success\n");
 }
 
 
-void new_test(){
+void test_two(){
 
     doubly_t* my_list = create_list();
 
@@ -310,11 +310,40 @@ void new_test(){
 
 }
 
+void test_three(){
+
+    doubly_t* my_list = create_list();
+
+    printf("Testing Inserts\n");
+
+    insert_at_head(my_list, 1);
+    insert_at_head(my_list, 2);
+    insert_at_tail(my_list, 21);
+    insert_at_head(my_list, 3);
+    insert_at_head(my_list, 4);
+    insert_at_head(my_list, 5);
+    insert_at_tail(my_list, 22);
+
+
+    insert_after_index(my_list, 10, 2);
+    insert_after_index(my_list, 11, 0);
+    insert_after_index(my_list, 12, 7);
+    insert_after_index(my_list, 13, 4);
+
+    itr_forward(my_list, 0, 0, 1, 0, 0);
+
+    destroy_list(my_list);
+
+}
+
+
 
 int main(){
 
-//old_test();
-new_test();
+//test_one();
+//test_two();
+test_three();
+
 
 return 0;
 }
