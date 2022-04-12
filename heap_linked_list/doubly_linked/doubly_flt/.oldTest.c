@@ -1,8 +1,7 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include "doubly_flt.h"
 
-void test_one(){
+int main(){
 
 doubly_t* my_list = create_list();
 
@@ -66,8 +65,6 @@ printf("The Popped Value is %f\n", twelvep);
 printf("Pop Success\n\n");
 
 
-
-
 printf("Testing Enqueue\n");
 enqueue(my_list, 1.15);
 enqueue(my_list, 2.15);
@@ -124,6 +121,7 @@ printf("The Dequeued Value is %f\n", twelveq);
 
 printf("Dequeue Sucess\n\n");
 
+
 printf("filling list to test Mix\n");
 
 push(my_list, 1.24);
@@ -153,6 +151,7 @@ enqueue(my_list, 23.24);
 enqueue(my_list, 24.24);
 
 printf("Testing Mix\n");
+
 
 onep = pop(my_list);
 printf("The Popped Value is %f\n", onep);
@@ -217,6 +216,7 @@ printf("The Dequeued Value is %f\n", twelveq);
 printf("Success Mix\n");
 
 
+
 printf("filling list to test clear\n");
 
 push(my_list, 1);
@@ -245,207 +245,13 @@ enqueue(my_list, 22);
 enqueue(my_list, 23);
 enqueue(my_list, 24);
 
-
 printf("Testing Clear\n");
 
-destroy_list(my_list);
+clear_list(my_list);
 
-printf("Clear Success\n");
-}
-
-
-void test_two(){
-
-    doubly_t* my_list = create_list();
-
-    printf("Testing Inserts\n");
-
-    insert_at_head(my_list, 1);
-    insert_at_head(my_list, 2);
-    insert_at_tail(my_list, 21);
-    insert_at_head(my_list, 3);
-    insert_at_head(my_list, 4);
-    insert_at_head(my_list, 5);
-    insert_at_tail(my_list, 22);
-
-    int len = ret_len(my_list);
-    printf("The Length of the list is %d\n", len);
-
-    printf("Inserts Done\n");
-
-    printf("Testing Forward Iteration\n");
-    itr_forward(my_list, 0, 0, 1, 0, 0);
-    printf("Forward Iteration Done\n");
-
-    printf("Testing Backward Iteration\n");
-    itr_backward(my_list, 0, 0, 1, 0, 0);
-    printf("Forward Backward Done\n");
-    
-    printf("Testing Removals\n");
-
-    float one = remove_at_head(my_list);
-    printf("%f\n", one);
-
-    float two = remove_at_tail(my_list);
-    printf("%f\n", two);
-
-    float three = remove_at_head(my_list);
-    printf("%f\n", three);
-
-    float four = remove_at_tail(my_list);
-    printf("%f\n", four);
-
-    float five = remove_at_head(my_list);
-    printf("%f\n", five);
-
-    float six = remove_at_tail(my_list);
-    printf("%f\n", six);
-
-    float seven = remove_at_tail(my_list);
-    printf("%f\n", seven);
-
-    printf("Removal Success\n");
-
-    destroy_list(my_list);
-
-}
-
-void test_three(){
-
-    doubly_t* my_list = create_list();
-
-    printf("Testing Index Inserts\n");
-    insert_after_index(my_list, 1, 0);
-    insert_after_index(my_list, 2, 0);
-    insert_after_index(my_list, 21, ret_len(my_list)-1);
-    insert_after_index(my_list, 3, 0);
-    insert_after_index(my_list, 4, 0);
-    insert_after_index(my_list, 5, 0);
-    insert_after_index(my_list, 22, ret_len(my_list)-1);
-
-    insert_after_index(my_list, 10, 2);
-    insert_after_index(my_list, 11, 0);
-    insert_after_index(my_list, 12, 7);
-    insert_after_index(my_list, 13, 4);
-
-    itr_forward(my_list, 0, 0, 1, 0, 0);
-
-    int len = ret_len(my_list);
-    printf("The Length of the list is %d\n", len);
-    printf("END INSERTS\n");
-
-    printf("Test Delete at Index\n");
-    
-    
-    float one = delete_at_index(my_list, 5);
-    printf("%f\n", one);
-
-    float two = delete_at_index(my_list, 1);
-    printf("%f\n", two);
-
-    float three = delete_at_index(my_list, 3);
-    printf("%f\n", three);
-
-    float four = delete_at_index(my_list, 6);
-    printf("%f\n", four);
-
-    float five = delete_at_index(my_list, 0);
-    printf("%f\n", five);
-
-    float six = delete_at_index(my_list, 5);
-    printf("%f\n", six);
-
-    float seven = delete_at_index(my_list, 2);
-    printf("%f\n", seven);
-
-    float eight = delete_at_index(my_list, 2);
-    printf("%f\n", eight);
-
-    float nine = delete_at_index(my_list, 1);
-    printf("%f\n", nine);
-
-    float ten = delete_at_index(my_list, 1);
-    printf("%f\n", ten);
-
-    float eleven = delete_at_index(my_list, 0);
-    printf("%f\n", eleven);
-
-    printf("after delete\n");
-    itr_forward(my_list, 0, 0, 1, 0, 0);
-    printf("END\n");
-
-    printf("Testing Value Inserts\n");
-
-    insert_after_val(my_list, 1, 5);
-    insert_after_val(my_list, 2, 1);
-    insert_after_val(my_list, 3, 2);
-    insert_after_val(my_list, 4, 3);
-    insert_after_val(my_list, 5, 4);
-
-    insert_after_val(my_list, 10, 1);
-    insert_after_val(my_list, 11, 2);
-    insert_after_val(my_list, 12, 3);
-    insert_after_val(my_list, 13, 4);
-    insert_after_val(my_list, 14, 5);
-
-    insert_after_val(my_list, 27, 11);
-
-    itr_forward(my_list, 0, 0, 1, 0, 0);
-
-    len = ret_len(my_list);
-    printf("The Length of the list is %d\n", len);
-    printf("END INSERTS\n");
-
-    printf("Test Delete after Value\n");
-
-    one = delete_by_val(my_list, 11);
-    printf("%f\n", one);
-
-    two = delete_by_val(my_list, 12);
-    printf("%f\n", two);
-
-    three = delete_by_val(my_list, 10);
-    printf("%f\n", three);
-
-    four = delete_by_val(my_list, 13);
-    printf("%f\n", four);
-
-    five = delete_by_val(my_list, 14);
-    printf("%f\n", five);
-
-    six = delete_by_val(my_list, 27);
-    printf("%f\n", six);
-
-    seven = delete_by_val(my_list, 5);
-    printf("%f\n", seven);
-
-    eight = delete_by_val(my_list, 4);
-    printf("%f\n", eight);
-
-    nine = delete_by_val(my_list, 3);
-    printf("%f\n", nine);
-
-    ten = delete_by_val(my_list, 2);
-    printf("%f\n", ten);
-
-    eleven = delete_by_val(my_list, 1);
-    printf("%f\n", eleven);
-
-    printf("after delete\n");
-    itr_forward(my_list, 0, 0, 1, 0, 0);
-    printf("END\n");
-
-    destroy_list(my_list);
-
-}
+printf("Clear Success\n\n");
 
 
-
-int main(){
-
-test_one();
-test_two();
-test_three();
 
 
 return 0;
