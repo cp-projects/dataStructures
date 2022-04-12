@@ -315,7 +315,6 @@ void test_three(){
     doubly_t* my_list = create_list();
 
     printf("Testing Inserts\n");
-
     insert_at_head(my_list, 1);
     insert_at_head(my_list, 2);
     insert_at_tail(my_list, 21);
@@ -323,13 +322,58 @@ void test_three(){
     insert_at_head(my_list, 4);
     insert_at_head(my_list, 5);
     insert_at_tail(my_list, 22);
+    int len = ret_len(my_list);
+    printf("The Length of the list is %d\n", len);
 
-
+    printf("Insert After Index\n");
     insert_after_index(my_list, 10, 2);
     insert_after_index(my_list, 11, 0);
     insert_after_index(my_list, 12, 7);
     insert_after_index(my_list, 13, 4);
+    len = ret_len(my_list);
+    printf("The Length of the list is %d\n", len);
 
+    itr_forward(my_list, 0, 0, 1, 0, 0);
+
+    printf("END INSERTS\n");
+
+    printf("Test Delete at Index\n");
+    
+    
+    double one = delete_at_index(my_list, 5);
+    printf("%lf\n", one);
+
+    double two = delete_at_index(my_list, 1);
+    printf("%lf\n", two);
+
+    double three = delete_at_index(my_list, 3);
+    printf("%lf\n", three);
+
+    double four = delete_at_index(my_list, 6);
+    printf("%lf\n", four);
+
+    double five = delete_at_index(my_list, 0);
+    printf("%lf\n", five);
+
+    double six = delete_at_index(my_list, 5);
+    printf("%lf\n", six);
+
+    double seven = delete_at_index(my_list, 2);
+    printf("%lf\n", seven);
+
+    double eight = delete_at_index(my_list, 2);
+    printf("%lf\n", eight);
+
+    double nine = delete_at_index(my_list, 1);
+    printf("%lf\n", nine);
+
+    double ten = delete_at_index(my_list, 1);
+    printf("%lf\n", ten);
+
+    double eleven = delete_at_index(my_list, 0);
+    printf("%lf\n", eleven);
+
+    printf("after delete\n");
     itr_forward(my_list, 0, 0, 1, 0, 0);
 
     destroy_list(my_list);
