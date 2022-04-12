@@ -258,6 +258,8 @@ void new_test(){
 
     doubly_t* my_list = create_list();
 
+    printf("Testing Inserts\n");
+
     insert_at_head(my_list, 1);
     insert_at_head(my_list, 2);
     insert_at_tail(my_list, 21);
@@ -266,10 +268,21 @@ void new_test(){
     insert_at_head(my_list, 5);
     insert_at_tail(my_list, 22);
 
+    int len = ret_len(my_list);
+    printf("The Length of the list is %d\n", len);
+
+    printf("Inserts Done\n");
+
+    printf("Testing Forward Iteration\n");
     itr_forward(my_list, 0, 0, 1, 0, 0);
-    itr_backward(my_list, 0, 0, 0, 0, 0);
+    printf("Forward Iteration Done\n");
+
+    printf("Testing Backward Iteration\n");
+    itr_backward(my_list, 0, 0, 1, 0, 0);
+    printf("Forward Backward Done\n");
     
-    
+    printf("Testing Removals\n");
+
     double one = remove_at_head(my_list);
     printf("%lf\n", one);
 
@@ -290,6 +303,8 @@ void new_test(){
 
     double seven = remove_at_tail(my_list);
     printf("%lf\n", seven);
+
+    printf("Removal Success\n");
 
     destroy_list(my_list);
 

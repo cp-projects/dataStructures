@@ -13,7 +13,7 @@ void clear_list(doubly_t* list);
 void destroy_list(doubly_t* list);
 
 //information
-size_t ret_size(doubly_t* list);
+size_t ret_len(doubly_t* list);
 
 //stack
 void push(doubly_t* list, double val); //(1) All one are the same
