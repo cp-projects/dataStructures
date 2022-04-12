@@ -392,6 +392,48 @@ void test_three(){
 
     itr_forward(my_list, 0, 0, 1, 0, 0);
 
+    len = ret_len(my_list);
+    printf("The Length of the list is %d\n", len);
+    printf("END INSERTS\n");
+
+    printf("Test Delete after Value\n");
+
+    one = delete_by_val(my_list, 11);
+    printf("%lf\n", one);
+
+    two = delete_by_val(my_list, 12);
+    printf("%lf\n", two);
+
+    three = delete_by_val(my_list, 10);
+    printf("%lf\n", three);
+
+    four = delete_by_val(my_list, 13);
+    printf("%lf\n", four);
+
+    five = delete_by_val(my_list, 14);
+    printf("%lf\n", five);
+
+    six = delete_by_val(my_list, 27);
+    printf("%lf\n", six);
+
+    seven = delete_by_val(my_list, 5);
+    printf("%lf\n", seven);
+
+    eight = delete_by_val(my_list, 4);
+    printf("%lf\n", eight);
+
+    nine = delete_by_val(my_list, 3);
+    printf("%lf\n", nine);
+
+    ten = delete_by_val(my_list, 2);
+    printf("%lf\n", ten);
+
+    eleven = delete_by_val(my_list, 1);
+    printf("%lf\n", eleven);
+
+    printf("after delete\n");
+    itr_forward(my_list, 0, 0, 1, 0, 0);
+    printf("END\n");
 
     destroy_list(my_list);
 
@@ -401,8 +443,8 @@ void test_three(){
 
 int main(){
 
-//test_one();
-//test_two();
+test_one();
+test_two();
 test_three();
 
 

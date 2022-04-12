@@ -392,7 +392,6 @@ void insert_after_val(doubly_t* list, double newVal, double testVal){
         return;
        }
 
-
     doubly_dbl_t* next_index = old_val->next;
 
     doubly_dbl_t* new_node = (doubly_dbl_t*) malloc(sizeof(doubly_dbl_t));
@@ -405,7 +404,34 @@ void insert_after_val(doubly_t* list, double newVal, double testVal){
     next_index->prev = new_node;
     new_node->next = next_index;
 
-    (list->len)++;
+    (list->len)++;    
+}
+
+
+double delete_by_val(doubly_t* list, double testVal){
+
+     if(list->len == 0)
+         return remove_at_head(list); 
+
+    else if(list->len == 1){
+        if(*(list->head->val) == testVal)
+            return remove_at_tail(list);
+        return -1;
+       }
+
+    doubly_dbl_t* old_val = itr_forward(list, testVal, 0, 0, 1, 0);
+    double val = *(old_val->val);
     
+    if(old_val == list->tail)
+        if(val == testVal)
+            return remove_at_tail(list);
+
+    old_val->next->prev = old_val->prev;
+    old_val->prev->next = old_val->next;
+
+    free(old_val->val);
+    free(old_val);
+    (list->len)--;
+    return val;
 }
 
