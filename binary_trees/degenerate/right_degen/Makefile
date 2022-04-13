@@ -1,4 +1,4 @@
-SUBDIRS = right_degen/ left_degen/
+SUBDIRS = right_degen_dbl/ right_degen_flt/ right_degen_int/
 
 subdirs:
 	for dir in $(SUBDIRS); do \
