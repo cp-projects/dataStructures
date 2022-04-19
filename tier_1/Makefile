@@ -3,7 +3,7 @@ make:
 	make data_structures_t1.a
 
 data_structures_t1.a:
-	ar cr data_structures_t1.a binary_trees/lib_binary_trees.a heap_linked_list/lib_linked_list.a 
+	ar cr data_structures_t1.a heap_linked_list/lib_linked_list.o 
 
 
 SUBDIRS = heap_linked_list/ binary_trees/
