@@ -1,5 +1,5 @@
-#ifndef doublyLinkedFlt_H_
-#define doublyLinkedFlt_H_
+#ifndef orderedPairFlt_H_
+#define orderedPairFlt_H_
 
 //data structures
 typedef struct dbl_op_flt dbl_op_flt_t;

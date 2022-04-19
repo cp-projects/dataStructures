@@ -1,5 +1,5 @@
-#ifndef doublyLinkedDbl_H_
-#define doublyLinkedDbl_H_
+#ifndef orderedPairsDbl_H_
+#define orderedPairsDbl_H_
 
 //data structures
 typedef struct dbl_op_dbl dbl_op_dbl_t;

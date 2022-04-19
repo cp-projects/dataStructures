@@ -2,7 +2,9 @@
 #include "../../tier_1/tier_1.h"
 
 typedef doubly_dbl_t vertex_t;
+typedef dbl_op_dbl_t edge_t;
 
+/*
 typedef struct edge{
     
     double math_edge[2];
@@ -24,7 +26,7 @@ typedef struct edge_list{
 
 }edge_list_t;
 
-
+*/;
 
 int main(){
 

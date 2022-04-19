@@ -1,12 +1,12 @@
-#ifndef heapLinkedList_H_
-#define heapLinkedList_H_
+#ifndef orderedPairList_H_
+#define orderedPairsList_H_
 
-#include "doubly_linked/doubly_dbl/doubly_dbl.h"
-#include "doubly_linked/doubly_flt/doubly_flt.h"
-#include "doubly_linked/doubly_int/doubly_int.h" 
-#include "singly_linked/singly_dbl/singly_dbl.h" 
-#include "singly_linked/singly_flt/singly_flt.h" 
-#include "singly_linked/singly_int/singly_int.h"
+#include "dbl_op/dbl_op_dbl/dbl_op_dbl.h"
+#include "dbl_op/dbl_op_flt/dbl_op_flt.h"
+#include "dbl_op/dbl_op_int/dbl_op_int.h"
 
+//#include "sin_op/sin_op_dbl/sin_op_dbl.h"
+//#include "sin_op/sin_op_flt/sin_op_flt.h"
+//#include "sin_op/sin_op_int/sin_op_int.h"
 
 #endif

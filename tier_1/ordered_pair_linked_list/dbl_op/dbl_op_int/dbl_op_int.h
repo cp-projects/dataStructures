@@ -1,5 +1,5 @@
-#ifndef doublyLinkedInt_H_
-#define doublyLinkedInt_H_
+#ifndef orderedPairInt_H_
+#define orderedPairInt_H_
 
 
 //data structures
