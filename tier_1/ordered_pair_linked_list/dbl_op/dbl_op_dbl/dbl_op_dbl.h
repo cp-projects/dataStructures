@@ -17,11 +17,11 @@ size_t ret_len_dbl_op_dbl(doubly_t* list);
 
 //stack
 void push_dbl_op_dbl(doubly_t* list, double X, double Y); //(1) All one are the same
-double pop_dbl_op_dbl(doubly_t* list); //(2)
+double* pop_dbl_op_dbl(doubly_t* list); //(2)
 
 //queue
-void enqueue_dbl_op_dbl(doubly_t* list, double val); //(1) They are declared seperately
-double dequeue_dbl_op_dbl(doubly_t* list); //(3)
+void enqueue_dbl_op_dbl(doubly_t* list, double X, double Y); //(1) They are declared seperately
+double* dequeue_dbl_op_dbl(doubly_t* list); //(3)
 
 /*
  * doubly

@@ -8,18 +8,18 @@ doubly_t* my_list = create_list_dbl_op_dbl();
 
 printf("Testing push\n");
 
-push_dbl_op_dbl(my_list, 1.12);
-push_dbl_op_dbl(my_list, 2.12);
-push_dbl_op_dbl(my_list, 3.12);
-push_dbl_op_dbl(my_list, 4.12);
-push_dbl_op_dbl(my_list, 5.12);
-push_dbl_op_dbl(my_list, 6.12);
-push_dbl_op_dbl(my_list, 7.12);
-push_dbl_op_dbl(my_list, 8.12);
-push_dbl_op_dbl(my_list, 9.12);
-push_dbl_op_dbl(my_list, 10.12);
-push_dbl_op_dbl(my_list, 11.12);
-push_dbl_op_dbl(my_list, 12.12);
+push_dbl_op_dbl(my_list, 1.12, 1);
+push_dbl_op_dbl(my_list, 2.12, 2);
+push_dbl_op_dbl(my_list, 3.12, 3);
+push_dbl_op_dbl(my_list, 4.12, 4);
+push_dbl_op_dbl(my_list, 5.12, 5);
+push_dbl_op_dbl(my_list, 6.12, 6);
+push_dbl_op_dbl(my_list, 7.12, 7);
+push_dbl_op_dbl(my_list, 8.12, 8);
+push_dbl_op_dbl(my_list, 9.12, 9);
+push_dbl_op_dbl(my_list, 10.12, 10);
+push_dbl_op_dbl(my_list, 11.12, 11);
+push_dbl_op_dbl(my_list, 12.12, 12);
 
 printf("Push Success\n\n");
 
@@ -27,223 +27,224 @@ printf("Push Success\n\n");
 
 printf("Testing Pop\n");
 
-double onep = pop_dbl_op_dbl(my_list);
-printf("The Popped Value is %lf\n", onep);
+double* onep = pop_dbl_op_dbl(my_list);
+printf("The Popped Value is (%lf, %lf)\n", onep[0], onep[1]);
 
-double twop = pop_dbl_op_dbl(my_list);
-printf("The Popped Value is %lf\n", twop);
+double* twop = pop_dbl_op_dbl(my_list);
+printf("The Popped Value is (%lf, %lf)\n", twop[0], onep[1]);
 
-double threep = pop_dbl_op_dbl(my_list);
-printf("The Popped Value is %lf\n", threep);
+double* threep = pop_dbl_op_dbl(my_list);
+printf("The Popped Value is (%lf, %lf)\n", threep[0], threep[1]);
 
-double fourp = pop_dbl_op_dbl(my_list);
-printf("The Popped Value is %lf\n", fourp);
+double* fourp = pop_dbl_op_dbl(my_list);
+printf("The Popped Value is (%lf, %lf)\n", fourp[0], fourp[1]);
 
-double fivep = pop_dbl_op_dbl(my_list);
-printf("The Popped Value is %lf\n", fivep);
+double* fivep = pop_dbl_op_dbl(my_list);
+printf("The Popped Value is (%lf, %lf)\n", fivep[0], fourp[1]);
 
-double sixp = pop_dbl_op_dbl(my_list);
-printf("The Popped Value is %lf\n", sixp);
+double* sixp = pop_dbl_op_dbl(my_list);
+printf("The Popped Value is (%lf, %lf)\n", sixp[0], sixp[1]);
 
-double sevenp = pop_dbl_op_dbl(my_list);
-printf("The Popped Value is %lf\n", sevenp);
+double* sevenp = pop_dbl_op_dbl(my_list);
+printf("The Popped Value is (%lf, %lf)\n", sevenp[0], sevenp[1]);
 
-double eightp = pop_dbl_op_dbl(my_list);
-printf("The Popped Value is %lf\n", eightp);
+double* eightp = pop_dbl_op_dbl(my_list);
+printf("The Popped Value is (%lf, %lf)\n", eightp[0], eightp[1]);
 
-double ninep = pop_dbl_op_dbl(my_list);
-printf("The Popped Value is %lf\n", ninep);
+double* ninep = pop_dbl_op_dbl(my_list);
+printf("The Popped Value is (%lf, %lf)\n", ninep[0], ninep[1]);
 
-double tenp = pop_dbl_op_dbl(my_list);
-printf("The Popped Value is %lf\n", tenp);
+double* tenp = pop_dbl_op_dbl(my_list);
+printf("The Popped Value is (%lf, %lf)\n", tenp[0], tenp[1]);
 
-double elevenp = pop_dbl_op_dbl(my_list);
-printf("The Popped Value is %lf\n", elevenp);
+double* elevenp = pop_dbl_op_dbl(my_list);
+printf("The Popped Value is (%lf, %lf)\n", elevenp[0], elevenp[1]);
 
-double twelvep = pop_dbl_op_dbl(my_list);
-printf("The Popped Value is %lf\n", twelvep);
+double* twelvep = pop_dbl_op_dbl(my_list);
+printf("The Popped Value is (%lf, %lf)\n", twelvep[0], twelvep[1]);
 
 printf("Pop Success\n\n");
 
-/*
+
 
 printf("Testing Enqueue\n");
-enqueue_dbl_op_dbl(my_list, 1.15);
-enqueue_dbl_op_dbl(my_list, 2.15);
-enqueue_dbl_op_dbl(my_list, 3.15);
-enqueue_dbl_op_dbl(my_list, 4.15);
-enqueue_dbl_op_dbl(my_list, 5.15);
-enqueue_dbl_op_dbl(my_list, 6.15);
-enqueue_dbl_op_dbl(my_list, 7.15);
-enqueue_dbl_op_dbl(my_list, 8.15);
-enqueue_dbl_op_dbl(my_list, 9.15);
-enqueue_dbl_op_dbl(my_list, 10.15);
-enqueue_dbl_op_dbl(my_list, 11.15);
-enqueue_dbl_op_dbl(my_list, 12.15);
+enqueue_dbl_op_dbl(my_list, 1.15, 1);
+enqueue_dbl_op_dbl(my_list, 2.15, 2);
+enqueue_dbl_op_dbl(my_list, 3.15, 3);
+enqueue_dbl_op_dbl(my_list, 4.15, 4);
+enqueue_dbl_op_dbl(my_list, 5.15, 5);
+enqueue_dbl_op_dbl(my_list, 6.15, 6);
+enqueue_dbl_op_dbl(my_list, 7.15, 7);
+enqueue_dbl_op_dbl(my_list, 8.15, 8);
+enqueue_dbl_op_dbl(my_list, 9.15, 9);
+enqueue_dbl_op_dbl(my_list, 10.15, 10);
+enqueue_dbl_op_dbl(my_list, 11.15, 11);
+enqueue_dbl_op_dbl(my_list, 12.15, 12);
 printf("Enqueue Sucess\n\n");
+
 
 
 printf("Testing Dequeue\n");
 
-double oneq = dequeue_dbl_op_dbl(my_list);
-printf("The Dequeued Value is %lf\n", oneq);
+double* oneq = dequeue_dbl_op_dbl(my_list);
+printf("The Dequeued Value is (%lf, %lf)\n", oneq[0], oneq[1]);
 
-double twoq = dequeue_dbl_op_dbl(my_list);
-printf("The Dequeued Value is %lf\n", twoq);
+double* twoq = dequeue_dbl_op_dbl(my_list);
+printf("The Dequeued Value is (%lf, %lf)\n", twoq[0], twoq[1]);
 
-double threeq = dequeue_dbl_op_dbl(my_list);
-printf("The Dequeued Value is %lf\n", threeq);
+double* threeq = dequeue_dbl_op_dbl(my_list);
+printf("The Dequeued Value is (%lf, %lf)\n", threeq[0], twoq[1]);
 
-double fourq = dequeue_dbl_op_dbl(my_list);
-printf("The Dequeued Value is %lf\n", fourq);
+double* fourq = dequeue_dbl_op_dbl(my_list);
+printf("The Dequeued Value is (%lf, %lf)\n", fourq[0], fourq[1]);
 
-double fiveq = dequeue_dbl_op_dbl(my_list);
-printf("The Dequeued Value is %lf\n", fiveq);
+double* fiveq = dequeue_dbl_op_dbl(my_list);
+printf("The Dequeued Value is (%lf, %lf)\n", fiveq[0], fiveq[1]);
 
-double sixq = dequeue_dbl_op_dbl(my_list);
-printf("The Dequeued Value is %lf\n", sixq);
+double* sixq = dequeue_dbl_op_dbl(my_list);
+printf("The Dequeued Value is (%lf, %lf)\n", sixq[0], sixq[1]);
 
-double sevenq = dequeue_dbl_op_dbl(my_list);
-printf("The Dequeued Value is %lf\n", sevenq);
+double* sevenq = dequeue_dbl_op_dbl(my_list);
+printf("The Dequeued Value is (%lf, %lf)\n", sevenq[0], sevenq[1]);
 
-double eightq = dequeue_dbl_op_dbl(my_list);
-printf("The Dequeued Value is %lf\n", eightq);
+double* eightq = dequeue_dbl_op_dbl(my_list);
+printf("The Dequeued Value is (%lf, %lf)\n", eightq[0], eightq[1]);
 
-double nineq = dequeue_dbl_op_dbl(my_list);
-printf("The Dequeued Value is %lf\n", nineq);
+double* nineq = dequeue_dbl_op_dbl(my_list);
+printf("The Dequeued Value is (%lf, %lf)\n", nineq[0], nineq[1]);
 
-double tenq = dequeue_dbl_op_dbl(my_list);
-printf("The Dequeued Value is %lf\n", tenq);
+double* tenq = dequeue_dbl_op_dbl(my_list);
+printf("The Dequeued Value is (%lf, %lf)\n", tenq[0], nineq[1]);
 
-double elevenq = dequeue_dbl_op_dbl(my_list);
-printf("The Dequeued Value is %lf\n", elevenq);
+double* elevenq = dequeue_dbl_op_dbl(my_list);
+printf("The Dequeued Value is (%lf, %lf)\n", elevenq[0], elevenq[1]);
 
-double twelveq = dequeue_dbl_op_dbl(my_list);
-printf("The Dequeued Value is %lf\n", twelveq);
+double* twelveq = dequeue_dbl_op_dbl(my_list);
+printf("The Dequeued Value is (%lf, %lf)\n", twelveq[0], twelveq[1]);
 
 printf("Dequeue Sucess\n\n");
 
 printf("filling list to test Mix\n");
 
-push_dbl_op_dbl(my_list, 1.24);
-push_dbl_op_dbl(my_list, 2.24);
-push_dbl_op_dbl(my_list, 3.24);
-push_dbl_op_dbl(my_list, 4.24);
-push_dbl_op_dbl(my_list, 5.24);
-push_dbl_op_dbl(my_list, 6.24);
-push_dbl_op_dbl(my_list, 7.24);
-push_dbl_op_dbl(my_list, 8.24);
-push_dbl_op_dbl(my_list, 9.24);
-push_dbl_op_dbl(my_list, 10.24);
-push_dbl_op_dbl(my_list, 11.24);
-push_dbl_op_dbl(my_list, 12.24);
+push_dbl_op_dbl(my_list, 1.24, 1);
+push_dbl_op_dbl(my_list, 2.24, 2);
+push_dbl_op_dbl(my_list, 3.24, 3);
+push_dbl_op_dbl(my_list, 4.24, 4);
+push_dbl_op_dbl(my_list, 5.24, 5);
+push_dbl_op_dbl(my_list, 6.24, 6);
+push_dbl_op_dbl(my_list, 7.24, 7);
+push_dbl_op_dbl(my_list, 8.24, 8);
+push_dbl_op_dbl(my_list, 9.24, 9);
+push_dbl_op_dbl(my_list, 10.24, 10);
+push_dbl_op_dbl(my_list, 11.24, 11);
+push_dbl_op_dbl(my_list, 12.24, 12);
 
-enqueue_dbl_op_dbl(my_list, 13.24);
-enqueue_dbl_op_dbl(my_list, 14.24);
-enqueue_dbl_op_dbl(my_list, 15.24);
-enqueue_dbl_op_dbl(my_list, 16.24);
-enqueue_dbl_op_dbl(my_list, 17.24);
-enqueue_dbl_op_dbl(my_list, 18.24);
-enqueue_dbl_op_dbl(my_list, 19.24);
-enqueue_dbl_op_dbl(my_list, 20.24);
-enqueue_dbl_op_dbl(my_list, 21.24);
-enqueue_dbl_op_dbl(my_list, 22.24);
-enqueue_dbl_op_dbl(my_list, 23.24);
-enqueue_dbl_op_dbl(my_list, 24.24);
+enqueue_dbl_op_dbl(my_list, 13.24, 13);
+enqueue_dbl_op_dbl(my_list, 14.24, 14);
+enqueue_dbl_op_dbl(my_list, 15.24, 15);
+enqueue_dbl_op_dbl(my_list, 16.24, 16);
+enqueue_dbl_op_dbl(my_list, 17.24, 17);
+enqueue_dbl_op_dbl(my_list, 18.24, 18);
+enqueue_dbl_op_dbl(my_list, 19.24, 19);
+enqueue_dbl_op_dbl(my_list, 20.24, 20);
+enqueue_dbl_op_dbl(my_list, 21.24, 21);
+enqueue_dbl_op_dbl(my_list, 22.24, 22);
+enqueue_dbl_op_dbl(my_list, 23.24, 23);
+enqueue_dbl_op_dbl(my_list, 24.24, 24);
 
 printf("Testing Mix\n");
 
 onep = pop_dbl_op_dbl(my_list);
-printf("The Popped Value is %lf\n", onep);
+printf("The Popped Value is (%lf, %lf)\n", onep[0], onep[1]);
 oneq = dequeue_dbl_op_dbl(my_list);
-printf("The Dequeued Value is %lf\n", oneq);
+printf("The Dequeued Value is (%lf, %lf)\n", oneq[0], oneq[1]);
 
 twop = pop_dbl_op_dbl(my_list);
-printf("The Popped Value is %lf\n", twop);
+printf("The Popped Value is (%lf, %lf)\n", twop[0], twop[1]);
 twoq = dequeue_dbl_op_dbl(my_list);
-printf("The Dequeued Value is %lf\n", twoq);
+printf("The Dequeued Value is (%lf, %lf)\n", twoq[0], twoq[1]);
 
 threep = pop_dbl_op_dbl(my_list);
-printf("The Popped Value is %lf\n", threep);
+printf("The Popped Value is (%lf, %lf)\n", threep[0], threep[1]);
 threeq = dequeue_dbl_op_dbl(my_list);
-printf("The Dequeued Value is %lf\n", threeq);
+printf("The Dequeued Value is (%lf, %lf)\n", threeq[0], threeq[1]);
 
 fourp = pop_dbl_op_dbl(my_list);
-printf("The Popped Value is %lf\n", fourp);
+printf("The Popped Value is (%lf, %lf)\n", fourp[0], fourp[1]);
 fourq = dequeue_dbl_op_dbl(my_list);
-printf("The Dequeued Value is %lf\n", fourq);
+printf("The Dequeued Value is (%lf, %lf)\n", fourq[0], fourq[1]);
 
 fivep = pop_dbl_op_dbl(my_list);
-printf("The Popped Value is %lf\n", fivep);
+printf("The Popped Value is (%lf, %lf)\n", fivep[0], fivep[1]);
 fiveq = dequeue_dbl_op_dbl(my_list);
-printf("The Dequeued Value is %lf\n", fiveq);
+printf("The Dequeued Value is (%lf, %lf)\n", fiveq[0], fiveq[1]);
 
 sixp = pop_dbl_op_dbl(my_list);
-printf("The Popped Value is %lf\n", sixp);
+printf("The Popped Value is (%lf, %lf)\n", sixp[0], sixp[1]);
 sixq = dequeue_dbl_op_dbl(my_list);
-printf("The Dequeued Value is %lf\n", sixq);
+printf("The Dequeued Value is (%lf, %lf)\n", sixq[0], sixq[1]);
 
 sevenp = pop_dbl_op_dbl(my_list);
-printf("The Popped Value is %lf\n", sevenp);
+printf("The Popped Value is (%lf, %lf)\n", sevenp[0], sevenp[1]);
 sevenq = dequeue_dbl_op_dbl(my_list);
-printf("The Dequeued Value is %lf\n", sevenq);
+printf("The Dequeued Value is (%lf, %lf)\n", sevenq[0], sevenq[1]);
 
 eightp = pop_dbl_op_dbl(my_list);
-printf("The Popped Value is %lf\n", eightp);
+printf("The Popped Value is (%lf, %lf)\n", eightp[0], eightp[1]);
 eightq = dequeue_dbl_op_dbl(my_list);
-printf("The Dequeued Value is %lf\n", eightq);
+printf("The Dequeued Value is (%lf, %lf)\n", eightq[0], eightq[1]);
 
 ninep = pop_dbl_op_dbl(my_list);
-printf("The Popped Value is %lf\n", ninep);
+printf("The Popped Value is (%lf, %lf)\n", ninep[0], ninep[1]);
 nineq = dequeue_dbl_op_dbl(my_list);
-printf("The Dequeued Value is %lf\n", nineq);
+printf("The Dequeued Value is (%lf, %lf)\n", nineq[0], nineq[1]);
 
 tenp = pop_dbl_op_dbl(my_list);
-printf("The Popped Value is %lf\n", tenp);
+printf("The Popped Value is (%lf, %lf)\n", tenp[0], tenp[1]);
 tenq = dequeue_dbl_op_dbl(my_list);
-printf("The Dequeued Value is %lf\n", tenq);
+printf("The Dequeued Value is (%lf, %lf)\n", tenq[0], tenq[1]);
 
 elevenp = pop_dbl_op_dbl(my_list);
-printf("The Popped Value is %lf\n", elevenp);
+printf("The Popped Value is (%lf, %lf)\n", elevenp[0], elevenp[1]);
 elevenq = dequeue_dbl_op_dbl(my_list);
-printf("The Dequeued Value is %lf\n", elevenq);
+printf("The Dequeued Value is (%lf, %lf)\n", elevenq[0], elevenq[1]);
 
 twelvep = pop_dbl_op_dbl(my_list);
-printf("The Popped Value is %lf\n", twelvep);
+printf("The Popped Value is (%lf, %lf)\n", twelvep[0], twelvep[1]);
 twelveq = dequeue_dbl_op_dbl(my_list);
-printf("The Dequeued Value is %lf\n", twelveq);
+printf("The Dequeued Value is (%lf, %lf)\n", twelveq[0], twelvep[1]);
 
 printf("Success Mix\n");
 
 
 printf("filling list to test clear\n");
 
-push_dbl_op_dbl(my_list, 1);
-push_dbl_op_dbl(my_list, 2);
-push_dbl_op_dbl(my_list, 3);
-push_dbl_op_dbl(my_list, 4);
-push_dbl_op_dbl(my_list, 5);
-push_dbl_op_dbl(my_list, 6);
-push_dbl_op_dbl(my_list, 7);
-push_dbl_op_dbl(my_list, 8);
-push_dbl_op_dbl(my_list, 9);
-push_dbl_op_dbl(my_list, 10);
-push_dbl_op_dbl(my_list, 11);
-push_dbl_op_dbl(my_list, 12);
+push_dbl_op_dbl(my_list, 1, 1);
+push_dbl_op_dbl(my_list, 2, 2);
+push_dbl_op_dbl(my_list, 3, 3);
+push_dbl_op_dbl(my_list, 4, 4);
+push_dbl_op_dbl(my_list, 5, 5);
+push_dbl_op_dbl(my_list, 6, 6);
+push_dbl_op_dbl(my_list, 7, 7);
+push_dbl_op_dbl(my_list, 8, 8);
+push_dbl_op_dbl(my_list, 9, 9);
+push_dbl_op_dbl(my_list, 10, 10);
+push_dbl_op_dbl(my_list, 11, 11);
+push_dbl_op_dbl(my_list, 12, 12);
 
-enqueue_dbl_op_dbl(my_list, 13);
-enqueue_dbl_op_dbl(my_list, 14);
-enqueue_dbl_op_dbl(my_list, 15);
-enqueue_dbl_op_dbl(my_list, 16);
-enqueue_dbl_op_dbl(my_list, 17);
-enqueue_dbl_op_dbl(my_list, 18);
-enqueue_dbl_op_dbl(my_list, 19);
-enqueue_dbl_op_dbl(my_list, 20);
-enqueue_dbl_op_dbl(my_list, 21);
-enqueue_dbl_op_dbl(my_list, 22);
-enqueue_dbl_op_dbl(my_list, 23);
-enqueue_dbl_op_dbl(my_list, 24);
-*/
+enqueue_dbl_op_dbl(my_list, 13, 13);
+enqueue_dbl_op_dbl(my_list, 14, 14);
+enqueue_dbl_op_dbl(my_list, 15, 15);
+enqueue_dbl_op_dbl(my_list, 16, 16);
+enqueue_dbl_op_dbl(my_list, 17, 17);
+enqueue_dbl_op_dbl(my_list, 18, 18);
+enqueue_dbl_op_dbl(my_list, 19, 19);
+enqueue_dbl_op_dbl(my_list, 20, 20);
+enqueue_dbl_op_dbl(my_list, 21, 21);
+enqueue_dbl_op_dbl(my_list, 22, 22);
+enqueue_dbl_op_dbl(my_list, 23, 23);
+enqueue_dbl_op_dbl(my_list, 24, 24);
+
 
 printf("Testing Clear\n");
 

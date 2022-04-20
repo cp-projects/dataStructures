@@ -64,7 +64,7 @@ void clear_list_dbl_op_dbl(doubly_t* list){
 	 pos->next->prev = pos->prev;
 	 pos->prev->next = pos->next;
 	 free(pos->X);
-	 //free(pos->Y);
+	 free(pos->Y);
 	 free(pos);
          pos = swap;
 
@@ -76,10 +76,10 @@ void clear_list_dbl_op_dbl(doubly_t* list){
       list->len = 0;
 
       free(head->X);
-      //free(head->Y); 
+      free(head->Y); 
       free(head);
       free(tail->X);
-      //free(tail->Y);
+      free(tail->Y);
       free(tail);
 }
 
@@ -118,19 +118,23 @@ void push_dbl_op_dbl(doubly_t* list, const double X, const double Y){
     return;
 }
 
-double pop_dbl_op_dbl(doubly_t* list){
+double* pop_dbl_op_dbl(doubly_t* list){
 
     dbl_op_dbl_t* remove_node = list->head; 
 
-    double val = *(remove_node->X);
+    double X = *(remove_node->X);
+    double Y = *(remove_node->Y);
     list->head = remove_node->next;
 
     free(remove_node->X);
     free(remove_node->Y);
     free(remove_node);
-
     (list->len)--;
-    return val;
+
+    static double retVals[2];
+    retVals[0] = X;
+    retVals[1] = Y;
+    return retVals;
 }
 
 //just an alias of push, because in both lifo and fifo the "in" is the same
@@ -166,28 +170,35 @@ void enqueue_dbl_op_dbl(doubly_t* list, const double X, const double Y){
 }
 
 
-double dequeue_dbl_op_dbl(doubly_t* list){
+double* dequeue_dbl_op_dbl(doubly_t* list){
 
     dbl_op_dbl_t* remove_node = list->tail;
-    double val = *(remove_node->X);
+    double X = *(remove_node->X);
+    double Y = *(remove_node->Y);
+
+    static double retVals[2];
+    retVals[0] = X;
+    retVals[1] = Y;
 
     // Last remaining node
     if(list->len == 1){
         list->head = remove_node->next;
         free(remove_node->X);
+	free(remove_node->Y);
         free(remove_node);
         (list->len)--;
-        return val;
+        return retVals;
     }
 
     // not the final node
     list->tail = remove_node->prev;
     remove_node->prev->next = remove_node->next;
     free(remove_node->X);
+    free(remove_node->Y);
     free(remove_node);
-
     (list->len)--;
-    return val;
+
+    return retVals;
 }
 
 dbl_op_dbl_t* itr_forward_dbl_op_dbl(doubly_t* list, double breakVal, int breakIndex, int printFlag, int break_on_valFlag, int break_on_indexFlag){
