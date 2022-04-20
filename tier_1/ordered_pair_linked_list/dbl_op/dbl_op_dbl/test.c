@@ -65,7 +65,7 @@ printf("The Popped Value is %lf\n", twelvep);
 
 printf("Pop Success\n\n");
 
-
+/*
 
 printf("Testing Enqueue\n");
 enqueue_dbl_op_dbl(my_list, 1.15);
@@ -243,7 +243,7 @@ enqueue_dbl_op_dbl(my_list, 21);
 enqueue_dbl_op_dbl(my_list, 22);
 enqueue_dbl_op_dbl(my_list, 23);
 enqueue_dbl_op_dbl(my_list, 24);
-
+*/
 
 printf("Testing Clear\n");
 
@@ -443,8 +443,8 @@ void test_three(){
 int main(){
 
 test_one();
-test_two();
-test_three();
+//test_two();
+//test_three();
 
 
 return 0;

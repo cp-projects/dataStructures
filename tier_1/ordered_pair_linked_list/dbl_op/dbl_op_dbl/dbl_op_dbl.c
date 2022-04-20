@@ -8,7 +8,7 @@
 
 
 typedef struct dbl_op_dbl{
-    double* val;
+    double *X, *Y;
     dbl_op_dbl_t *next, *prev;
 }dbl_op_dbl_t;
 
@@ -52,7 +52,8 @@ void clear_list_dbl_op_dbl(doubly_t* list){
 	  list->head = NULL;
 	  list->tail = NULL;
 	  list->len = 0;
-	  free(head->val);
+	  free(head->X);
+	  free(head->Y);
 	  free(head);
 	  return;
      }
@@ -62,7 +63,8 @@ void clear_list_dbl_op_dbl(doubly_t* list){
 	 swap = pos->next;
 	 pos->next->prev = pos->prev;
 	 pos->prev->next = pos->next;
-	 free(pos->val);
+	 free(pos->X);
+	 //free(pos->Y);
 	 free(pos);
          pos = swap;
 
@@ -73,9 +75,11 @@ void clear_list_dbl_op_dbl(doubly_t* list){
       list->tail = NULL;
       list->len = 0;
 
-      free(head->val);
+      free(head->X);
+      //free(head->Y); 
       free(head);
-      free(tail->val);
+      free(tail->X);
+      //free(tail->Y);
       free(tail);
 }
 
@@ -85,12 +89,14 @@ void destroy_list_dbl_op_dbl(doubly_t* list){
 }
 
 
-void push_dbl_op_dbl(doubly_t* list, const double val){
+void push_dbl_op_dbl(doubly_t* list, const double X, const double Y){
 
     //create node
     dbl_op_dbl_t* new_node = (dbl_op_dbl_t*) malloc(sizeof(dbl_op_dbl_t));
-    new_node -> val = (double*) malloc(sizeof(double));
-    *(new_node->val) = val;
+    new_node -> X = (double*) malloc(sizeof(double));
+    *(new_node->X) = X;
+    new_node -> Y = (double*) malloc(sizeof(double));
+    *(new_node->Y) = Y;
 
     //connect new node to list
     new_node->prev = NULL;
@@ -116,10 +122,11 @@ double pop_dbl_op_dbl(doubly_t* list){
 
     dbl_op_dbl_t* remove_node = list->head; 
 
-    double val = *(remove_node->val);
+    double val = *(remove_node->X);
     list->head = remove_node->next;
 
-    free(remove_node->val);
+    free(remove_node->X);
+    free(remove_node->Y);
     free(remove_node);
 
     (list->len)--;
@@ -128,12 +135,14 @@ double pop_dbl_op_dbl(doubly_t* list){
 
 //just an alias of push, because in both lifo and fifo the "in" is the same
 //(verify this later, but I can't see why it wouldn't be)
-void enqueue_dbl_op_dbl(doubly_t* list, const double val){
+void enqueue_dbl_op_dbl(doubly_t* list, const double X, const double Y){
     
     //create node
     dbl_op_dbl_t* new_node = (dbl_op_dbl_t*) malloc(sizeof(dbl_op_dbl_t));
-    new_node -> val = (double*) malloc(sizeof(double));
-    *(new_node->val) = val;
+    new_node -> X = (double*) malloc(sizeof(double));
+    *(new_node->X) = X;
+    new_node -> Y = (double*) malloc(sizeof(double));
+    *(new_node->Y) = Y;
 
     //connect new node to list
     new_node->prev = NULL;
@@ -160,12 +169,12 @@ void enqueue_dbl_op_dbl(doubly_t* list, const double val){
 double dequeue_dbl_op_dbl(doubly_t* list){
 
     dbl_op_dbl_t* remove_node = list->tail;
-    double val = *(remove_node->val);
+    double val = *(remove_node->X);
 
     // Last remaining node
     if(list->len == 1){
         list->head = remove_node->next;
-        free(remove_node->val);
+        free(remove_node->X);
         free(remove_node);
         (list->len)--;
         return val;
@@ -174,7 +183,7 @@ double dequeue_dbl_op_dbl(doubly_t* list){
     // not the final node
     list->tail = remove_node->prev;
     remove_node->prev->next = remove_node->next;
-    free(remove_node->val);
+    free(remove_node->X);
     free(remove_node);
 
     (list->len)--;
@@ -190,10 +199,10 @@ dbl_op_dbl_t* itr_forward_dbl_op_dbl(doubly_t* list, double breakVal, int breakI
 
     for(int i = 0; i < list->len; i++){
         if(printFlag == 1)
-            printf("%lf\n", *(itr->val));
+            printf("%lf\n", *(itr->X));
 	if(break_on_indexFlag == 1 && i == breakIndex)
 		break;
-	else if(break_on_valFlag == 1 && *(itr->val) == breakVal)
+	else if(break_on_valFlag == 1 && *(itr->X) == breakVal)
 		break;
 
 	itr = itr->next;
@@ -211,10 +220,10 @@ dbl_op_dbl_t* itr_backward_dbl_op_dbl(doubly_t* list, double breakVal, int break
 
     for(int i = list->len; i > 0; i--){
         if(printFlag == 1)
-            printf("%lf\n", *(itr->val));
+            printf("%lf\n", *(itr->X));
         if(break_on_indexFlag == 1 && i == breakIndex)
                 break;
-        else if(break_on_valFlag == 1 && *(itr->val) == breakVal)
+        else if(break_on_valFlag == 1 && *(itr->X) == breakVal)
                 break;
 
         itr = itr->prev;
@@ -228,8 +237,8 @@ void insert_at_head_dbl_op_dbl(doubly_t* list, const double val){
 
     //create node
     dbl_op_dbl_t* new_node = (dbl_op_dbl_t*) malloc(sizeof(dbl_op_dbl_t));
-    new_node -> val = (double*) malloc(sizeof(double));
-    *(new_node->val) = val;
+    new_node -> X = (double*) malloc(sizeof(double));
+    *(new_node->X) = val;
 
     //connect new node to list
     new_node->prev = NULL;
@@ -260,9 +269,9 @@ double remove_at_head_dbl_op_dbl(doubly_t* list){
     dbl_op_dbl_t* remove_node;
     remove_node = list->head;
 
-    double val = *(remove_node->val);
+    double val = *(remove_node->X);
     list->head = remove_node->next;
-    free(remove_node->val);
+    free(remove_node->X);
     free(remove_node);
 
     (list->len)--;
@@ -275,8 +284,8 @@ void insert_at_tail_dbl_op_dbl(doubly_t* list, const double val){
     dbl_op_dbl_t* old_tail = list->tail;
 
     dbl_op_dbl_t* new_node = (dbl_op_dbl_t*) malloc(sizeof(dbl_op_dbl_t));
-    new_node -> val = (double*) malloc(sizeof(double));
-    *(new_node->val) = val;
+    new_node -> X = (double*) malloc(sizeof(double));
+    *(new_node->X) = val;
     
     old_tail->next = new_node;
     new_node->prev = old_tail;
@@ -290,12 +299,12 @@ void insert_at_tail_dbl_op_dbl(doubly_t* list, const double val){
 double remove_at_tail_dbl_op_dbl(doubly_t* list){
 
     dbl_op_dbl_t* remove_node = list->tail;
-    double val = *(remove_node->val);
+    double val = *(remove_node->X);
 
     // Last remaining node
     if(list->len == 1){
         list->head = remove_node->next;
-        free(remove_node->val);
+        free(remove_node->X);
         free(remove_node);
         (list->len)--;
         return val;
@@ -304,7 +313,7 @@ double remove_at_tail_dbl_op_dbl(doubly_t* list){
     // not the final node
     list->tail = remove_node->prev;
     remove_node->prev->next = remove_node->next;
-    free(remove_node->val);
+    free(remove_node->X);
     free(remove_node);
 
     (list->len)--;
@@ -333,8 +342,8 @@ void insert_after_index_dbl_op_dbl(doubly_t* list, double val, int index){
     dbl_op_dbl_t* next_index = old_index->next;
 
     dbl_op_dbl_t* new_node = (dbl_op_dbl_t*) malloc(sizeof(dbl_op_dbl_t));
-    new_node -> val = (double*) malloc(sizeof(double));
-    *(new_node->val) = val;
+    new_node -> X = (double*) malloc(sizeof(double));
+    *(new_node->X) = val;
 
     old_index->next = new_node;
     new_node->prev = old_index;
@@ -360,12 +369,12 @@ double delete_at_index_dbl_op_dbl(doubly_t* list, int index){
 
     dbl_op_dbl_t* old_index = itr_forward_dbl_op_dbl(list, 0, index, 0, 0, 1);
 
-    double val = *(old_index->val);
+    double val = *(old_index->X);
 
     old_index->next->prev = old_index->prev;
     old_index->prev->next = old_index->next;
 
-    free(old_index->val);
+    free(old_index->X);
     free(old_index);
     (list->len)--;
     return val;
@@ -380,7 +389,7 @@ void insert_after_val_dbl_op_dbl(doubly_t* list, double newVal, double testVal){
        }
 
     else if(list->len == 1){
-        if(*(list->head->val) == testVal)
+        if(*(list->head->X) == testVal)
 	    insert_at_tail_dbl_op_dbl(list, newVal);
 	return;
        }
@@ -388,7 +397,7 @@ void insert_after_val_dbl_op_dbl(doubly_t* list, double newVal, double testVal){
     dbl_op_dbl_t* old_val = itr_forward_dbl_op_dbl(list, testVal, 0, 0, 1, 0);
     
     if(old_val == list->tail){
-        if(*(old_val->val) == testVal)
+        if(*(old_val->X) == testVal)
             insert_at_tail_dbl_op_dbl(list, newVal);
         return;
        }
@@ -396,8 +405,8 @@ void insert_after_val_dbl_op_dbl(doubly_t* list, double newVal, double testVal){
     dbl_op_dbl_t* next_index = old_val->next;
 
     dbl_op_dbl_t* new_node = (dbl_op_dbl_t*) malloc(sizeof(dbl_op_dbl_t));
-    new_node -> val = (double*) malloc(sizeof(double));
-    *(new_node->val) = newVal;
+    new_node -> X = (double*) malloc(sizeof(double));
+    *(new_node->X) = newVal;
 
     old_val->next = new_node;
     new_node->prev = old_val;
@@ -415,13 +424,13 @@ double delete_by_val_dbl_op_dbl(doubly_t* list, double testVal){
          return remove_at_head_dbl_op_dbl(list); 
 
     else if(list->len == 1){
-        if(*(list->head->val) == testVal)
+        if(*(list->head->X) == testVal)
             return remove_at_tail_dbl_op_dbl(list);
         return -1;
        }
 
     dbl_op_dbl_t* old_val = itr_forward_dbl_op_dbl(list, testVal, 0, 0, 1, 0);
-    double val = *(old_val->val);
+    double val = *(old_val->X);
     
     if(old_val == list->tail)
         if(val == testVal)
@@ -430,7 +439,7 @@ double delete_by_val_dbl_op_dbl(doubly_t* list, double testVal){
     old_val->next->prev = old_val->prev;
     old_val->prev->next = old_val->next;
 
-    free(old_val->val);
+    free(old_val->X);
     free(old_val);
     (list->len)--;
     return val;
