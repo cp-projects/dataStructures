@@ -33,6 +33,18 @@ size_t ret_len_dbl_int(doubly_t* list){
 	return list->len;
 }
 
+int ret_val_dbl_int(doubly_int_t* node){
+    return *(node->val);
+}
+
+doubly_int_t* ret_head_dbl_int(doubly_t* list){
+    return list->head;
+}
+
+doubly_int_t* ret_tail_dbl_int(doubly_t* list){
+    return list->tail;
+}
+
 
 void clear_list_dbl_int(doubly_t* list){
 

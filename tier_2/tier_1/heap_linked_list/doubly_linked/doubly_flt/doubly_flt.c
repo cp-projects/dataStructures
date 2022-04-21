@@ -33,6 +33,19 @@ size_t ret_len_dbl_flt(doubly_t* list){
 	return list->len;
 }
 
+float ret_val_dbl_flt(doubly_flt_t* node){
+    return *(node->val);
+}
+
+doubly_flt_t* ret_head_dbl_flt(doubly_t* list){
+    return list->head;
+}
+
+doubly_flt_t* ret_tail_dbl_flt(doubly_t* list){
+    return list->tail;
+}
+
+
 
 void clear_list_dbl_flt(doubly_t* list){
 

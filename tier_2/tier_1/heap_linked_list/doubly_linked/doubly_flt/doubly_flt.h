@@ -14,6 +14,9 @@ void destroy_list_dbl_flt(doubly_t* list);
 
 //information
 size_t ret_len_dbl_flt(doubly_t* list);
+float ret_val_dbl_flt(doubly_flt_t* node);
+doubly_flt_t* ret_head_dbl_flt(doubly_t* list);
+doubly_flt_t* ret_tail_dbl_flt(doubly_t* list);
 
 //stack
 void push_dbl_flt(doubly_t* list, float val); //(1) All one are the same

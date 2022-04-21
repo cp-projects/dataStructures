@@ -1,32 +1,8 @@
-//#include <stddef.h>
-#include <stdio.h>
-#include <assert.h>
+#include <stddef.h>
 
 #include "../../../tier_1/tier_1.h"
-#include "dbl_adj_list_dbl.h"
+#include "dbl_adj_list_dbl.h" 
 
-void add_n_verticies(doubly_t* list, int n){
-
-    for(int i = n; i > 0; i--)
-	    push_dbl_dbl(list, i);
-
-}
-
-void add_edge(doubly_t* edge_list, doubly_dbl_t* from_vert, doubly_dbl_t* to_vert){
-  
-    assert(from_vert);
-    assert(to_vert);
-	
-    double from = ret_val_dbl_dbl(from_vert);
-    double to = ret_val_dbl_dbl(to_vert);
-
-    push_dbl_op_dbl(edge_list, from, to);
-
-}
-
-//doubly_dbl_t* itr_backward_dbl_dbl(doubly_t* list, double breakVal, int breakIndex, int printFlag, int break_on_valFlag, int break_on_indexFlag);
-
-/*
 int main(){
 
 doubly_t* vertex_list = create_list_dbl_dbl();
@@ -58,4 +34,4 @@ destroy_list_dbl_op_dbl(edge_list);
 
 return 0;
 }
-*/
+
