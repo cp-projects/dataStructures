@@ -14,6 +14,7 @@ void destroy_list_dbl_dbl(doubly_t* list);
 
 //information
 size_t ret_len_dbl_dbl(doubly_t* list);
+double ret_val_dbl_dbl(doubly_dbl_t* node);
 
 //stack
 void push_dbl_dbl(doubly_t* list, double val); //(1) All one are the same

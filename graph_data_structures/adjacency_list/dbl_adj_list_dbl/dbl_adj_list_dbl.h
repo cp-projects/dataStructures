@@ -3,12 +3,8 @@
 
 #include "../../../tier_1/tier_1.h"
 
-typedef doubly_dbl_t struct vertex vertex_t;
+void add_n_verticies(doubly_t* list, int n);
+void add_edge(doubly_t* edge_list, doubly_dbl_t* from_vert, doubly_dbl_t* to_vert);
 
-//doubly_dbl_t struct vertex vertex_t;
-//typedef struct doubly_dbl_t vertex_t;
-
-//struct dbl_op_dbl edge;
-//typedef struct doubly_dbl_t vertex_t;
 
 #endif

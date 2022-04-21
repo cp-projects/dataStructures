@@ -30,9 +30,12 @@ doubly_t* create_list_dbl_dbl(){
 
 
 size_t ret_len_dbl_dbl(doubly_t* list){
-	return list->len;
+    return list->len;
 }
 
+double ret_val_dbl_dbl(doubly_dbl_t* node){
+    return *(node->val);
+}
 
 void clear_list_dbl_dbl(doubly_t* list){
 

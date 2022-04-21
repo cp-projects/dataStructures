@@ -4,12 +4,6 @@
 #include "../../../tier_1/tier_1.h"
 #include "dbl_adj_list_dbl.h"
 
-typedef doubly_dbl_t struct vertex{
-    double* val;
-    vertex_t *next, *prev;
-}vertex_t;
-
-
 void add_n_verticies(doubly_t* list, int n){
 
     for(int i = n; i > 0; i--)
@@ -17,13 +11,10 @@ void add_n_verticies(doubly_t* list, int n){
 
 }
 
-void add_edge(vertex_t* from_vert, vertex_t* to_vert){
+void add_edge(doubly_t* edge_list, doubly_dbl_t* from_vert, doubly_dbl_t* to_vert){
 
-    
-    //vertex_t from = *from_vert;
-    //double* from_val = from->val;
-    
-    double to = to_vert->val;
+    double from = ret_val_dbl_dbl(from_vert);
+    double to = ret_val_dbl_dbl(to_vert);
 
 }
 
