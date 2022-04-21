@@ -3,6 +3,12 @@
 #include "../../../tier_1/tier_1.h"
 #include "dbl_adj_list_dbl.h" 
 
+
+
+//doubly_dbl_t* itr_backward_dbl_dbl(doubly_t* list, double breakVal, int breakIndex, int printFlag, int break_on_valFlag, int break_on_indexFlag);
+
+
+
 int main(){
 
 doubly_t* vertex_list = create_list_dbl_dbl();
