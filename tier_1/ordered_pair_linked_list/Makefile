@@ -1,6 +1,7 @@
 make:
 	make subdirs
 	make lib_op_list.o
+	make lib_op_list.a
 
 lib_op_list.a:
 	ar cr lib_op_list.a dbl_op/dbl_op_dbl/dbl_op_dbl.o dbl_op/dbl_op_flt/dbl_op_flt.o dbl_op/dbl_op_int/dbl_op_int.o 
@@ -19,6 +20,7 @@ subdirs:
 
 clean:
 	rm lib_op_list.o
+	rm lib_op_list.a
 	for dir in $(SUBDIRS); do \
                 $(MAKE) -C $$dir clean; \
         done

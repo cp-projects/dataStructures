@@ -6,7 +6,7 @@
 
 #include "doubly_dbl.h"
 
-
+//data structures
 typedef struct doubly_dbl{
     double* val;
     doubly_dbl_t *next, *prev;
@@ -19,7 +19,7 @@ typedef struct doubly{
     size_t len;
 } doubly_t;
 
-
+//initialize list
 doubly_t* create_list_dbl_dbl(){
     doubly_t* list = (doubly_t*) malloc(sizeof(doubly_t));
     list->len = 0;
@@ -28,7 +28,7 @@ doubly_t* create_list_dbl_dbl(){
     return list;        
 }
 
-
+//information
 size_t ret_len_dbl_dbl(doubly_t* list){
     return list->len;
 }
@@ -37,6 +37,15 @@ double ret_val_dbl_dbl(doubly_dbl_t* node){
     return *(node->val);
 }
 
+doubly_dbl_t* ret_head_dbl_dbl(doubly_t* list){
+    return list->head;
+}
+
+doubly_dbl_t* ret_tail_dbl_dbl(doubly_t* list){
+    return list->tail;
+}
+
+//destroy list
 void clear_list_dbl_dbl(doubly_t* list){
 
      int len = list->len;	
@@ -87,7 +96,7 @@ void destroy_list_dbl_dbl(doubly_t* list){
     free((void*)list);
 }
 
-
+//stack
 void push_dbl_dbl(doubly_t* list, const double val){
 
     //create node
@@ -129,8 +138,7 @@ double pop_dbl_dbl(doubly_t* list){
     return val;
 }
 
-//just an alias of push, because in both lifo and fifo the "in" is the same
-//(verify this later, but I can't see why it wouldn't be)
+//queue
 void enqueue_dbl_dbl(doubly_t* list, const double val){
     
     //create node
@@ -184,6 +192,8 @@ double dequeue_dbl_dbl(doubly_t* list){
     return val;
 }
 
+
+//itorators and individual node identifiers
 doubly_dbl_t* itr_forward_dbl_dbl(doubly_t* list, double breakVal, int breakIndex, int printFlag, int break_on_valFlag, int break_on_indexFlag){
 
     if(break_on_valFlag == 1 && break_on_indexFlag == 1)
@@ -226,7 +236,7 @@ return itr;
 }
 
 
-
+//head of the list
 void insert_at_head_dbl_dbl(doubly_t* list, const double val){
 
     //create node
@@ -272,7 +282,7 @@ double remove_at_head_dbl_dbl(doubly_t* list){
     return val;
 }
 
-
+//tail of the list
 void insert_at_tail_dbl_dbl(doubly_t* list, const double val){
 
     doubly_dbl_t* old_tail = list->tail;
@@ -315,6 +325,7 @@ double remove_at_tail_dbl_dbl(doubly_t* list){
 
 }
 
+//specified index
 void insert_after_index_dbl_dbl(doubly_t* list, double val, int index){
 
     if(index == 0){
@@ -374,7 +385,7 @@ double delete_at_index_dbl_dbl(doubly_t* list, int index){
     return val;
 }
 
-
+//specified value
 void insert_after_val_dbl_dbl(doubly_t* list, double newVal, double testVal){
  
     if(list->len == 0){

@@ -210,7 +210,7 @@ dbl_op_dbl_t* itr_forward_dbl_op_dbl(doubly_t* list, double breakVal, int breakI
 
     for(int i = 0; i < list->len; i++){
         if(printFlag == 1)
-            printf("%lf\n", *(itr->X));
+            printf("(%lf, %lf)\n", *(itr->X), *(itr->Y));
 	if(break_on_indexFlag == 1 && i == breakIndex)
 		break;
 	else if(break_on_valFlag == 1 && *(itr->X) == breakVal)

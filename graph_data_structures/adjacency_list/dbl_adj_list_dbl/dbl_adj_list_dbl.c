@@ -1,5 +1,6 @@
 #include <stddef.h>
 #include <stdio.h>
+#include <assert.h>
 
 #include "../../../tier_1/tier_1.h"
 #include "dbl_adj_list_dbl.h"
@@ -12,11 +13,18 @@ void add_n_verticies(doubly_t* list, int n){
 }
 
 void add_edge(doubly_t* edge_list, doubly_dbl_t* from_vert, doubly_dbl_t* to_vert){
-
+  
+    assert(from_vert);
+    assert(to_vert);
+	
     double from = ret_val_dbl_dbl(from_vert);
     double to = ret_val_dbl_dbl(to_vert);
 
+    push_dbl_op_dbl(edge_list, from, to);
+
 }
+
+//doubly_dbl_t* itr_backward_dbl_dbl(doubly_t* list, double breakVal, int breakIndex, int printFlag, int break_on_valFlag, int break_on_indexFlag);
 
 
 int main(){
@@ -24,9 +32,24 @@ int main(){
 doubly_t* vertex_list = create_list_dbl_dbl();
 doubly_t* edge_list = create_list_dbl_op_dbl();
 
-add_n_verticies(vertex_list, 4);
-
+add_n_verticies(vertex_list, 10);
 itr_forward_dbl_dbl(vertex_list, 0,0,1,0,0);
+itr_backward_dbl_dbl(vertex_list, 0,0,1,0,0);
+
+//adding edges by head and tail
+add_edge(edge_list, ret_head_dbl_dbl(vertex_list), ret_tail_dbl_dbl(vertex_list));
+
+//adding edges by index
+add_edge(edge_list, itr_forward_dbl_dbl(vertex_list, 0,2,0,0,1), itr_backward_dbl_dbl(vertex_list, 0,2,0,0,1));
+add_edge(edge_list, itr_forward_dbl_dbl(vertex_list, 0,3,0,0,1), itr_backward_dbl_dbl(vertex_list, 0,3,0,0,1));
+add_edge(edge_list, itr_forward_dbl_dbl(vertex_list, 0,4,0,0,1), itr_backward_dbl_dbl(vertex_list, 0,4,0,0,1));
+
+//adding edges by value
+add_edge(edge_list, itr_forward_dbl_dbl(vertex_list, 1,0,0,1,0), itr_backward_dbl_dbl(vertex_list, 1,0,0,1,0));
+add_edge(edge_list, itr_forward_dbl_dbl(vertex_list, 2,0,0,1,0), itr_backward_dbl_dbl(vertex_list, 2,0,0,1,0));
+add_edge(edge_list, itr_forward_dbl_dbl(vertex_list, 3,0,0,1,0), itr_backward_dbl_dbl(vertex_list, 3,0,0,1,0));
+
+itr_forward_dbl_op_dbl(edge_list, 0, 0, 1, 0, 0);
 
 destroy_list_dbl_dbl(vertex_list);
 destroy_list_dbl_op_dbl(edge_list);
