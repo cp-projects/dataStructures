@@ -2,7 +2,7 @@
 #include <assert.h>
 
 #include "../../../tier_1/tier_1.h"
-#include "dbl_adj_list_dbl.h"
+#include "dbl_adj_matrix_dbl.h"
 
 void add_n_verticies(doubly_t* list, int n){
     for(int i = n; i > 0; i--)

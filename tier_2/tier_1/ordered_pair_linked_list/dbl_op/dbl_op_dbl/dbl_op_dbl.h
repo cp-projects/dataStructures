@@ -14,6 +14,9 @@ void destroy_list_dbl_op_dbl(doubly_t* list);
 
 //information
 size_t ret_len_dbl_op_dbl(doubly_t* list);
+double* ret_val_dbl_op_dbl(dbl_op_dbl_t* node);
+dbl_op_dbl_t* ret_head_dbl_op_dbl(doubly_t* list);
+dbl_op_dbl_t* ret_tail_dbl_op_dbl(doubly_t* list);
 
 //stack
 void push_dbl_op_dbl(doubly_t* list, double X, double Y); //(1) All one are the same
@@ -29,24 +32,24 @@ double* dequeue_dbl_op_dbl(doubly_t* list); //(3)
  */
 
 //iterators
-dbl_op_dbl_t* itr_forward_dbl_op_dbl(doubly_t* list, double breakVal, int breakIndex, int printFlag, int break_on_valFlag, int break_on_indexFlag);
-dbl_op_dbl_t* itr_backward_dbl_op_dbl(doubly_t* list, double breakVal, int breakIndex, int printFlag, int break_on_valFlag, int break_on_indexFlag);
+dbl_op_dbl_t* itr_forward_dbl_op_dbl(doubly_t* list, double* breakVal, int breakIndex, int printFlag, int break_on_valFlag, int break_on_indexFlag);
+dbl_op_dbl_t* itr_backward_dbl_op_dbl(doubly_t* list, double* breakVal, int breakIndex, int printFlag, int break_on_valFlag, int break_on_indexFlag);
 
 //begining of list
-void insert_at_head_dbl_op_dbl(doubly_t* list, double val); //(1) to seperate use cases
-double remove_at_head_dbl_op_dbl(doubly_t* list); //(2)
+void insert_at_head_dbl_op_dbl(doubly_t* list, double X, double Y); //(1) to seperate use cases
+double* remove_at_head_dbl_op_dbl(doubly_t* list); //(2)
 
 //end of list
-void insert_at_tail_dbl_op_dbl(doubly_t* list, double val);
-double remove_at_tail_dbl_op_dbl(doubly_t* list); //(3)
+void insert_at_tail_dbl_op_dbl(doubly_t* list, double X, double Y);
+double* remove_at_tail_dbl_op_dbl(doubly_t* list); //(3)
 
 //by index
-void insert_after_index_dbl_op_dbl(doubly_t* list, double newVal, int index);
-double delete_at_index_dbl_op_dbl(doubly_t* list, int index);
+void insert_after_index_dbl_op_dbl(doubly_t* list, double X, double Y, int index);
+double* delete_at_index_dbl_op_dbl(doubly_t* list, int index);
 
 //by value
-void insert_after_val_dbl_op_dbl(doubly_t* list, double newVal, double testVal);
-double delete_by_val_dbl_op_dbl(doubly_t* list, double testVal);
+void insert_after_val_dbl_op_dbl(doubly_t* list, double X, double Y, double testX, double testY);
+double* delete_by_val_dbl_op_dbl(doubly_t* list, double testX, double testY);
 
 
 #endif

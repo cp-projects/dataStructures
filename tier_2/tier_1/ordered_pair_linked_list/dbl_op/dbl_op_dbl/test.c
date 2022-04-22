@@ -260,13 +260,13 @@ void test_two(){
 
     printf("Testing Inserts\n");
 
-    insert_at_head_dbl_op_dbl(my_list, 1);
-    insert_at_head_dbl_op_dbl(my_list, 2);
-    insert_at_tail_dbl_op_dbl(my_list, 21);
-    insert_at_head_dbl_op_dbl(my_list, 3);
-    insert_at_head_dbl_op_dbl(my_list, 4);
-    insert_at_head_dbl_op_dbl(my_list, 5);
-    insert_at_tail_dbl_op_dbl(my_list, 22);
+    insert_at_head_dbl_op_dbl(my_list, 1, 1);
+    insert_at_head_dbl_op_dbl(my_list, 2, 2);
+    insert_at_tail_dbl_op_dbl(my_list, 21, 21);
+    insert_at_head_dbl_op_dbl(my_list, 3, 3);
+    insert_at_head_dbl_op_dbl(my_list, 4, 4);
+    insert_at_head_dbl_op_dbl(my_list, 5, 5);
+    insert_at_tail_dbl_op_dbl(my_list, 22, 22);
 
     int len = ret_len_dbl_op_dbl(my_list);
     printf("The Length of the list is %d\n", len);
@@ -283,26 +283,26 @@ void test_two(){
     
     printf("Testing Removals\n");
 
-    double one = remove_at_head_dbl_op_dbl(my_list);
-    printf("%lf\n", one);
+    double* one = remove_at_head_dbl_op_dbl(my_list);
+    printf("(%lf, %lf)\n", one[0], one[1]);
 
-    double two = remove_at_tail_dbl_op_dbl(my_list);
-    printf("%lf\n", two);
+    double* two = remove_at_tail_dbl_op_dbl(my_list);
+    printf("(%lf, %lf)\n", two[0], two[1]);
 
-    double three = remove_at_head_dbl_op_dbl(my_list);
-    printf("%lf\n", three);
+    double* three = remove_at_head_dbl_op_dbl(my_list);
+    printf("(%lf, %lf)\n", three[0], three[1]);
 
-    double four = remove_at_tail_dbl_op_dbl(my_list);
-    printf("%lf\n", four);
+    double* four = remove_at_tail_dbl_op_dbl(my_list);
+    printf("(%lf, %lf)\n", four[0], four[1]);
 
-    double five = remove_at_head_dbl_op_dbl(my_list);
-    printf("%lf\n", five);
+    double* five = remove_at_head_dbl_op_dbl(my_list);
+    printf("(%lf, %lf)\n", five[0], five[1]);
 
-    double six = remove_at_tail_dbl_op_dbl(my_list);
-    printf("%lf\n", six);
+    double* six = remove_at_head_dbl_op_dbl(my_list);
+    printf("(%lf, %lf)\n", six[0], six[1]);
 
-    double seven = remove_at_tail_dbl_op_dbl(my_list);
-    printf("%lf\n", seven);
+    double* seven = remove_at_head_dbl_op_dbl(my_list);
+    printf("(%lf, %lf)\n", seven[0], seven[1]);
 
     printf("Removal Success\n");
 
@@ -310,23 +310,24 @@ void test_two(){
 
 }
 
+
 void test_three(){
 
     doubly_t* my_list = create_list_dbl_op_dbl();
 
     printf("Testing Index Inserts\n");
-    insert_after_index_dbl_op_dbl(my_list, 1, 0);
-    insert_after_index_dbl_op_dbl(my_list, 2, 0);
-    insert_after_index_dbl_op_dbl(my_list, 21, ret_len_dbl_op_dbl(my_list)-1);
-    insert_after_index_dbl_op_dbl(my_list, 3, 0);
-    insert_after_index_dbl_op_dbl(my_list, 4, 0);
-    insert_after_index_dbl_op_dbl(my_list, 5, 0);
-    insert_after_index_dbl_op_dbl(my_list, 22, ret_len_dbl_op_dbl(my_list)-1);
+    insert_after_index_dbl_op_dbl(my_list, 1, 1, 0);
+    insert_after_index_dbl_op_dbl(my_list, 2, 2, 0);
+    insert_after_index_dbl_op_dbl(my_list, 21, 21, ret_len_dbl_op_dbl(my_list)-1);
+    insert_after_index_dbl_op_dbl(my_list, 3, 3, 0);
+    insert_after_index_dbl_op_dbl(my_list, 4, 4, 0);
+    insert_after_index_dbl_op_dbl(my_list, 5, 5, 0);
+    insert_after_index_dbl_op_dbl(my_list, 22, 22, ret_len_dbl_op_dbl(my_list)-1);
 
-    insert_after_index_dbl_op_dbl(my_list, 10, 2);
-    insert_after_index_dbl_op_dbl(my_list, 11, 0);
-    insert_after_index_dbl_op_dbl(my_list, 12, 7);
-    insert_after_index_dbl_op_dbl(my_list, 13, 4);
+    insert_after_index_dbl_op_dbl(my_list, 10, 10, 2);
+    insert_after_index_dbl_op_dbl(my_list, 11, 11, 0);
+    insert_after_index_dbl_op_dbl(my_list, 12, 12, 7);
+    insert_after_index_dbl_op_dbl(my_list, 13, 13, 4);
 
     itr_forward_dbl_op_dbl(my_list, 0, 0, 1, 0, 0);
 
@@ -337,38 +338,38 @@ void test_three(){
     printf("Test Delete at Index\n");
     
     
-    double one = delete_at_index_dbl_op_dbl(my_list, 5);
-    printf("%lf\n", one);
+    double* one = delete_at_index_dbl_op_dbl(my_list, 5);
+    printf("(%lf, %lf)\n", one[0], one[1]);
 
-    double two = delete_at_index_dbl_op_dbl(my_list, 1);
-    printf("%lf\n", two);
+    double* two = delete_at_index_dbl_op_dbl(my_list, 1);
+    printf("(%lf, %lf)\n", two[0], two[1]);
 
-    double three = delete_at_index_dbl_op_dbl(my_list, 3);
-    printf("%lf\n", three);
+    double* three = delete_at_index_dbl_op_dbl(my_list, 3);
+    printf("(%lf, %lf)\n", three[0], three[1]);
 
-    double four = delete_at_index_dbl_op_dbl(my_list, 6);
-    printf("%lf\n", four);
+    double* four = delete_at_index_dbl_op_dbl(my_list, 6);
+    printf("(%lf, %lf)\n", four[0], four[1]);
 
-    double five = delete_at_index_dbl_op_dbl(my_list, 0);
-    printf("%lf\n", five);
+    double* five = delete_at_index_dbl_op_dbl(my_list, 0);
+    printf("(%lf, %lf)\n", five[0], five[1]);
 
-    double six = delete_at_index_dbl_op_dbl(my_list, 5);
-    printf("%lf\n", six);
+    double* six = delete_at_index_dbl_op_dbl(my_list, 5);
+    printf("(%lf, %lf)\n", six[0], six[1]);
 
-    double seven = delete_at_index_dbl_op_dbl(my_list, 2);
-    printf("%lf\n", seven);
+    double* seven = delete_at_index_dbl_op_dbl(my_list, 2);
+    printf("(%lf, %lf)\n", seven[0], seven[1]);
 
-    double eight = delete_at_index_dbl_op_dbl(my_list, 2);
-    printf("%lf\n", eight);
+    double* eight = delete_at_index_dbl_op_dbl(my_list, 2);
+    printf("(%lf, %lf)\n", eight[0], eight[1]);
 
-    double nine = delete_at_index_dbl_op_dbl(my_list, 1);
-    printf("%lf\n", nine);
+    double* nine = delete_at_index_dbl_op_dbl(my_list, 1);
+    printf("(%lf, %lf)\n", nine[0], nine[1]);
 
-    double ten = delete_at_index_dbl_op_dbl(my_list, 1);
-    printf("%lf\n", ten);
+    double* ten = delete_at_index_dbl_op_dbl(my_list, 1);
+    printf("(%lf, %lf)\n", ten[0], ten[1]);
 
-    double eleven = delete_at_index_dbl_op_dbl(my_list, 0);
-    printf("%lf\n", eleven);
+    double* eleven = delete_at_index_dbl_op_dbl(my_list, 0);
+    printf("(%lf, %lf)\n", eleven[0], eleven[1]);
 
     printf("after delete\n");
     itr_forward_dbl_op_dbl(my_list, 0, 0, 1, 0, 0);
@@ -376,19 +377,19 @@ void test_three(){
 
     printf("Testing Value Inserts\n");
 
-    insert_after_val_dbl_op_dbl(my_list, 1, 5);
-    insert_after_val_dbl_op_dbl(my_list, 2, 1);
-    insert_after_val_dbl_op_dbl(my_list, 3, 2);
-    insert_after_val_dbl_op_dbl(my_list, 4, 3);
-    insert_after_val_dbl_op_dbl(my_list, 5, 4);
+    insert_after_val_dbl_op_dbl(my_list, 1, 1, 5, 5);
+    insert_after_val_dbl_op_dbl(my_list, 2, 2, 1, 1);
+    insert_after_val_dbl_op_dbl(my_list, 3, 3, 2, 2);
+    insert_after_val_dbl_op_dbl(my_list, 4, 4, 3, 3);
+    insert_after_val_dbl_op_dbl(my_list, 5, 5, 4, 4);
 
-    insert_after_val_dbl_op_dbl(my_list, 10, 1);
-    insert_after_val_dbl_op_dbl(my_list, 11, 2);
-    insert_after_val_dbl_op_dbl(my_list, 12, 3);
-    insert_after_val_dbl_op_dbl(my_list, 13, 4);
-    insert_after_val_dbl_op_dbl(my_list, 14, 5);
+    insert_after_val_dbl_op_dbl(my_list, 10, 10, 1, 1);
+    insert_after_val_dbl_op_dbl(my_list, 11, 11, 2, 2);
+    insert_after_val_dbl_op_dbl(my_list, 12, 12, 3, 3);
+    insert_after_val_dbl_op_dbl(my_list, 13, 13, 4, 4);
+    insert_after_val_dbl_op_dbl(my_list, 14, 14, 5, 5);
 
-    insert_after_val_dbl_op_dbl(my_list, 27, 11);
+    insert_after_val_dbl_op_dbl(my_list, 27, 27, 11, 11);
 
     itr_forward_dbl_op_dbl(my_list, 0, 0, 1, 0, 0);
 
@@ -398,38 +399,38 @@ void test_three(){
 
     printf("Test Delete after Value\n");
 
-    one = delete_by_val_dbl_op_dbl(my_list, 11);
-    printf("%lf\n", one);
+    one = delete_by_val_dbl_op_dbl(my_list, 11, 11);
+    printf("(%lf, %lf)\n", one[0], one[1]);
 
-    two = delete_by_val_dbl_op_dbl(my_list, 12);
-    printf("%lf\n", two);
+    two = delete_by_val_dbl_op_dbl(my_list, 12, 12);
+    printf("(%lf, %lf)\n", two[0], two[1]);
 
-    three = delete_by_val_dbl_op_dbl(my_list, 10);
-    printf("%lf\n", three);
+    three = delete_by_val_dbl_op_dbl(my_list, 10, 10);
+    printf("(%lf, %lf)\n", three[0], three[1]);
 
-    four = delete_by_val_dbl_op_dbl(my_list, 13);
-    printf("%lf\n", four);
+    four = delete_by_val_dbl_op_dbl(my_list, 13, 13);
+    printf("(%lf, %lf)\n", four[0], four[1]);
 
-    five = delete_by_val_dbl_op_dbl(my_list, 14);
-    printf("%lf\n", five);
+    five = delete_by_val_dbl_op_dbl(my_list, 14, 14);
+    printf("(%lf, %lf)\n", five[0], five[1]);
 
-    six = delete_by_val_dbl_op_dbl(my_list, 27);
-    printf("%lf\n", six);
+    six = delete_by_val_dbl_op_dbl(my_list, 27, 27);
+    printf("(%lf, %lf)\n", six[0], six[1]);
 
-    seven = delete_by_val_dbl_op_dbl(my_list, 5);
-    printf("%lf\n", seven);
+    seven = delete_by_val_dbl_op_dbl(my_list, 5, 5);
+    printf("(%lf, %lf)\n", seven[0], seven[1]);
 
-    eight = delete_by_val_dbl_op_dbl(my_list, 4);
-    printf("%lf\n", eight);
+    eight = delete_by_val_dbl_op_dbl(my_list, 4, 4);
+    printf("(%lf, %lf)\n", eight[0], eight[1]);
 
-    nine = delete_by_val_dbl_op_dbl(my_list, 3);
-    printf("%lf\n", nine);
+    nine = delete_by_val_dbl_op_dbl(my_list, 3, 3);
+    printf("(%lf, %lf)\n", nine[0], nine[1]);
 
-    ten = delete_by_val_dbl_op_dbl(my_list, 2);
-    printf("%lf\n", ten);
+    ten = delete_by_val_dbl_op_dbl(my_list, 2, 2);
+    printf("(%lf, %lf)\n", ten[0], ten[1]);
 
-    eleven = delete_by_val_dbl_op_dbl(my_list, 1);
-    printf("%lf\n", eleven);
+    eleven = delete_by_val_dbl_op_dbl(my_list, 1, 1);
+    printf("(%lf, %lf)\n", eleven[0], eleven[1]);
 
     printf("after delete\n");
     itr_forward_dbl_op_dbl(my_list, 0, 0, 1, 0, 0);
@@ -444,8 +445,8 @@ void test_three(){
 int main(){
 
 test_one();
-//test_two();
-//test_three();
+test_two();
+test_three();
 
 
 return 0;
