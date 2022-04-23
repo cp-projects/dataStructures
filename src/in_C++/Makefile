@@ -9,7 +9,7 @@ linked_list.o: linked_list.cpp
 
 
 debug: linked_list.cpp
-	g++ -d -o debug.out linked_list.cpp
+	g++ -g -o debug.out linked_list.cpp
 
 clean:
 	rm ./*.o ./*.out

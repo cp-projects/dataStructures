@@ -1,19 +1,29 @@
 #include <iostream>
 
-struct node{
+
+//namespace DBL{
+struct node_dbl{
     double* val;
-    node *next;
-};
+    node_dbl *next;
+}; //          }//end namespace
+
+//namespace INT{
+struct node_int{
+    int* val;
+    node_int *next;
+};  //         }//end namespace
 
 class singly_linked{    
     
-    private:
-        node* m_head;
+    private:    
+	node_dbl* m_head_dbl;
+	node_int* m_head_int;
+	int type;
 	int m_len;
     
     public:
         singly_linked()
-	    : m_len(0), m_head(nullptr) {}
+	    : m_len(0), m_head_dbl(nullptr), m_head_int(nullptr) {}
         
         int get_len(){
 	    return m_len;
@@ -23,15 +33,26 @@ class singly_linked{
 	    this->m_len = len;
 	}
 
-	node* get_head(){
-	    return m_head;
-	}
-
-	void set_head(node* new_head){
-	    this->m_head = new_head;
+	node_dbl* get_head_dbl(){
+	    return m_head_dbl;
 	}
 	
+	void set_head(node_dbl* new_head){
+	    this->m_head_dbl = new_head;
+	}
+
+	node_int* get_head_int(){
+            return m_head_int;
+        }
+
+        void set_head(node_int* new_head){
+            this->m_head_int = new_head;
+        }
+	
 };
+
+
+
 
 
 
@@ -43,13 +64,28 @@ int main(){
     my_list.set_len(2);
     std::cout << my_list.get_len() << std::endl;
 
-    node* head = new node;
-    head->val = new double;
-    //*(head->val) = 17;
+    node_int* head = new node_int;
+    head->val = new int;
+    *(head->val) = 17;
 
-    std::cout << (my_list.get_head())->val << std::endl;
+    my_list.set_head(head);
 
+    std::cout << *(my_list.get_head_int()->val) << std::endl;
+
+
+    node_dbl* head2 = new node_dbl;
+    head2->val = new double;
+    *(head2->val) = 2.2222;
+
+    my_list.set_head(head2);
+
+    std::cout << *(my_list.get_head_dbl()->val) << std::endl;
+
+    delete head->val;
     delete head;
+
+    delete head2->val;
+    delete head2;
 
 }
 
