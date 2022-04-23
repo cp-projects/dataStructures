@@ -14,9 +14,9 @@ insert_r_dg_bst_dbl(my_tree, 5);
 insert_r_dg_bst_dbl(my_tree, 15);
 insert_r_dg_bst_dbl(my_tree, 8);
 insert_r_dg_bst_dbl(my_tree, 12);
-//insert_r_dg_bst_dbl(my_tree, 7);
-//insert_r_dg_bst_dbl(my_tree, 2);
-//insert_r_dg_bst_dbl(my_tree, 18);
+insert_r_dg_bst_dbl(my_tree, 7);
+insert_r_dg_bst_dbl(my_tree, 2);
+insert_r_dg_bst_dbl(my_tree, 18);
 
 /*
 remove_r_dg_bst_dbl(my_tree, 10);

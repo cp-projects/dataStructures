@@ -42,10 +42,11 @@ void insert_r_dg_bst_dbl(right_degen_bst_t* tree, double val){
 
    //if tree is  empty
    if(!(tree->root)){
+       new_node->prev = tree->root;
        tree->root = new_node;
        (tree->len)++;
        return;
-   }
+      }
 
    //if not empty, finding where to insert
    right_degen_bst_dbl_t* pos = tree->root;
@@ -55,24 +56,32 @@ void insert_r_dg_bst_dbl(right_degen_bst_t* tree, double val){
 	   
        if(!(pos->right) || !(pos->left))
            break; 
-       if(val < *(pos->val))
+
+       if(val < *(pos->val)){
 	   pos = pos->left;
-       if(val >= *(pos->val))
+           continue;
+          }
+
+       if(val >= *(pos->val)){
 	   pos = pos->right;
-         }
+           continue;
+	  }
+       }
    
    //put on the left if value is less
    if(val < *(pos->val)){
-       new_node->prev = pos;
+       //new_node->prev = pos;
        pos->left = new_node;
+       new_node->prev = pos;
        (tree->len)++;
        return;
       }
 
     //put on the right if value is more
     if(val > *(pos->val)){       
-       new_node->prev = pos;
+       //new_node->prev = pos;
        pos->right = new_node;
+       new_node->prev = pos;
        (tree->len)++;
        return;
       }
@@ -102,12 +111,14 @@ void remove_r_dg_bst_dbl(right_degen_bst_t* tree, double val){
            trace = pos;
 	   parent_trace = &(pos->left);
 	   pos = pos->left;
+	   continue;
           }
 
        else if(val >= *(pos->val)){
 	   trace = pos;
            parent_trace = &(pos->right);
            pos = pos->right;
+	   continue;
           }
     }
 
@@ -117,14 +128,14 @@ void remove_r_dg_bst_dbl(right_degen_bst_t* tree, double val){
 
     //remove from right most node
     if(pos->left == NULL){
-        *parent_trace = pos->right;
+        *(parent_trace) = pos->right;
 	free(pos);
 	return;
       }
 
     //remove from left most node
     if(pos->right == NULL){
-        *parent_trace = pos->left;
+        *(parent_trace) = pos->left;
 	 free(pos);
 	 return;
        }
@@ -147,8 +158,8 @@ void remove_r_dg_bst_dbl(right_degen_bst_t* tree, double val){
 static void clear_recursive_helper_r_dg_bst_dbl(right_degen_bst_dbl_t* node){
     if(!node)
         return;
-    clear_recursive_helper_r_dg_bst_dbl(node->left);
     clear_recursive_helper_r_dg_bst_dbl(node->right);
+    clear_recursive_helper_r_dg_bst_dbl(node->left);
     free(node->val);
     free(node);
 }
@@ -167,130 +178,33 @@ void destroy_r_dg_bst_dbl(right_degen_bst_t* tree){
 }
 
 
-/*             FOR DEBUGGING
+//  FOR DEBUGGING
 int main(){
 
     right_degen_bst_t* my_tree = create_tree_r_dg_bst_dbl();
+
     insert_r_dg_bst_dbl(my_tree, 10);
     insert_r_dg_bst_dbl(my_tree, 5);
+    insert_r_dg_bst_dbl(my_tree, 15);
+    insert_r_dg_bst_dbl(my_tree, 8);
+    insert_r_dg_bst_dbl(my_tree, 12);
+    insert_r_dg_bst_dbl(my_tree, 7);
+    insert_r_dg_bst_dbl(my_tree, 2);
+    insert_r_dg_bst_dbl(my_tree, 18);
+
+
+    /*    
+    remove_r_dg_bst_dbl(my_tree, 10);
+    remove_r_dg_bst_dbl(my_tree, 5);
+    remove_r_dg_bst_dbl(my_tree, 15);
+    */
+
+    size_t len = ret_len_r_dg_bst_dbl(my_tree);
+    printf("The Length is %ld\n", len);
+
+    destroy_r_dg_bst_dbl(my_tree);
+
 
 return 0;
 }
-*/
 
-
-/*       FOR INSPIRATION
-void clear_list(singly_t* list){
-
-     singly_dbl_t* pos;
-     pos = list->head;
-
-     singly_dbl_t* trace;
-     trace = list->head;
-
-     while(pos){
-
-         if(pos->next){
-             trace = pos->next;      
-	     free(pos->val);
-             pos->val = NULL;
-	     free(pos);
-             
-	     --(list->len);
-	     
-	     pos = trace;
-            }
-
-         else{
-	     free(pos->val);
-             free(pos);
-	     pos = NULL;
-            }
-        } //end while
- 
-    free((void*)list);
-    return;
-}
-
-
-void push(singly_t* list, const double val){
-
-    singly_dbl_t* new_node = (singly_dbl_t*) malloc(sizeof(singly_dbl_t));
- 
-    new_node -> val = (double*) malloc(sizeof(double));
-    *(new_node->val) = val;
-    new_node->next = list->head;
-    list->head = new_node;
-    (list->len)++;
-    return;
-}
-
-double pop(singly_t* list){
-
-    singly_dbl_t* remove_node;
-    remove_node = list->head; 
-
-    double val = *(remove_node->val);
-    list->head = remove_node->next;   
-    free(remove_node->val);
-    free(remove_node);
-
-    (list->len)--;
-    return val;
-}
-
-//just an alias of push, because in both lifo and fifo the "in" is the same
-//(verify this later, but I can't see why it wouldn't be)
-void enqueue(singly_t* list, const double val){
-    
-    singly_dbl_t* new_node = (singly_dbl_t*) malloc(sizeof(singly_dbl_t));
-
-    new_node -> val = (double*) malloc(sizeof(double));
-    *(new_node->val) = val;
-    new_node->next = list->head;
-    list->head = new_node;
-    (list->len)++;
-    return;
-}
-
-
-double dequeue(singly_t* list){
-
-    singly_dbl_t* remove_node;
-    remove_node = list->head;
-
-    singly_dbl_t* trace;
-    trace = list->head;
-
-    while(remove_node){
-    if(remove_node->next){
-	trace = remove_node;    
-        remove_node = remove_node->next;
-       }
-    else
-        break;
-    }
-    
-    //maybe make assert statement
-    if(!(remove_node->val))
-        exit(1);
-
-    double val = *(remove_node->val);
-
-    if(list->len == 1){
-        list->head = NULL;
-        list->len = 0;
-	free(remove_node->val);
-	free(remove_node);
-
-	return val;
-    }
-    
-    trace->next = remove_node->next;
-    free(remove_node->val);
-    free(remove_node);
-
-    (list->len)--;
-    return val;
-
-}*/
