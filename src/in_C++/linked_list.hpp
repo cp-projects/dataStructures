@@ -18,11 +18,17 @@ class singly_linked{
         
 	typedef struct {
             union {
-                unsigned dbl_flag : 1;
-                unsigned int_flag : 1;
-                size_t size_of_flags;
+                unsigned DBL : 1;
+                int container_one;
+	        unsigned INT : 1;
               };
+           bool dbl_flag = container_one & 1;
+	   bool int_flag = container_one & 1<<31;
+
         } flags_t;
+
+	//flags bitvector
+	flags_t* flags;
 
 	//head options    
 	node_dbl* m_head_dbl;
@@ -37,6 +43,12 @@ class singly_linked{
     public:
         singly_linked();
 	~singly_linked();
+
+	int get_flag_dbl();
+	int get_flag_int();
+
+	short set_flag_dbl(short one_or_zero);
+	short set_flag_int(short one_or_zero);
 
         int get_len_total();
         int get_len_dbl();
