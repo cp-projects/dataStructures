@@ -1,6 +1,14 @@
 #pragma once
-
 #include <iostream>
+
+typedef enum list_type{
+   TOT_L,
+   DBL_L,
+   INT_L,
+   FLT_L,
+   STR_L,
+   VOID_L,
+}list_type_t;
 
 struct node_dbl{
     double* val;
@@ -14,8 +22,13 @@ struct node_int{
 
 class singly_linked{    
     
-    private:
-        
+    /*
+       Private DATA
+     
+     */
+    private: 
+
+	//flags bitvector    
 	typedef struct {
             union {
                 unsigned DBL : 1;
@@ -39,7 +52,10 @@ class singly_linked{
 	int m_len_dbl;
 	int m_len_int;
 
-    
+    /*
+     * Public METHODS/FUNCTIONS
+     * 
+     * */
     public:
         singly_linked();
 	~singly_linked();
@@ -54,12 +70,25 @@ class singly_linked{
         int get_len_dbl();
 	int get_len_int();
 
-	void set_len(int len);
+	void len_augment(list_type_t list_type);
+	void len_decrement(list_type_t list_type);
 
 	node_dbl* get_head_dbl();
 	void set_head(node_dbl* new_head);
 	node_int* get_head_int();
         void set_head(node_int* new_head);
+
+    /*
+     *  private methods/functions
+     *
+     * */
+    private:
+
+	
+	void set_len_total(int len);
+        void set_len_dbl(int len);
+        void set_len_int(int len);
+        
 	
 };
 
