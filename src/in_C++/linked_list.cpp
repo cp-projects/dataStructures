@@ -29,8 +29,96 @@ singly_linked::singly_linked()
 	}
 
 //destructor
-singly_linked::~singly_linked() {delete flags;}
+singly_linked::~singly_linked() {
 
+	
+        if(this->check_flag_dbl())
+	    this->clear(get_head_dbl());
+
+	if(this->check_flag_int())
+	    this->clear(get_head_int());
+        
+	if(this->check_flag_flt())
+            this->clear(get_head_flt());
+
+        if(this->check_flag_str())
+            this->clear(get_head_str());
+
+
+	delete flags;
+
+        }
+
+
+/*
+ * Clear
+ *
+ * */
+void singly_linked::clear(node_dbl* start){
+
+    if(get_len_dbl() == 0)
+        return;
+    if(!(start->next)){
+        remove_at_head(start);
+	return;
+    }
+
+    this->clear(start->next);
+
+    remove_at_head(start);
+    this->flag_off_dbl();
+
+}
+
+
+void singly_linked::clear(node_int* start){
+
+    if(get_len_int() == 0)
+        return;
+    if(!(start->next)){
+        remove_at_head(start);
+        return;
+    }
+
+    this->clear(start->next);
+
+    remove_at_head(start);
+    this->flag_off_int();
+
+}
+
+
+void singly_linked::clear(node_flt* start){
+
+    if(get_len_flt() == 0)
+        return;
+    if(!(start->next)){
+        remove_at_head(start);
+        return;
+    }
+
+    this->clear(start->next);
+
+    remove_at_head(start);
+    this->flag_off_flt();
+
+}
+
+void singly_linked::clear(node_str* start){
+
+    if(get_len_str() == 0)
+        return;
+    if(!(start->next)){
+        remove_at_head(start);
+        return;
+    }
+
+    this->clear(start->next);
+
+    remove_at_head(start);
+    this->flag_off_str();
+
+}
 
 
 /*
@@ -39,7 +127,7 @@ singly_linked::~singly_linked() {delete flags;}
  *
  * */
 
-node_dbl* singly_linked::itr_forward(std::optional<node_dbl*> begin = std::nullopt, double breakVal, int breakIndex){
+node_dbl* singly_linked::itr_forward(node_dbl* begin, double breakVal, int breakIndex){
 
     assert(!(this->check_flag_val() && this->check_flag_index()));
 
@@ -57,6 +145,27 @@ node_dbl* singly_linked::itr_forward(std::optional<node_dbl*> begin = std::nullo
 
     return end;
 }
+
+
+node_int* singly_linked::itr_forward(node_int* begin, int breakVal, int breakIndex){
+
+    assert(!(this->check_flag_val() && this->check_flag_index()));
+
+    int i = 0;
+    node_int* end;
+    for(end = this->get_head_int(); end; end = end->next){
+        if(this->check_flag_print())
+            std::cout << *(end->val) << std::endl;
+        if(this->check_flag_val() && *(end->val) == breakVal)
+            return end;
+        if(this->check_flag_index() && i == breakIndex)
+            return end;
+        i++;
+     }
+
+    return end;
+}
+
 
 
 
@@ -82,6 +191,28 @@ void singly_linked::print_flags(){
 void singly_linked::print_lengths(){
     std::cout << "int_len is " << this -> get_len_int() << " double_len is " << this -> get_len_dbl() << " float_len is " << this -> get_len_flt() << " string_list_len is " << this -> get_len_str() << " void_len is " << this -> get_len_void() << " total_len is " << this -> get_len_total() << std::endl;
     return;
+}
+
+void singly_linked::print_list(node_dbl* begin){
+    
+    //checking the flagstate before alterations
+    bool p = this -> check_flag_print();
+    bool v = this -> check_flag_val();
+    bool i = this -> check_flag_index();
+
+    //setting the flags for printing    
+    this->flag_on_print();
+    this->flag_off_val();
+    this->flag_off_index();
+    this->itr_forward(begin, 0, 0);
+    
+    //resetting if necessary
+    if(!p)
+        this->flag_off_print();
+    if(v)
+        this->flag_on_val();
+    if(i)
+	this->flag_on_index();
 }
 
 
@@ -205,27 +336,27 @@ bool singly_linked::flag_off_index(){
  * */
 
 //Length Getters
-int singly_linked::get_len_total(){
+int singly_linked::get_len_total() const{
     return m_len_total;
         }
 
-int singly_linked::get_len_dbl(){
+int singly_linked::get_len_dbl() const{
     return m_len_dbl;
         }
 
-int singly_linked::get_len_int(){
+int singly_linked::get_len_int() const{
     return m_len_int;
         }
 
-int singly_linked::get_len_flt(){
+int singly_linked::get_len_flt() const{
     return m_len_flt;
         }
 
-int singly_linked::get_len_str(){
+int singly_linked::get_len_str() const{
     return m_len_str;
         }
 
-int singly_linked::get_len_void(){
+int singly_linked::get_len_void() const{
     return m_len_void;
         }
 
@@ -311,23 +442,23 @@ void singly_linked::len_decrement(list_type_t list_type){
  * */
 
 //Head Getters
-node_dbl* singly_linked::get_head_dbl(){
+node_dbl* singly_linked::get_head_dbl() const{
     return m_head_dbl;
         }
 
-node_int* singly_linked::get_head_int(){
+node_int* singly_linked::get_head_int() const{
     return m_head_int;
         }
 
-node_flt* singly_linked::get_head_flt(){
+node_flt* singly_linked::get_head_flt() const{
     return m_head_flt;
         }
 
-node_str* singly_linked::get_head_str(){
+node_str* singly_linked::get_head_str() const{
     return m_head_str;
         }
 
-node_void* singly_linked::get_head_void(){
+node_void* singly_linked::get_head_void() const{
     return m_head_void;
         }
 
@@ -707,4 +838,8 @@ void singly_linked::set_head(node_str* new_head){
 void singly_linked::set_head(node_void* new_head){
      this->m_head_void = new_head;
         }
+
+
+
+
 

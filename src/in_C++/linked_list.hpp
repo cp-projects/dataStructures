@@ -70,10 +70,20 @@ class singly_linked{
 	//Destructor
 	~singly_linked();
 
+
+	/*
+	 * Clear
+	 * */
+       void clear(node_dbl*);
+       void clear(node_int*);
+       void clear(node_flt*); 
+       void clear(node_str*);
+
+
 	/*
 	 * Iterators
 	 * */
-        node_dbl* itr_forward(std::optional<node_dbl*> begin = std::nullopt, double breakVal, int breakIndex);
+        node_dbl* itr_forward(node_dbl*, double breakVal, int breakIndex);
 	node_int* itr_forward(node_int* begin, int breakVal, int breakIndex);
 	node_flt* itr_forward(node_flt* begin, float breakVal, int breakIndex);
 	node_str* itr_forward(node_str* begin, std::string& breakVal, int breakIndex);
@@ -86,6 +96,7 @@ class singly_linked{
 	 * */
 	void print_flags();
 	void print_lengths();
+	void print_list(node_dbl* begin);
         
 	/*
 	 * Flags
@@ -133,12 +144,12 @@ class singly_linked{
 	 * */
 
 	//Length Getters
-        int get_len_total();
-        int get_len_dbl();
-	int get_len_int();
-	int get_len_flt();
-	int get_len_str();
-        int get_len_void();
+        int get_len_total() const;
+        int get_len_dbl() const;
+	int get_len_int() const;
+	int get_len_flt() const;
+	int get_len_str() const;
+        int get_len_void() const;
 
         //Public Length Setters
 	void len_increment(list_type_t list_type);
@@ -151,11 +162,11 @@ class singly_linked{
 	 * */
 
         //Head Getters
-	node_dbl* get_head_dbl();
-	node_int* get_head_int();
-	node_flt* get_head_flt();
-	node_str* get_head_str();
-        node_void* get_head_void();
+	node_dbl* get_head_dbl() const;
+	node_int* get_head_int() const;
+	node_flt* get_head_flt() const;
+	node_str* get_head_str() const; 
+        node_void* get_head_void() const;
 
 	//Public Head Setters
 	node_dbl* insert_at_head(double val);
@@ -212,5 +223,8 @@ class singly_linked{
         
 	
 };
+
+
+
 
 

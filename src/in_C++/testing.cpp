@@ -223,24 +223,27 @@ void test_forward_itrs(){
 
    singly_linked my_list = singly_linked();
 
-   my_list.insert_at_head(9.9);
-   my_list.insert_at_head(8.8);
-   my_list.insert_at_head(7.7);
-   my_list.insert_at_head(6.6);
-   my_list.insert_at_head(5.5);
-   my_list.insert_at_head(4.4);
-   my_list.insert_at_head(3.3);
-   my_list.insert_at_head(2.2);
-   my_list.insert_at_head(1.1);
+   node_dbl* one = my_list.insert_at_head(9.9);
+   node_dbl* two = my_list.insert_at_head(8.8);
+   node_dbl* three = my_list.insert_at_head(7.7);
+   node_dbl* four = my_list.insert_at_head(6.6);
+   node_dbl* five = my_list.insert_at_head(5.5);
+   node_dbl* six = my_list.insert_at_head(4.4);
+   node_dbl* seven = my_list.insert_at_head(3.3);
+   node_dbl* eight = my_list.insert_at_head(2.2);
+   node_dbl* nin = my_list.insert_at_head(1.1);
 
-   my_list.flag_on_print();
+   //my_list.flag_on_print();
    my_list.flag_on_val();
 
    node_dbl* begin;
+   my_list.print_list(begin);
 
    my_list.itr_forward(begin, 6.6, 2);
 
 
+   //my_list.clear(my_list.get_head_dbl());
+   
 
 }
 
