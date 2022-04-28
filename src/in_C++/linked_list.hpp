@@ -17,16 +17,22 @@ class singly_linked{
                 unsigned DBL : 1;
 		unsigned FLT : 1;
 		unsigned INT : 1;
-                char container_one;
 	        unsigned STR : 1;
 		unsigned VOID : 1;
+		char container_one;
+		unsigned PRNT : 1;
+		unsigned onVal : 1;
+		unsigned onIndex : 1;
               };
            bool dbl_flag = container_one & 1;
 	   bool flt_flag = container_one & 1<<1;
 	   bool int_flag = container_one & 1<<2;
+	   bool str_flag = container_one & 1<<3;
+	   bool void_flag = container_one & 1<<4;
 
-	   bool str_flag = container_one & 1<<6;
-	   bool void_flag = container_one & 1<<7;
+	   bool print_flag = container_one & 1 << 5;
+	   bool break_on_val_flag = container_one & 1 << 6;
+	   bool break_on_index_flag = container_one & 1<<7;
 
         } flags_t;
 
@@ -66,7 +72,7 @@ class singly_linked{
 	/*
 	 * Iterators
 	 * */
-
+        node_dbl* itr_forward(node_dbl* begin, double breakVal, int breakIndex, bool printflag, bool break_on_val_flag, bool break_on_index_flag);
 
 
 
@@ -80,28 +86,38 @@ class singly_linked{
 	 * Flags
 	 * */
         
-	// Flag Getters
-	int get_flag_dbl();
-	int get_flag_int();
-	int get_flag_flt();
-	int get_flag_str();
-	int get_flag_void();
+	// Flag Checkers
+	bool check_flag_dbl();
+	bool check_flag_int();
+	bool check_flag_flt();
+	bool check_flag_str();
+	bool check_flag_void();
 	
 	//Public Length Setters
-	short flag_on_dbl();
-	short flag_off_dbl();
+	bool flag_on_dbl();
+	bool flag_off_dbl();
 
-	short flag_on_int();
-	short flag_off_int();
+	bool flag_on_int();
+	bool flag_off_int();
 
-	short flag_on_flt();
-        short flag_off_flt();
+	bool flag_on_flt();
+        bool flag_off_flt();
 
-	short flag_on_str();
-        short flag_off_str();
+	bool flag_on_str();
+        bool flag_off_str();
 
-	short flag_on_void();
-        short flag_off_void();
+	bool flag_on_void();
+        bool flag_off_void();
+
+
+	bool flag_on_print();
+        bool flag_off_print();
+
+        bool flag_on_val();
+        bool flag_off_val();
+
+        bool flag_on_index();
+        bool flag_off_index();
 
 	/*
 	 * Lengths
@@ -145,8 +161,11 @@ class singly_linked{
 	node_str* insert_at_head(std::string& val);
 	std::string remove_at_head(node_str* node);
 
-	node_void* insert_at_head(const void* val, list_type_t dereference_type);
-        void* remove_at_head(node_void* node);
+	node_void* insert_at_head(double val, list_type_t dereference_val);
+        node_void* insert_at_head(int val, list_type_t dereference_val);
+	node_void* insert_at_head(float val, list_type_t dereference_val);
+        node_void* insert_at_head(std::string val, list_type_t dereference_val);
+	void* remove_at_head(node_void* node);
 
     /*
      *  private methods/functions
@@ -155,11 +174,15 @@ class singly_linked{
     private:
 
 	//Private Flag Setters
-	short set_flag_dbl(short one_or_zero);
-        short set_flag_int(short one_or_zero);
-	short set_flag_flt(short one_or_zero);
-	short set_flag_str(short one_or_zero);
-	short set_flag_void(short one_or_zero);
+	bool set_flag_dbl(bool one_or_zero);
+        bool set_flag_int(bool one_or_zero);
+	bool set_flag_flt(bool one_or_zero);
+	bool set_flag_str(bool one_or_zero);
+	bool set_flag_void(bool one_or_zero);
+	
+	bool set_flag_print(bool one_or_zero);
+	bool set_flag_val(bool one_or_zero);
+	bool set_flag_index(bool one_or_zero);
 
 	//Private Length Setters
 	void set_len_total(int len);

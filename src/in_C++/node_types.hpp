@@ -51,7 +51,7 @@ struct node_void{
     void** val;
     node_void *next;
     const list_type_t type = VOID_L;
-    list_type_t dereference_type;
+    list_type_t* dereference_type;
 };
 
 /*

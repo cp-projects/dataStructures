@@ -20,6 +20,10 @@ singly_linked::singly_linked()
 	flags->flt_flag = 0;
 	flags->str_flag = 0;
 	flags->void_flag = 0;
+
+	flags->print_flag = 0;
+	flags->break_on_val_flag = 0;
+	flags->break_on_index_flag = 0;
 	
 	}
 
@@ -45,7 +49,7 @@ singly_linked::~singly_linked() {delete flags;}
  * */
 
 void singly_linked::print_flags(){
-    std::cout << "Double Flag: " << this -> get_flag_dbl() << "  Int Flag: " << this-> get_flag_int() << " FLT FLAG: " << this->get_flag_flt() << " STR FLAG: " << this->get_flag_str() << " VOID FLAG: " << this -> get_flag_void() << std::endl;
+    std::cout << "Double Flag: " << this -> check_flag_dbl() << "  Int Flag: " << this-> check_flag_int() << " FLT FLAG: " << this->check_flag_flt() << " STR FLAG: " << this->check_flag_str() << " VOID FLAG: " << this -> check_flag_void() << std::endl;
     return;
 }
 
@@ -61,69 +65,93 @@ void singly_linked::print_lengths(){
  *
  * */
 
-//flag getters
-int singly_linked::get_flag_dbl(){
+//flag checkers
+bool singly_linked::check_flag_dbl(){
     return flags->dbl_flag;
         }
 
-int singly_linked::get_flag_int(){
+bool singly_linked::check_flag_int(){
     return flags->int_flag;
         }
 
-int singly_linked::get_flag_flt(){
+bool singly_linked::check_flag_flt(){
     return flags->flt_flag;
         }
 
-int singly_linked::get_flag_str(){
+bool singly_linked::check_flag_str(){
     return flags->str_flag;
         }
 
-int singly_linked::get_flag_void(){
+bool singly_linked::check_flag_void(){
     return flags->void_flag;
         }
 
 //public flag setters
-short singly_linked::flag_on_dbl(){
+bool singly_linked::flag_on_dbl(){
     return this->set_flag_dbl(1);
         }
 
-short singly_linked::flag_off_dbl(){
+bool singly_linked::flag_off_dbl(){
     return this->set_flag_dbl(0);
         }
 
-short singly_linked::flag_on_int(){
+bool singly_linked::flag_on_int(){
     return this->set_flag_int(1);
         }
 
-short singly_linked::flag_off_int(){
+bool singly_linked::flag_off_int(){
     return this->set_flag_int(0);
         }
 
-short singly_linked::flag_on_flt(){
+bool singly_linked::flag_on_flt(){
     return this->set_flag_flt(1);
         }
 
-short singly_linked::flag_off_flt(){
+bool singly_linked::flag_off_flt(){
     return this->set_flag_flt(0);
         }
 
-short singly_linked::flag_on_str(){
+bool singly_linked::flag_on_str(){
     return this->set_flag_str(1);
         }
 
-short singly_linked::flag_off_str(){
+bool singly_linked::flag_off_str(){
     return this->set_flag_str(0);
         }
 
-short singly_linked::flag_on_void(){
+bool singly_linked::flag_on_void(){
     return this->set_flag_void(1);
         }
 
-short singly_linked::flag_off_void(){
+bool singly_linked::flag_off_void(){
     return this->set_flag_void(0);
         }
 
 
+
+bool singly_linked::flag_on_print(){
+    return this->set_flag_print(1);
+        }
+
+bool singly_linked::flag_off_print(){
+    return this->set_flag_print(0);
+        }
+
+bool singly_linked::flag_on_val(){
+    return this->set_flag_val(1);
+        }
+
+bool singly_linked::flag_off_val(){
+    return this->set_flag_val(0);
+        }
+
+bool singly_linked::flag_on_index(){
+    return this->set_flag_index(1);
+        }
+
+bool singly_linked::flag_off_index(){
+    return this->set_flag_index(0);
+        }
 
 
 /*
@@ -399,25 +427,91 @@ std::string singly_linked::remove_at_head(node_str* node){
 }
 
 
-node_void* singly_linked::insert_at_head(const void* val, list_type_t dereference_type){
+node_void* singly_linked::insert_at_head(double val, list_type_t dereference_val){
 
 
    node_void* head = new node_void;
+
+   head->dereference_type = new list_type_t;
+   *(head->dereference_type) = dereference_val;
    
-   switch(dereference_type){
+   double* value_addr = new double;
+   *(value_addr) = val;
+   head->val = (void**) value_addr;
+	  
 
-       case(DBL_L):
-           double deref_value = *((double*)val);
-	   double* value_addr = new double;
-	   head->val = new void*;
-	   head->val = (void**) value_addr;
-	   *(value_addr) = deref_value;
-	   head->dereference_type = dereference_type;
+   head->next = this->m_head_void;
+
+   this->set_head(head);
+   this->flag_on_void();
+   this->len_increment(head->type);
+
+   return head;
+
+}
 
 
+node_void* singly_linked::insert_at_head(int val, list_type_t dereference_val){
 
-   }; 
-   
+
+   node_void* head = new node_void;
+
+   head->dereference_type = new list_type_t;
+   *(head->dereference_type) = dereference_val;
+
+   int* value_addr = new int;
+   *(value_addr) = val;
+   head->val = (void**) value_addr;
+
+
+   head->next = this->m_head_void;
+
+   this->set_head(head);
+   this->flag_on_void();
+   this->len_increment(head->type);
+
+   return head;
+
+}
+
+
+node_void* singly_linked::insert_at_head(float val, list_type_t dereference_val){
+
+
+   node_void* head = new node_void;
+
+   head->dereference_type = new list_type_t;
+   *(head->dereference_type) = dereference_val;
+
+   float* value_addr = new float;
+   *(value_addr) = val;
+   head->val = (void**) value_addr;
+
+
+   head->next = this->m_head_void;
+
+   this->set_head(head);
+   this->flag_on_void();
+   this->len_increment(head->type);
+
+   return head;
+
+}
+
+
+node_void* singly_linked::insert_at_head(std::string val, list_type_t dereference_val){
+
+
+   node_void* head = new node_void;
+
+   head->dereference_type = new list_type_t;
+   *(head->dereference_type) = dereference_val;
+
+   std::string* value_addr = new std::string;
+   *(value_addr) = val;
+   head->val = (void**) value_addr;
+
+
    head->next = this->m_head_void;
 
    this->set_head(head);
@@ -431,21 +525,37 @@ node_void* singly_linked::insert_at_head(const void* val, list_type_t dereferenc
 
 void* singly_linked::remove_at_head(node_void* node){
 
-    list_type_t dereference_type = node->dereference_type;
+    list_type_t dereference_type = *(node->dereference_type);
     static void* retval = *(node->val);
     
     switch(dereference_type){
     
         case(DBL_L):
-            static double val = *((double*)*node->val);
-	    retval = (void*) &val;
+            static double dbl_val = *((double*)node->val);
+	    retval = (void*) &dbl_val;
+	    break;
 
+        case(INT_L):
+            static int int_val = *((int*)node->val);
+            retval = (void*) &int_val;
+            break;
+
+	case(FLT_L):
+            static float flt_val = *((float*)node->val);
+            retval = (void*) &flt_val;
+            break;
+
+	case(STR_L):
+            static std::string str_val = *((std::string*)node->val);
+            retval = (void*) &str_val;
+            break;
     
     };
     
    
     this -> m_head_void = node->next;
 
+    delete node->dereference_type;
     delete node->val;
     delete node;
 
@@ -464,42 +574,48 @@ void* singly_linked::remove_at_head(node_void* node){
  * */
 
 //Private Flag Setters
-short singly_linked::set_flag_dbl(short one_or_zero){
-    if(one_or_zero != 1 && one_or_zero != 0)
-            return -1;
+bool singly_linked::set_flag_dbl(bool one_or_zero){
     flags->dbl_flag = one_or_zero;
     return flags->dbl_flag;
         }
 
-short singly_linked::set_flag_int(short one_or_zero){
-    if(one_or_zero != 1 && one_or_zero != 0)
-            return -1;
+bool singly_linked::set_flag_int(bool one_or_zero){
     flags->int_flag = one_or_zero;
     return flags->int_flag;
         }
 
-short singly_linked::set_flag_flt(short one_or_zero){
-    if(one_or_zero != 1 && one_or_zero != 0)
-            return -1;
+bool singly_linked::set_flag_flt(bool one_or_zero){
     flags->flt_flag = one_or_zero;
     return flags->flt_flag;
         }
 
-short singly_linked::set_flag_str(short one_or_zero){
-    if(one_or_zero != 1 && one_or_zero != 0)
-            return -1;
+bool singly_linked::set_flag_str(bool one_or_zero){
     flags->str_flag = one_or_zero;
     return flags->str_flag;
         }
 
-short singly_linked::set_flag_void(short one_or_zero){
-    if(one_or_zero != 1 && one_or_zero != 0)
-            return -1;
+bool singly_linked::set_flag_void(bool one_or_zero){
     flags->void_flag = one_or_zero;
     return flags->void_flag;
         }
 
 
+
+
+bool singly_linked::set_flag_print(bool one_or_zero){
+    flags->print_flag = one_or_zero;
+    return flags->print_flag;
+        }
+
+bool singly_linked::set_flag_val(bool one_or_zero){
+    flags->break_on_val_flag = one_or_zero;
+    return flags->break_on_val_flag;
+        }
+
+bool singly_linked::set_flag_index(bool one_or_zero){
+    flags->break_on_index_flag = one_or_zero;
+    return flags->break_on_index_flag;
+        }
 
 
 //Private Length Setters

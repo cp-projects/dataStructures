@@ -164,7 +164,7 @@ int main(){
 
     static double void_val = 11.61;
     void* void_addr = (void*) &void_val;
-    node_void* head5 = my_list.insert_at_head(void_addr, DBL_L);
+    node_void* head5 = my_list.insert_at_head(11.61, DBL_L);
     //std::cout << **((double**) my_list.get_head_void()->val) << std::endl;
 
 
