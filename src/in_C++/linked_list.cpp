@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
-#include <cstring>
+#include <cassert>
+#include <optional>
 #include "linked_list.hpp"
 
 
@@ -38,8 +39,33 @@ singly_linked::~singly_linked() {delete flags;}
  *
  * */
 
+node_dbl* singly_linked::itr_forward(std::optional<node_dbl*> begin = std::nullopt, double breakVal, int breakIndex){
+
+    assert(!(this->check_flag_val() && this->check_flag_index()));
+
+    int i = 0;
+    node_dbl* end;
+    for(end = this->get_head_dbl(); end; end = end->next){
+        if(this->check_flag_print())
+	    std::cout << *(end->val) << std::endl;
+        if(this->check_flag_val() && *(end->val) == breakVal)
+	    return end;
+	if(this->check_flag_index() && i == breakIndex)
+	    return end;
+	i++;
+     }
+
+    return end;
+}
 
 
+
+/*
+node_int* itr_forward(node_int* begin, int breakVal, int breakIndex);
+node_flt* itr_forward(node_flt* begin, float breakVal, int breakIndex);
+node_str* itr_forward(node_str* begin, std::string& breakVal, int breakIndex);
+node_void* itr_forward(node_void* begin, void* breakVal, int breakIndex, list_type_t deref_val);
+*/
 
 
 /*
@@ -86,6 +112,21 @@ bool singly_linked::check_flag_void(){
     return flags->void_flag;
         }
 
+
+
+
+bool singly_linked::check_flag_print(){
+    return flags->print_flag;
+        }
+
+bool singly_linked::check_flag_val(){
+    return flags->break_on_val_flag;
+        }
+
+bool singly_linked::check_flag_index(){
+    return flags->break_on_index_flag;
+        }
+
 //public flag setters
 bool singly_linked::flag_on_dbl(){
     return this->set_flag_dbl(1);
@@ -126,6 +167,9 @@ bool singly_linked::flag_on_void(){
 bool singly_linked::flag_off_void(){
     return this->set_flag_void(0);
         }
+
+
+
 
 
 

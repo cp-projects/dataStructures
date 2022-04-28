@@ -60,6 +60,31 @@ void test_flags(){
 }
 
 
+void test_flags_two(){
+
+    singly_linked my_list = singly_linked();
+
+    std::cout << "Print Flag: " << my_list.check_flag_print() << "  Break on Val Flag: " << my_list.check_flag_val() << " Break on Index FLAG: " << my_list.check_flag_index() << std::endl;
+    my_list.flag_on_print();
+    std::cout << "Print Flag: " << my_list.check_flag_print() << "  Break on Val Flag: " << my_list.check_flag_val() << " Break on Index FLAG: " << my_list.check_flag_index() << std::endl;
+    my_list.flag_on_val();
+    std::cout << "Print Flag: " << my_list.check_flag_print() << "  Break on Val Flag: " << my_list.check_flag_val() << " Break on Index FLAG: " << my_list.check_flag_index() << std::endl;
+    my_list.flag_on_index();
+    std::cout << "Print Flag: " << my_list.check_flag_print() << "  Break on Val Flag: " << my_list.check_flag_val() << " Break on Index FLAG: " << my_list.check_flag_index() << std::endl;
+
+    std::cout << "\n "  << " ON " << "\n"<< std::endl;
+
+    std::cout << "Print Flag: " << my_list.check_flag_print() << "  Break on Val Flag: " << my_list.check_flag_val() << " Break on Index FLAG: " << my_list.check_flag_index() << std::endl;
+    my_list.flag_off_print();
+    std::cout << "Print Flag: " << my_list.check_flag_print() << "  Break on Val Flag: " << my_list.check_flag_val() << " Break on Index FLAG: " << my_list.check_flag_index() << std::endl;
+    my_list.flag_off_val();
+    std::cout << "Print Flag: " << my_list.check_flag_print() << "  Break on Val Flag: " << my_list.check_flag_val() << " Break on Index FLAG: " << my_list.check_flag_index() << std::endl;
+    my_list.flag_off_index();
+    std::cout << "Print Flag: " << my_list.check_flag_print() << "  Break on Val Flag: " << my_list.check_flag_val() << " Break on Index FLAG: " << my_list.check_flag_index() << std::endl;
+
+    std::cout << "\n "  << " OFF " << "\n"<< std::endl;
+}
+
 
 
 void test_lengths(){
@@ -192,11 +217,46 @@ void test_heads(){
 }
 
 
+void test_forward_itrs(){
+
+   std::cout << "Bonjour Monde" << std::endl;
+
+   singly_linked my_list = singly_linked();
+
+   my_list.insert_at_head(9.9);
+   my_list.insert_at_head(8.8);
+   my_list.insert_at_head(7.7);
+   my_list.insert_at_head(6.6);
+   my_list.insert_at_head(5.5);
+   my_list.insert_at_head(4.4);
+   my_list.insert_at_head(3.3);
+   my_list.insert_at_head(2.2);
+   my_list.insert_at_head(1.1);
+
+   my_list.flag_on_print();
+   my_list.flag_on_val();
+
+   node_dbl* begin;
+
+   my_list.itr_forward(begin, 6.6, 2);
+
+
+
+}
+
+
+
+
+
 int main(){
     
-    test_flags();
+    //test_flags();
+    //test_flags_two();
     //test_lengths();
     //test_heads();
+    
+    test_forward_itrs();
+
 
 }
 

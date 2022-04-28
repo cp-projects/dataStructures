@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include<optional>
 #include "node_types.hpp"
 
 
@@ -30,8 +31,8 @@ class singly_linked{
 	   bool str_flag = container_one & 1<<3;
 	   bool void_flag = container_one & 1<<4;
 
-	   bool print_flag = container_one & 1 << 5;
-	   bool break_on_val_flag = container_one & 1 << 6;
+	   bool print_flag = container_one & 1<<5;
+	   bool break_on_val_flag = container_one & 1<<6;
 	   bool break_on_index_flag = container_one & 1<<7;
 
         } flags_t;
@@ -72,7 +73,11 @@ class singly_linked{
 	/*
 	 * Iterators
 	 * */
-        node_dbl* itr_forward(node_dbl* begin, double breakVal, int breakIndex, bool printflag, bool break_on_val_flag, bool break_on_index_flag);
+        node_dbl* itr_forward(std::optional<node_dbl*> begin = std::nullopt, double breakVal, int breakIndex);
+	node_int* itr_forward(node_int* begin, int breakVal, int breakIndex);
+	node_flt* itr_forward(node_flt* begin, float breakVal, int breakIndex);
+	node_str* itr_forward(node_str* begin, std::string& breakVal, int breakIndex);
+	node_void* itr_forward(node_void* begin, void* breakVal, int breakIndex, list_type_t deref_val);
 
 
 
@@ -92,6 +97,10 @@ class singly_linked{
 	bool check_flag_flt();
 	bool check_flag_str();
 	bool check_flag_void();
+
+	bool check_flag_print();
+        bool check_flag_val();
+        bool check_flag_index();
 	
 	//Public Length Setters
 	bool flag_on_dbl();
