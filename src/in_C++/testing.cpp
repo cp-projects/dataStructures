@@ -231,19 +231,112 @@ void test_forward_itrs(){
    node_dbl* six = my_list.insert_at_head(4.4);
    node_dbl* seven = my_list.insert_at_head(3.3);
    node_dbl* eight = my_list.insert_at_head(2.2);
-   node_dbl* nin = my_list.insert_at_head(1.1);
+   node_dbl* nine = my_list.insert_at_head(1.1);
 
-   //my_list.flag_on_print();
+   my_list.flag_on_print();
    my_list.flag_on_val();
 
    node_dbl* begin;
-   my_list.print_list(begin);
-
+   //my_list.print_list(begin);
    my_list.itr_forward(begin, 6.6, 2);
 
-
-   //my_list.clear(my_list.get_head_dbl());
+   my_list.insert_at_head(18);
+   my_list.insert_at_head(17);
+   my_list.insert_at_head(16);
+   my_list.insert_at_head(15);
+   my_list.insert_at_head(14);
+   my_list.insert_at_head(13);
+   my_list.insert_at_head(12);
+   my_list.insert_at_head(11);
+   my_list.insert_at_head(10);
    
+   my_list.flag_off_val();
+   my_list.flag_on_index();
+
+   std::cout << "\n\n";
+   node_int* begin_int;
+   //my_list.print_list(begin_int);
+   my_list.itr_forward(begin_int, 15, 6);
+
+
+
+   my_list.insert_at_head(27.27f);
+   my_list.insert_at_head(26.26f);
+   my_list.insert_at_head(25.25f);
+   my_list.insert_at_head(24.24f);
+   my_list.insert_at_head(23.23f);
+   my_list.insert_at_head(22.22f);
+   my_list.insert_at_head(21.21f);
+   my_list.insert_at_head(20.20f);
+   my_list.insert_at_head(19.19f);
+
+   //my_list.flag_on_val();
+   //my_list.flag_on_index();
+   //my_list.flag_off_val();
+   //my_list.flag_off_index();
+
+   std::cout << "\n\n";
+   node_flt* begin_flt;
+   //my_list.print_list(begin_flt);
+   my_list.itr_forward(begin_flt, 25.25, 2);
+
+   std::cout << "\n\n";
+
+   std::string hello = "Hello World\n";
+   my_list.insert_at_head(hello);
+
+   std::string hallo = "Hallo Welt\n";
+   my_list.insert_at_head(hallo);
+
+   std::string hola = "Hola Mundo\n";
+   my_list.insert_at_head(hola);
+
+   std::string bonjour = "Bonjour Monde\n";
+   my_list.insert_at_head(bonjour);
+
+   std::string salve = "Salve Mondo\n";
+   my_list.insert_at_head(salve);
+
+   std::string ola = "Ola Mundo\n";
+   my_list.insert_at_head(ola);
+
+   std::string bonjou = "Bonjou Mond La\n";
+   my_list.insert_at_head(bonjou);
+
+   std::string buna = "Buna Oameni Buni\n";
+   my_list.insert_at_head(buna);
+
+   std::string sveika = "Sveika Pasaule\n";
+   my_list.insert_at_head(sveika);
+
+
+   my_list.flag_on_val();
+   //my_list.flag_on_index();
+   //my_list.flag_off_val();
+   my_list.flag_off_index();
+
+   node_str* begin_str;
+   //my_list.print_list(begin_str);
+   my_list.itr_forward(begin_str, salve, 6);
+
+
+   node_void* head5 = my_list.insert_at_head(11.61, DBL_L);
+   std::cout << *((double*)(my_list.get_head_void()->val)) << std::endl;
+
+   node_void* next_void = my_list.insert_at_head(25, INT_L);
+   std::cout << *((int*)(my_list.get_head_void()->val)) << std::endl;
+
+   node_void* void_three = my_list.insert_at_head(2.2f, FLT_L);
+   std::cout << *((float*)(my_list.get_head_void()->val)) << std::endl;
+
+   std::string s_1 = "This is in a void list\n";
+   node_void* void_four = my_list.insert_at_head(s_1, STR_L);
+   std::cout << *((std::string*)(my_list.get_head_void()->val)) << std::endl;
+
+
+
+
+
 
 }
 

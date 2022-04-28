@@ -78,6 +78,7 @@ class singly_linked{
        void clear(node_int*);
        void clear(node_flt*); 
        void clear(node_str*);
+       void clear(node_void*);
 
 
 	/*
@@ -87,7 +88,7 @@ class singly_linked{
 	node_int* itr_forward(node_int* begin, int breakVal, int breakIndex);
 	node_flt* itr_forward(node_flt* begin, float breakVal, int breakIndex);
 	node_str* itr_forward(node_str* begin, std::string& breakVal, int breakIndex);
-	node_void* itr_forward(node_void* begin, void* breakVal, int breakIndex, list_type_t deref_val);
+	node_void* itr_forward(node_void* begin, void* breakVal, int breakIndex, list_type_t deref_type);
 
 
 
@@ -96,7 +97,12 @@ class singly_linked{
 	 * */
 	void print_flags();
 	void print_lengths();
+
 	void print_list(node_dbl* begin);
+	void print_list(node_int* begin);
+	void print_list(node_flt* begin);
+	void print_list(node_str* begin);
+        void print_list(node_void* begin);
         
 	/*
 	 * Flags

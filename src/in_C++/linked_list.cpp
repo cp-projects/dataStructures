@@ -44,6 +44,9 @@ singly_linked::~singly_linked() {
         if(this->check_flag_str())
             this->clear(get_head_str());
 
+        if(this->check_flag_void())
+	    this->clear(get_head_void());
+
 
 	delete flags;
 
@@ -121,6 +124,22 @@ void singly_linked::clear(node_str* start){
 }
 
 
+void singly_linked::clear(node_void* start){
+
+    if(get_len_void() == 0)
+        return;
+    if(!(start->next)){
+        remove_at_head(start);
+        return;
+    }
+
+    this->clear(start->next);
+
+    remove_at_head(start);
+    this->flag_off_void();
+
+}
+
 /*
  *  Iterators
  *
@@ -167,14 +186,89 @@ node_int* singly_linked::itr_forward(node_int* begin, int breakVal, int breakInd
 }
 
 
+node_flt* singly_linked::itr_forward(node_flt* begin, float breakVal, int breakIndex){
+
+    assert(!(this->check_flag_val() && this->check_flag_index()));
+
+    int i = 0;
+    node_flt* end;
+    for(end = this->get_head_flt(); end; end = end->next){
+        if(this->check_flag_print())
+            std::cout << *(end->val) << std::endl;
+        if(this->check_flag_val() && *(end->val) == breakVal)
+            return end;
+        if(this->check_flag_index() && i == breakIndex)
+            return end;
+        i++;
+     }
+
+    return end;
+}
 
 
-/*
-node_int* itr_forward(node_int* begin, int breakVal, int breakIndex);
-node_flt* itr_forward(node_flt* begin, float breakVal, int breakIndex);
-node_str* itr_forward(node_str* begin, std::string& breakVal, int breakIndex);
-node_void* itr_forward(node_void* begin, void* breakVal, int breakIndex, list_type_t deref_val);
-*/
+node_str* singly_linked::itr_forward(node_str* begin, std::string& breakVal, int breakIndex){
+
+    assert(!(this->check_flag_val() && this->check_flag_index()));
+
+    int i = 0;
+    node_str* end;
+    for(end = this->get_head_str(); end; end = end->next){
+        if(this->check_flag_print())
+            std::cout << *(end->val) << std::endl;
+        if(this->check_flag_val() && *(end->val) == breakVal)
+            return end;
+        if(this->check_flag_index() && i == breakIndex)
+            return end;
+        i++;
+     }
+
+    return end;
+}
+
+
+
+node_void* singly_linked::itr_forward(node_void* begin, void* breakVal, int breakIndex, list_type_t deref_type){
+
+    assert(!(this->check_flag_val() && this->check_flag_index()));
+
+    int i = 0;
+    node_void* end;
+    for(end = this->get_head_void(); end; end = end->next){
+        
+	if(this->check_flag_print()){
+            //std::cout << *(end->val) << std::endl;
+	    switch(deref_type){
+	    
+	        case(DBL_L):
+		    std::cout << *((double*)(end->val)) << std::endl;
+		    break;
+
+		case(INT_L):
+		    std::cout << *((int*)(end->val)) << std::endl;
+		    break;
+
+		case(FLT_L):
+		    std::cout << *((float*)(end->val)) << std::endl;
+		    break;
+
+		case(STR_L):
+		    std::cout << *((std::string*)(end->val)) << std::endl;
+		    break;
+	    
+	    };
+	  }
+
+        if(this->check_flag_val() && *(end->val) == breakVal)
+            return end;
+
+        if(this->check_flag_index() && i == breakIndex)
+            return end;
+        i++;
+     }
+
+    return end;
+}
+
 
 
 /*
@@ -213,6 +307,101 @@ void singly_linked::print_list(node_dbl* begin){
         this->flag_on_val();
     if(i)
 	this->flag_on_index();
+}
+
+void singly_linked::print_list(node_int* begin){
+
+    //checking the flagstate before alterations
+    bool p = this -> check_flag_print();
+    bool v = this -> check_flag_val();
+    bool i = this -> check_flag_index();
+
+    //setting the flags for printing
+    this->flag_on_print();
+    this->flag_off_val();
+    this->flag_off_index();
+    this->itr_forward(begin, 0, 0);
+
+    //resetting if necessary
+    if(!p)
+        this->flag_off_print();
+    if(v)
+        this->flag_on_val();
+    if(i)
+        this->flag_on_index();
+}
+
+
+void singly_linked::print_list(node_flt* begin){
+
+    //checking the flagstate before alterations
+    bool p = this -> check_flag_print();
+    bool v = this -> check_flag_val();
+    bool i = this -> check_flag_index();
+
+    //setting the flags for printing
+    this->flag_on_print();
+    this->flag_off_val();
+    this->flag_off_index();
+    this->itr_forward(begin, 0, 0);
+
+    //resetting if necessary
+    if(!p)
+        this->flag_off_print();
+    if(v)
+        this->flag_on_val();
+    if(i)
+        this->flag_on_index();
+}
+
+
+void singly_linked::print_list(node_str* begin){
+
+    //checking the flagstate before alterations
+    bool p = this -> check_flag_print();
+    bool v = this -> check_flag_val();
+    bool i = this -> check_flag_index();
+
+    //setting the flags for printing
+    this->flag_on_print();
+    this->flag_off_val();
+    this->flag_off_index();
+
+    std::string I_need_a_string_to_make_itr_run = "Hello\n";
+    this->itr_forward(begin, I_need_a_string_to_make_itr_run, 0);
+
+    //resetting if necessary
+    if(!p)
+        this->flag_off_print();
+    if(v)
+        this->flag_on_val();
+    if(i)
+        this->flag_on_index();
+}
+
+
+void singly_linked::print_list(node_void* begin){
+
+    //checking the flagstate before alterations
+    bool p = this -> check_flag_print();
+    bool v = this -> check_flag_val();
+    bool i = this -> check_flag_index();
+
+    //setting the flags for printing
+    this->flag_on_print();
+    this->flag_off_val();
+    this->flag_off_index();
+
+    void* test_val;
+    this->itr_forward(begin, test_val, 0, *(this->m_head_void->dereference_type));
+
+    //resetting if necessary
+    if(!p)
+        this->flag_off_print();
+    if(v)
+        this->flag_on_val();
+    if(i)
+        this->flag_on_index();
 }
 
 
