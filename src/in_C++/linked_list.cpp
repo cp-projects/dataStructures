@@ -399,12 +399,25 @@ std::string singly_linked::remove_at_head(node_str* node){
 }
 
 
-node_void* singly_linked::insert_at_head(const auto val){
+node_void* singly_linked::insert_at_head(const void* val, list_type_t dereference_type){
+
 
    node_void* head = new node_void;
-   head->val = malloc(sizeof(auto)*sizeof(val));
+   
+   switch(dereference_type){
 
-   (auto)*(head->val) = val;
+       case(DBL_L):
+           double deref_value = *((double*)val);
+	   double* value_addr = new double;
+	   head->val = new void*;
+	   head->val = (void**) value_addr;
+	   *(value_addr) = deref_value;
+	   head->dereference_type = dereference_type;
+
+
+
+   }; 
+   
    head->next = this->m_head_void;
 
    this->set_head(head);
@@ -418,18 +431,28 @@ node_void* singly_linked::insert_at_head(const auto val){
 
 void* singly_linked::remove_at_head(node_void* node){
 
-    list_type_t type = node->type;
-    static auto val = (auto)*(node->val);
+    list_type_t dereference_type = node->dereference_type;
+    static void* retval = *(node->val);
+    
+    switch(dereference_type){
+    
+        case(DBL_L):
+            static double val = *((double*)*node->val);
+	    retval = (void*) &val;
 
+    
+    };
+    
+   
     this -> m_head_void = node->next;
 
     delete node->val;
     delete node;
 
     this->flag_off_void();
-    this->len_decrement(type);
+    this->len_decrement(VOID_L);
 
-    return (void*)&val;
+    return retval;
 }
 
 

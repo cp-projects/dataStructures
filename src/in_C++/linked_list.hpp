@@ -145,7 +145,7 @@ class singly_linked{
 	node_str* insert_at_head(std::string& val);
 	std::string remove_at_head(node_str* node);
 
-	node_void* insert_at_head(const auto val);
+	node_void* insert_at_head(const void* val, list_type_t dereference_type);
         void* remove_at_head(node_void* node);
 
     /*

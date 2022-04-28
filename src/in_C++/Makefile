@@ -8,8 +8,11 @@ linked_list.o: linked_list.cpp
 	g++ -c linked_list.cpp
 
 
-debug: linked_list.cpp
-	g++ -g -o debug.out linked_list.cpp
+debug: linked_list.cpp debug.o
+	g++ -g -o debug.out linked_list.cpp debug.o
+
+debug.o: debug.cpp linked_list.hpp
+	g++ -c debug.cpp
 
 clean:
 	rm ./*.o ./*.out
