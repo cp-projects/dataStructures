@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <cstring>
 #include <cassert>
 #include <optional>
 #include "linked_list.hpp"
@@ -129,13 +130,20 @@ void singly_linked::clear(node_void* start){
     if(get_len_void() == 0)
         return;
     if(!(start->next)){
-        remove_at_head(start);
+	if(*(start->dereference_type) == STR_L)
+	    remove_at_head(start, STR_L);
+	else
+            remove_at_head(start);
         return;
     }
 
     this->clear(start->next);
 
-    remove_at_head(start);
+    if(*(start->dereference_type) == STR_L)
+        remove_at_head(start, STR_L);
+    else
+        remove_at_head(start);
+    
     this->flag_off_void();
 
 }
@@ -227,7 +235,7 @@ node_str* singly_linked::itr_forward(node_str* begin, std::string& breakVal, int
 
 
 
-node_void* singly_linked::itr_forward(node_void* begin, void* breakVal, int breakIndex, list_type_t deref_type){
+node_void* singly_linked::itr_forward(node_void* begin, void* breakVal, const std::optional<std::string> breakString, int breakIndex, list_type_t deref_type){
 
     assert(!(this->check_flag_val() && this->check_flag_index()));
 
@@ -235,8 +243,7 @@ node_void* singly_linked::itr_forward(node_void* begin, void* breakVal, int brea
     node_void* end;
     for(end = this->get_head_void(); end; end = end->next){
         
-	if(this->check_flag_print()){
-            //std::cout << *(end->val) << std::endl;
+	if(this->check_flag_print()){            
 	    switch(deref_type){
 	    
 	        case(DBL_L):
@@ -251,25 +258,59 @@ node_void* singly_linked::itr_forward(node_void* begin, void* breakVal, int brea
 		    std::cout << *((float*)(end->val)) << std::endl;
 		    break;
 
+		    
 		case(STR_L):
-		    std::cout << *((std::string*)(end->val)) << std::endl;
-		    break;
-	    
-	    };
-	  }
+		    std::cout << *(end->str_val) << std::endl;
+		    break;    
+	         };
+	       }
 
-        if(this->check_flag_val() && *(end->val) == breakVal)
+	
+	if(deref_type == STR_L){
+	   
+                if(this->check_flag_val() && end->str_val == breakString)
+	            return end;
+	        if(this->check_flag_index() && i == breakIndex)
+	             return end;
+	         else
+		   continue;
+	}
+	
+
+	if(this->check_flag_val() && *(end->val) == breakVal)
             return end;
 
-        if(this->check_flag_index() && i == breakIndex)
+	if(this->check_flag_index() && i == breakIndex)
             return end;
+
         i++;
-     }
+    }
 
     return end;
 }
 
+/*
+node_void* singly_linked::itr_forward(node_void* begin, std::string& breakString, int breakIndex){
 
+    assert(!(this->check_flag_val() && this->check_flag_index()));
+
+    int i = 0;
+    node_void* end;
+    for(end = this->get_head_void(); end; end = end->next){
+
+      
+      if(this->check_flag_val() && !(end->str_val->compare(breakString)))
+	    return end;
+	if(this->check_flag_index() && i == breakIndex)
+	    return end;
+     
+	std::cout << *(end->str_val) << std::endl;
+
+      }
+
+    return end;
+
+    }*/
 
 /*
  *
@@ -299,7 +340,8 @@ void singly_linked::print_list(node_dbl* begin){
     this->flag_off_val();
     this->flag_off_index();
     this->itr_forward(begin, 0, 0);
-    
+
+
     //resetting if necessary
     if(!p)
         this->flag_off_print();
@@ -368,7 +410,7 @@ void singly_linked::print_list(node_str* begin){
     this->flag_off_index();
 
     std::string I_need_a_string_to_make_itr_run = "Hello\n";
-    this->itr_forward(begin, I_need_a_string_to_make_itr_run, 0);
+    this->itr_forward(begin, I_need_a_string_to_make_itr_run , 0);
 
     //resetting if necessary
     if(!p)
@@ -393,7 +435,8 @@ void singly_linked::print_list(node_void* begin){
     this->flag_off_index();
 
     void* test_val;
-    this->itr_forward(begin, test_val, 0, *(this->m_head_void->dereference_type));
+    std::string test_string = "Hello\n";
+    this->itr_forward(begin, test_val, test_string, 0,  *(this->m_head_void->dereference_type));
 
     //resetting if necessary
     if(!p)
@@ -863,7 +906,7 @@ node_void* singly_linked::insert_at_head(float val, list_type_t dereference_val)
 }
 
 
-node_void* singly_linked::insert_at_head(std::string val, list_type_t dereference_val){
+node_void* singly_linked::insert_at_head(std::string& val, list_type_t dereference_val){
 
 
    node_void* head = new node_void;
@@ -871,10 +914,10 @@ node_void* singly_linked::insert_at_head(std::string val, list_type_t dereferenc
    head->dereference_type = new list_type_t;
    *(head->dereference_type) = dereference_val;
 
-   std::string* value_addr = new std::string;
-   *(value_addr) = val;
-   head->val = (void**) value_addr;
+   head->str_val =  new std::string;
+   *(head->str_val) = val;
 
+   head->val = nullptr;
 
    head->next = this->m_head_void;
 
@@ -908,11 +951,6 @@ void* singly_linked::remove_at_head(node_void* node){
             static float flt_val = *((float*)node->val);
             retval = (void*) &flt_val;
             break;
-
-	case(STR_L):
-            static std::string str_val = *((std::string*)node->val);
-            retval = (void*) &str_val;
-            break;
     
     };
     
@@ -923,10 +961,26 @@ void* singly_linked::remove_at_head(node_void* node){
     delete node->val;
     delete node;
 
-    this->flag_off_void();
     this->len_decrement(VOID_L);
 
     return retval;
+
+
+}
+
+
+
+std::string singly_linked::remove_at_head(node_void* node, list_type_t deref_type){
+
+    static std::string Sval = *(node->str_val);
+    this -> m_head_void = node->next;
+    delete node->dereference_type;
+    delete node->str_val;
+    delete node;
+
+    this->len_decrement(VOID_L);
+    return Sval;
+
 }
 
 

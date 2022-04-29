@@ -321,19 +321,21 @@ void test_forward_itrs(){
 
 
    node_void* head5 = my_list.insert_at_head(11.61, DBL_L);
-   std::cout << *((double*)(my_list.get_head_void()->val)) << std::endl;
+   // std::cout << *((double*)(my_list.get_head_void()->val)) << std::endl;
 
    node_void* next_void = my_list.insert_at_head(25, INT_L);
-   std::cout << *((int*)(my_list.get_head_void()->val)) << std::endl;
+   //std::cout << *((int*)(my_list.get_head_void()->val)) << std::endl;
 
    node_void* void_three = my_list.insert_at_head(2.2f, FLT_L);
-   std::cout << *((float*)(my_list.get_head_void()->val)) << std::endl;
+   //std::cout << *((float*)(my_list.get_head_void()->val)) << std::endl;
 
+   
    std::string s_1 = "This is in a void list\n";
    node_void* void_four = my_list.insert_at_head(s_1, STR_L);
-   std::cout << *((std::string*)(my_list.get_head_void()->val)) << std::endl;
+   //std::cout << *(my_list.get_head_void()->str_val) << std::endl;
+   
 
-
+   my_list.print_list(next_void);
 
 
 

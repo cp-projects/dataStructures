@@ -88,9 +88,11 @@ class singly_linked{
 	node_int* itr_forward(node_int* begin, int breakVal, int breakIndex);
 	node_flt* itr_forward(node_flt* begin, float breakVal, int breakIndex);
 	node_str* itr_forward(node_str* begin, std::string& breakVal, int breakIndex);
-	node_void* itr_forward(node_void* begin, void* breakVal, int breakIndex, list_type_t deref_type);
+	
+  node_void* itr_forward(node_void* begin, void* breakVal,  const std::optional<std::string> breakString, int breakIndex, list_type_t deref_type);
+  //de_void* itr_forward(node_void* begin, std::string& breakString, int breakIndex);
 
-
+        //node_void* itr_forward(node_void* begin, const std::string& breakString, int breakIndex
 
 	/*
 	 * Print Methods
@@ -190,8 +192,10 @@ class singly_linked{
 	node_void* insert_at_head(double val, list_type_t dereference_val);
         node_void* insert_at_head(int val, list_type_t dereference_val);
 	node_void* insert_at_head(float val, list_type_t dereference_val);
-        node_void* insert_at_head(std::string val, list_type_t dereference_val);
+        node_void* insert_at_head(std::string& val, list_type_t dereference_val);
+	
 	void* remove_at_head(node_void* node);
+	std::string remove_at_head(node_void* node, list_type_t dereference_val);
 
     /*
      *  private methods/functions
