@@ -50,12 +50,15 @@ class array_iterator{
 	   }
 
 	   array_iterator operator[](size_t index){
-	       return *(m_current_pointer + index);
+	       m_current_pointer + index;
+	       return *this;
 	   }
 
+	   /*
            value_type operator[](size_t index){
 	       return *(m_current_pointer + index);
 	   }
+	   */
 
 	   array_iterator* operator->(){
 	       return m_current_pointer;
@@ -82,7 +85,11 @@ class array_iterator{
 
     public: //non_operator functions
 
-	   
+            value_type get_val(){
+	        value_type ret =  *(m_current_pointer);
+                return ret;
+	    }
+           
 
 	    
 
@@ -99,19 +106,21 @@ template <typename T, std::size_t L>
 struct my_array{
 
     my_array<T,L>()
-	    : m_len(L), m_start(begin()), m_finish(end()) {fill_null(); }
+	    : m_len(L), m_start(begin()), m_finish(end()), null_success(fill_null(L)) {}
 
     ~my_array<T,L>() {}
 
     public:
            typedef T value_type;
            typedef array_iterator<my_array> Iterator;
+	   T m_array[L];
 
     private:
-	    T m_array[L];
+	    //T m_array[L];
 	    size_t m_len;
 	    Iterator m_start;
 	    Iterator m_finish;
+	    bool null_success;
 
     public:
 	    constexpr std::size_t get_len(){
@@ -119,7 +128,9 @@ struct my_array{
 	        }
 
 	     T operator[] (size_t index) {
-		 return m_start[index];
+		 Iterator retNode = m_start[index];
+		 T ret_val = retNode.get_val();
+		 return ret_val;
 	        }
 
              Iterator begin() {
@@ -132,13 +143,15 @@ struct my_array{
 
     public:
 	     
-	     void fill_null(){
+	     bool fill_null(size_t len){
 		 size_t i = 0;
 		 for(Iterator current = m_start; current != m_finish; current++){
-	             *(current->+i) = 0;
+	             m_array[i] = 0;
 		     i++;
 		    }
-	     }
+
+		 return 1;
+	     };
 
 
 
