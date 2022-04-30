@@ -7,6 +7,6 @@ int main(){
 
     my_array<int, 10> test_ar;
 
-    std::cout << test_ar.get_len() << "\n" << test_ar[2] << std::endl;
+    std::cout << test_ar.get_len() << "\n" << test_ar[0] << std::endl;
 
 }
