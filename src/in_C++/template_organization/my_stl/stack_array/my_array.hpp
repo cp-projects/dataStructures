@@ -116,7 +116,6 @@ struct my_array{
 	   T m_array[L];
 
     private:
-	    //T m_array[L];
 	    size_t m_len;
 	    Iterator m_start;
 	    Iterator m_finish;
@@ -151,7 +150,10 @@ struct my_array{
 		    }
 
 		 return 1;
-	     };
+	     }
+
+
+
 
 
 
