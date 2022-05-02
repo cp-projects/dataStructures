@@ -26,7 +26,8 @@ int main(){
     my_array<double, 7> test_two({4,2,3,4,5,6,7});
     std::cout << test_two.len() << std::endl;
     
-    for(size_t i = 0; i < test_two.len(); i++)
+    //for(size_t i = 0; i < test_two.len(); i++)
+    for(double i : test_two)
         std::cout << test_two[i] << " ";
     std::cout << '\n';
 

@@ -4,7 +4,6 @@
 //#include <algorithm>
 //#include <array>
 #include <cassert>
-#include "my_initializer_list.hpp"
 
 template <typename array_t>
 class array_iterator{
@@ -106,31 +105,38 @@ struct my_array{
     my_array<T,L>()
 	    : m_len(L), m_start(begin()), m_finish(end()), null_fill_success(fill(0)) {}
 
-    my_array<T,L>(my_initializer_list<T> input)   //std::initializer_list<T> input)
-	    : m_len(L), m_start(begin()), m_finish(end()) 
+    my_array<T,L>(std::initializer_list<T> input)
+	    : m_len(L), m_start(begin()), m_finish(end()), init_list_fill_success(init_list_fill(input)) 
           {
+		  //m_array = static_ptr(input);
+	    /*	  
               assert(input.size() <= std::size(m_array));
 	      //std::copy(input.begin(), input.end(), m_array);
+
 	      size_t i = 0;
-	      for(const T* curr = input.begin(); curr != input.end(); curr++){
-	          m_array[i] = input[i];
+	      for(T* curr = const_cast<T*>(input.begin()); curr != input.end(); curr++){
+	          m_array[i] = *curr;
+		  std::cout << *curr << " " << i << '\n';
 		  //replace_val(*curr, i);
 		  i++;
-	         }         
+	         }  
+	      */	 
 	    }
 
     ~my_array<T,L>() {}
 
     public:
            typedef T value_type;
+	   typedef T arr_type[L];
            typedef array_iterator<my_array> Iterator;
-	   T m_array[L];
+	   arr_type m_array;
 
     private:
 	    size_t m_len;
 	    Iterator m_start;
 	    Iterator m_finish;
 	    bool null_fill_success;
+	    bool init_list_fill_success;
 
     public:
 	    constexpr std::size_t len(){
@@ -175,6 +181,27 @@ struct my_array{
                  m_array[index] = val;
 	        }
 
+	     
+	     bool init_list_fill(std::initializer_list<T>& input){
+		 
+		 assert(input.size() <= std::size(m_array));
+		 size_t i = 0;
+		 for(T* current = const_cast<T*>(input.begin()); 
+				 current != input.end();
+				 current++){
+                     std::cout << *current << " " << i << '\n';
+		     this->m_array[i] = *current;
+		     i++;
+		    }
+		 return 1;
+		
+                 
+		 
+	        // assert(input.size() <= std::size(m_array));
+		// const arr_type input_stat  = static_ref(input.begin(), L);
+		 
+	     }
+             
 
 
 
