@@ -52,10 +52,15 @@ class array_iterator{
 	       return iterator;
 	      }
 
-	   array_iterator operator[](size_t index){
+	   constexpr array_iterator& operator[](size_t index){
 	       m_current_pointer + index;
 	       return *this;
 	      }
+
+	   void operator=(value_type value){
+	       *(m_current_pointer) = value;
+	       return;
+	   }
 
 	   array_iterator* operator->(){
 	       return m_current_pointer;
@@ -130,6 +135,7 @@ struct my_array{
 	   typedef T arr_type[L];
            typedef array_iterator<my_array> Iterator;
 	   arr_type m_array;
+	   
 
     private:
 	    size_t m_len;
@@ -151,12 +157,22 @@ struct my_array{
 	        return const_cast<T&>(t[len]);
 	       }
 
+/*	   
 	     T operator[] (size_t index) {
 		 Iterator retNode = m_start[index];
 		 T ret_val = retNode.get_val();
 		 return ret_val;
 	        }
+*/
+             T operator[] (size_t   index) {
+		 Iterator& retNode = m_start[index];
+		 T ret_val = retNode.get_val();
+		 //*(m_array + index) = ret_val;
+		 return *(m_array + index);
+	        }
 
+
+             
              Iterator begin() {
 	         return Iterator(m_array);
 	        }
@@ -171,6 +187,7 @@ struct my_array{
 		 size_t i = 0;
 		 for(Iterator current = m_start; current != m_finish; current++){
 	             m_array[i] = fill_val;
+		     current[i] = fill_val;
 		     i++;
 		    }
 		 return 1;
@@ -186,12 +203,15 @@ struct my_array{
 		 
 		 assert(input.size() <= std::size(m_array));
 		 size_t i = 0;
+                 Iterator& curr_itr = m_start;
 		 for(T* current = const_cast<T*>(input.begin()); 
-				 current != input.end();
+				 current != input.end() && i < input.size() && curr_itr != m_finish;
 				 current++){
-                     std::cout << *current << " " << i << '\n';
-		     this->m_array[i] = *current;
+                     //std::cout << *current << " " << i << '\n';
+		     m_array[i] = *current;
+                     curr_itr[i] = *current;
 		     i++;
+		     curr_itr++;
 		    }
 		 return 1;
 		
@@ -205,7 +225,7 @@ struct my_array{
 
 
 
-
+           
 
 
 
