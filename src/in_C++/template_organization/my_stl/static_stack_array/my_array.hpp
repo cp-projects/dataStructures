@@ -171,6 +171,17 @@ struct my_array{
 		 return *(m_array + index);
 	        }
 
+	     constexpr Iterator& operator=(std::initializer_list<T> input){
+	         init_list_fill(input);
+		 //~my_array<T,L> m_array;
+		 //my_array<T,L>(input);
+		 return m_start;
+	        }
+
+	     T operator*(Iterator& current){
+	         return *(current->m_current);  
+	        }
+
 
              
              Iterator begin() {
@@ -217,7 +228,7 @@ struct my_array{
 		
                  
 		 
-	        // assert(input.size() <= std::size(m_array));
+	         assert(input.size() <= std::size(m_array));
 		// const arr_type input_stat  = static_ref(input.begin(), L);
 		 
 	     }
@@ -225,11 +236,9 @@ struct my_array{
 
 
 
-           
-
-
-
-
 };
 
+
+#pragma make debug.out
+#include "debug.cpp"
 
