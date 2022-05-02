@@ -6,12 +6,12 @@ int main(){
     //Direct Object Creation and Template Instansiation
 
     {	
-    my_array<int, 10> test_ar;
+    my_array<int, 10> test_ar;// = {1,2,3,4,5,6,7,8,9,10};
 
     std::cout << test_ar.len() << std::endl;
 
-    test_ar = {1,2,3,4,6,7,8,9,10};
-    //test_ar.fill(21);
+    //test_ar = {1,2,3,4,6,7,8,9,10};
+    test_ar.fill(21);
     
     std::cout << test_ar.len() << std::endl;
     

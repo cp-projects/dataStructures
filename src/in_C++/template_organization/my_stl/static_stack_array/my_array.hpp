@@ -4,6 +4,8 @@
 //#include <algorithm>
 //#include <array>
 #include <cassert>
+#include <cstddef>
+#include <ostream>
 
 template <typename array_t>
 class array_iterator{
@@ -108,7 +110,15 @@ template <typename T, std::size_t L>
 struct my_array{
 
     my_array<T,L>()
-	    : m_len(L), m_start(begin()), m_finish(end()), null_fill_success(fill(0)) {}
+	    : m_len(L), m_start(begin()), m_finish(end()), null_fill_success(fill(0)) {
+	        
+             /*Iterator& my_array::operator=(std::initializer_list<T>& input){
+                init_list_fill(input);
+                  return m_start;
+                }*/
+
+	    
+	    }
 
     my_array<T,L>(std::initializer_list<T> input)
 	    : m_len(L), m_start(begin()), m_finish(end()), init_list_fill_success(init_list_fill(input)) 
@@ -171,12 +181,13 @@ struct my_array{
 		 return *(m_array + index);
 	        }
 
-	     constexpr Iterator& operator=(std::initializer_list<T> input){
-	         init_list_fill(input);
+	     //my_array<int, 10>& my_array<int, 10>::operator=(const my_array<int, 10>&){
+	     //Iterator& operator=(std::initializer_list<T>& input){
+	       // init_list_fill(input);
 		 //~my_array<T,L> m_array;
 		 //my_array<T,L>(input);
-		 return m_start;
-	        }
+		 // return m_start;
+	       // }
 
 	     T operator*(Iterator& current){
 	         return *(current->m_current);  
@@ -237,8 +248,4 @@ struct my_array{
 
 
 };
-
-
-#pragma make debug.out
-#include "debug.cpp"
 
