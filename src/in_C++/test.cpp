@@ -26,11 +26,7 @@ void test_getters(cap::graph<int, 10> &my_graph){
     lap_mat.print();
     std::cout << "\n\n\n\n\n\n\n";
 
-    //cap::matrix testing_getters = adj_mat*deg_mat - lap_mat;
-
-    //std::cout << "\n\n\n\n\n\n\n";
-    //testing_getters.print();
-    //std::cout << "\n\n\n\n\n\n\n";
+    //cap::vector<int, 10> eigen = 
 
 }
 
@@ -43,11 +39,9 @@ int main(){
 
     cap::graph my_graph = cap::graph<int, 10>();
 
-    //my_graph.print_verticies();
+    my_graph.print_verticies();
 
     my_graph.discrete_uniform_rand(0.75);
-
-    my_graph.set_deg();
 
     test_getters(my_graph);
 

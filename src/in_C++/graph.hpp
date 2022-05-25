@@ -95,7 +95,7 @@ class graph{
 		   }
 	          }
 
-	    void set_adj(label_type i, label_type j){
+	    void set_adj(int i, int j){
 	        if(i == j)
 			return;
 		m_self_adjacency_matrix[i][j] = 1;
@@ -109,7 +109,11 @@ class graph{
 		    for(int j = 0; j < num_verticies; j++)
 		       if(i == j)
 			    m_self_degrees_matrix[i][j] =  m_self_adjacency_list[i].size(); 
-	                  }	
+	                  }
+
+            void set_lap(){
+	        m_self_laplacian_matrix = m_self_degrees_matrix - m_self_adjacency_matrix;
+	      }	    
 
 
 	    void discrete_uniform_rand(double edge_density){
@@ -128,14 +132,14 @@ class graph{
 		       if(trial > 0 && trial < 100*edge_density)
 		           set_adj(i, j);    
 		          }
-		         } 
+		         } set_deg(); set_lap(); 
 	                }
 
 
 	     void continuous_uniform_rand(double edge_density){
 
                 std::default_random_engine my_generator;
-                std::uniform_real_distribution<label_type> distribution(-100,100);
+                std::uniform_real_distribution<label_type> distribution(0,100);
                 for(int i = 0; i < num_verticies; i++){
                    //Generate random coordinates
                    label_type X = distribution(my_generator);
@@ -145,10 +149,10 @@ class graph{
                    //Generate Adjacency list/matrix
                    for(int j = 0; j < i+1; j++){
                        label_type trial = distribution(my_generator);                                    //std::cout << trial << '\n';
-                       if(trial > 0 && trial < 100*edge_density*0.5)
+                       if(trial > 0 && trial < 100*edge_density)
                            set_adj(i, j);
                           }
-                         }
+                         } set_deg(); set_lap();
                         }
 
 
