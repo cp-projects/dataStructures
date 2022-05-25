@@ -26,7 +26,15 @@ void test_getters(cap::graph<int, 10> &my_graph){
     lap_mat.print();
     std::cout << "\n\n\n\n\n\n\n";
 
-    //cap::vector<int, 10> eigen = 
+    cap::vector<int, 10>* eigen = lap_mat.eig_vals();
+    eigen->print();
+
+    //std::cout << lap_mat.Determinant();
+
+    std::cout << "\n\n\n\n\n\n\n";
+
+    delete eigen;
+
 
 }
 
